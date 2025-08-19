@@ -1,7 +1,10 @@
-<nav class="bg-purple-50 sticky top-0 shadow">
+<nav class="bg-purple-50 sticky top-0 shadow dark:bg-purple-950 dark:shadow-purple-700">
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div class="relative flex h-16 items-center justify-between">
-      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden" id="mobile-menu-button">
+      <div
+        class="absolute inset-y-0 left-0 flex items-center sm:hidden"
+        id="mobile-menu-button"
+      >
         <!-- Mobile menu button-->
         <button
           type="button"
@@ -54,9 +57,9 @@
         </button>
       </div>
       <div
-        class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
+        class="flex flex-row flex-1 items-center justify-end sm:items-stretch sm:justify-start"
       >
-        <div class="flex shrink-0 items-center">
+        <div class="flex basis-1/2 sm:basis-1/12 items-center justify-end sm:justify-start">
           <svg
             version="1.0"
             class="h-8 w-auto"
@@ -134,7 +137,7 @@
             </g></svg
           >
         </div>
-        <div class="hidden sm:ml-6 sm:block">
+        <div class="hidden sm:ml-6 sm:basis-8/12 sm:block">
           <div class="flex space-x-4">
             <!-- Current: "bg-purple-800 text-white", Default: "text-purple-900 hover:bg-purple-700 hover:text-white" -->
             <a
@@ -144,27 +147,127 @@
             >
             <a
               href="#"
-              class="rounded-md px-3 py-2 text-sm font-medium text-purple-900 hover:bg-purple-700 hover:text-white"
+              class="rounded-md px-3 py-2 text-sm font-medium text-purple-900 hover:bg-purple-700 hover:text-white dark:text-white"
               >Team</a
             >
             <a
               href="#"
-              class="rounded-md px-3 py-2 text-sm font-medium text-purple-900 hover:bg-purple-700 hover:text-white"
+              class="rounded-md px-3 py-2 text-sm font-medium text-purple-900 hover:bg-purple-700 hover:text-white dark:text-white"
               >Projects</a
             >
             <a
               href="#"
-              class="rounded-md px-3 py-2 text-sm font-medium text-purple-900 hover:bg-purple-700 hover:text-white"
+              class="rounded-md px-3 py-2 text-sm font-medium text-purple-900 hover:bg-purple-700 hover:text-white dark:text-white"
               >Calendar</a
             >
           </div>
+        </div>
+        <div class="flex basis-1/2 sm:basis-4/12 sm:w-full justify-end">
+          <button
+            type="button"
+            class="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-200 ring-gray-300 transition-all hover:ring-2 dark:ring-amber-300 dark:bg-amber-200 sm:ml-3"
+            id="theme-selector"
+          >
+            <span class="sr-only"
+              >Enable <span class="dark:hidden">light</span><span
+                class="hidden dark:inline">dark</span
+              > mode</span
+            >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 stroke-amber-600 hidden dark:inline"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+                <path
+                  d="M7.28451 10.3333C7.10026 10.8546 7 11.4156 7 12C7 14.7614 9.23858 17 12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C11.4156 7 10.8546 7.10026 10.3333 7.28451"
+                  stroke="#1C274C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"></path>
+                <path
+                  d="M12 2V4"
+                  stroke="#1C274C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"></path>
+                <path
+                  d="M12 20V22"
+                  stroke="#1C274C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"></path>
+                <path
+                  d="M4 12L2 12"
+                  stroke="#1C274C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"></path>
+                <path
+                  d="M22 12L20 12"
+                  stroke="#1C274C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"></path>
+                <path
+                  d="M19.7778 4.22266L17.5558 6.25424"
+                  stroke="#1C274C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"></path>
+                <path
+                  d="M4.22217 4.22266L6.44418 6.25424"
+                  stroke="#1C274C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"></path>
+                <path
+                  d="M6.44434 17.5557L4.22211 19.7779"
+                  stroke="#1C274C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"></path>
+                <path
+                  d="M19.7778 19.7773L17.5558 17.5551"
+                  stroke="#1C274C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"></path>
+              </g></svg
+            >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 stroke-gray-900 dark:hidden"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-line-cap="round"
+                stroke-line-join="round"
+                stroke-width={2}
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+              ></path>
+            </svg>
+          </button>
+          <script>
+            document
+              .getElementById("theme-selector")
+              ?.addEventListener("click", () => {
+                if (localStorage.theme === "dark") {
+                  localStorage.theme = "light";
+                  delete document.documentElement.dataset?.theme;
+                } else {
+                  localStorage.theme = "dark";
+                  document.documentElement.dataset.theme = "dark";
+                }
+              });
+          </script>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Mobile menu, show/hide based on menu state. -->
-  <div class="hidden absolute top-full left-0 w-full z-50 bg-purple-50 shadow-lg" id="mobile-menu">
+  <div
+    class="hidden absolute top-full left-0 w-full z-50 bg-purple-50 shadow-lg shadow-purple-300"
+    id="mobile-menu"
+  >
     <div class="space-y-1 px-2 pt-2 pb-3">
       <!-- Current: "bg-purple-800 text-white", Default: "text-purple-900 hover:bg-purple-700 hover:text-white" -->
       <a
