@@ -1,0 +1,23 @@
+---
+// Header.astro - Optional hero section for homepage
+export interface Props {
+  showHero?: boolean;
+  title?: string;
+  subtitle?: string;
+}
+
+const { showHero = false, title = "Blog Hafi", subtitle = "Sharing thoughts about technology and web development" } = Astro.props;
+---
+
+{showHero && (
+  <header class="bg-gradient-to-br from-purple-600 to-purple-800 text-white">
+    <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">
+        {title}
+      </h1>
+      <p class="text-xl md:text-2xl text-purple-100 font-light">
+        {subtitle}
+      </p>
+    </div>
+  </header>
+)}

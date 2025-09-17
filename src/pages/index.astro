@@ -1,12 +1,61 @@
 ---
-import Welcome from "../components/Welcome.astro";
-import Layout from "../layouts/Layout.astro";
-const pageTitle = "Hafi Blog | Home";
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CategoryFilter from '../components/blog/CategoryFilter.astro';
+import LoadMoreButton from '../components/blog/LoadMoreButton.astro';
+import { formatDate, calculateReadTimes } from '../utils/helpers.ts';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Get all published posts
+const allPosts = await getCollection('blog', ({ data }) => {
+  return !data.draft;
+});
+
+const sortedPosts = allPosts.sort((a, b) => 
+  new Date(b.data.publish_date).getTime() - new Date(a.data.publish_date).getTime()
+);
+
+// Get unique categories
+const categories = [...new Set(allPosts.map(post => post.data.category))].sort();
+
+// Prepare posts data for JavaScript
+const postsData = sortedPosts.map(post => ({
+  slug: post.slug,
+  title: post.data.title,
+  description: post.data.description,
+  author: post.data.author,
+  category: post.data.category,
+  image: post.data.image,
+  date: formatDate(post.data.publish_date),
+  readTime: calculateReadTimes(post.body)
+}));
 ---
 
-<Layout pageTitle={pageTitle}>  
-  <Welcome />
-</Layout>
+<BaseLayout 
+  pageTitle="Blog Hafi - Technology & Web Development"
+  description="Personal blog about technology, web development, and digital thoughts"
+>
+  <div class="max-w-6xl mx-auto py-16">
+    <!-- Category Filter -->
+    <CategoryFilter categories={categories} />
+    
+    <!-- Articles Grid -->
+    <div id="articles-container" class="grid md:grid-cols-2 gap-8 px-6">
+      <!-- Articles will be populated by JavaScript -->
+    </div>
+    
+    <!-- Load More Button -->
+    <LoadMoreButton />
+  </div>
+  
+  <!-- Initialize posts data -->
+  <script define:vars={{ postsData }}>
+    // Wait for DOM to be ready, then initialize posts
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        window.initializePosts(postsData);
+      });
+    } else {
+      window.initializePosts(postsData);
+    }
+  </script>
+</BaseLayout>

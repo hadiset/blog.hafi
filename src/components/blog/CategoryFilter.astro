@@ -1,0 +1,166 @@
+---
+export interface Props {
+  categories: string[];
+  currentCategory?: string;
+}
+
+const { categories, currentCategory = "All" } = Astro.props;
+---
+
+<div class="mb-8">
+  <div class="overflow-x-auto pb-2">
+    <div class="flex space-x-3 min-w-max px-6">
+      <!-- All Categories Button -->
+      <button
+        data-category="All"
+        class={`category-btn whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+          currentCategory === "All" 
+            ? 'bg-purple-600 text-white shadow-lg' 
+            : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-purple-900'
+        }`}
+      >
+        All
+      </button>
+      
+      <!-- Category Buttons -->
+      {categories.map(category => (
+        <button
+          data-category={category}
+          class={`category-btn whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+            currentCategory === category 
+              ? 'bg-purple-600 text-white shadow-lg' 
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-purple-900'
+          }`}
+        >
+          {category}
+        </button>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  // Category filter functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    const articlesContainer = document.getElementById('articles-container');
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    
+    let allPosts = [];
+    let filteredPosts = [];
+    let currentPage = 1;
+    const postsPerPage = 10;
+    
+    // Get all posts data (will be populated by main script)
+    window.initializePosts = function(posts) {
+      allPosts = posts;
+      filteredPosts = posts;
+      displayPosts();
+    };
+    
+    categoryButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const category = this.getAttribute('data-category');
+        
+        // Update active state
+        categoryButtons.forEach(btn => {
+          btn.classList.remove('bg-purple-600', 'text-white', 'shadow-lg');
+          btn.classList.add('bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+        });
+        
+        this.classList.remove('bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+        this.classList.add('bg-purple-600', 'text-white', 'shadow-lg');
+        
+        // Filter posts
+        if (category === 'All') {
+          filteredPosts = allPosts;
+        } else {
+          filteredPosts = allPosts.filter(post => post.category === category);
+        }
+        
+        currentPage = 1;
+        displayPosts(true);
+      });
+    });
+    
+    // Load more functionality
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', function() {
+        currentPage++;
+        displayPosts();
+      });
+    }
+    
+    function displayPosts(replace = false) {
+      const startIndex = replace ? 0 : (currentPage - 1) * postsPerPage;
+      const endIndex = currentPage * postsPerPage;
+      const postsToShow = filteredPosts.slice(startIndex, endIndex);
+      
+      if (replace) {
+        articlesContainer.innerHTML = '';
+      }
+      
+      postsToShow.forEach(post => {
+        const postElement = createPostElement(post);
+        articlesContainer.appendChild(postElement);
+      });
+      
+      // Toggle load more button
+      const hasMore = endIndex < filteredPosts.length;
+      if (loadMoreBtn) {
+        loadMoreBtn.style.display = hasMore ? 'block' : 'none';
+      }
+    }
+    
+    function createPostElement(post) {
+      const article = document.createElement('article');
+      article.className = 'group cursor-pointer';
+      
+      article.innerHTML = `
+        <a href="/${post.slug}" class="block">
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700">
+            ${post.image ? `
+              <div class="overflow-hidden h-48">
+                <img
+                  src="${post.image}" 
+                  alt="${post.title}"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"                  
+                />
+              </div>
+            ` : ''}
+            
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="inline-block bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded-full text-xs font-medium">
+                  ${post.category}
+                </span>
+              </div>
+              
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors line-clamp-2 mb-3">
+                ${post.title}
+              </h3>
+              
+              <p class="text-gray-600 dark:text-gray-300 line-clamp-3 mb-4">
+                ${post.description}
+              </p>
+              
+              <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+                <div class="flex items-center space-x-2">
+                  <span class="font-medium">${post.author}</span>
+                  <span>•</span>
+                  <time>${post.date}</time>
+                  <span>•</span>
+                  <span>${post.readTime} min read</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      `;
+      
+      return article;
+    }
+  });
+</script>

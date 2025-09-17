@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogList from '../../components/blog/BlogList.astro';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog', ({ data }) => {
+    return !data.draft;
+  });
+
+  const categories = [...new Set(allPosts.map(post => post.data.category))];
+
+  return categories.map(category => {
+    const filteredPosts = allPosts
+      .filter(post => post.data.category === category)
+      .sort((a, b) => new Date(b.data.publish_date).getTime() - new Date(a.data.publish_date).getTime());
+
+    return {
+      params: { category },
+      props: { posts: filteredPosts, category },
+    };
+  });
+}
+
+const { posts, category } = Astro.props;
+---
+
+<BaseLayout 
+  pageTitle={`${category} Articles - Blog Hafi`}
+  description={`All articles in ${category} category`}
+>
+  <div class="max-w-4xl mx-auto px-6 py-16">
+    <header class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        {category}
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400">
+        {posts.length} article{posts.length !== 1 ? 's' : ''} in this category
+      </p>
+    </header>
+    
+    <BlogList posts={posts} showFeatured={false} />
+  </div>
+</BaseLayout>

@@ -1,0 +1,61 @@
+---
+import BlogCard from './BlogCard.astro';
+
+export interface Props {
+  posts: any[];
+  showFeatured?: boolean;
+}
+
+const { posts, showFeatured = true } = Astro.props;
+
+// Separate featured and regular posts
+const featuredPosts = posts.filter(post => post.data.featured);
+const regularPosts = posts.filter(post => !post.data.featured);
+---
+
+<div class="max-w-6xl mx-auto px-6">
+  <!-- Featured Posts Section -->
+  {showFeatured && featuredPosts.length > 0 && (
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Featured Articles</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        {featuredPosts.slice(0, 1).map(post => (
+          <BlogCard 
+            title={post.data.title}
+            description={post.data.description}
+            author={post.data.author}
+            publish_date={post.data.publish_date}
+            category={post.data.category}
+            tags={post.data.tags}
+            image={post.data.image}
+            slug={post.slug}
+            featured={true}
+            content={post.body}
+          />
+        ))}
+      </div>
+    </section>
+  )}
+  
+  <!-- Recent Posts Section -->
+  <section>
+    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">
+      {showFeatured ? 'Recent Articles' : 'All Articles'}
+    </h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {regularPosts.map(post => (
+        <BlogCard 
+          title={post.data.title}
+          description={post.data.description}
+          author={post.data.author}
+          publish_date={post.data.publish_date}
+          category={post.data.category}
+          tags={post.data.tags}
+          image={post.data.image}
+          slug={post.slug}
+          content={post.body}
+        />
+      ))}
+    </div>
+  </section>
+</div>
