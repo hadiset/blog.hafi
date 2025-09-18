@@ -39,7 +39,7 @@ const { categories, currentCategory = "All" } = Astro.props;
   </div>
 </div>
 
-<script is:inline>
+<script>
   // Category filter functionality
   document.addEventListener('DOMContentLoaded', function() {
     const categoryButtons = document.querySelectorAll('.category-btn');
@@ -121,12 +121,11 @@ const { categories, currentCategory = "All" } = Astro.props;
           <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700">
             ${post.image ? `
               <div class="overflow-hidden h-48">
-                <img
+                <img 
                   src="${post.image}" 
                   alt="${post.title}"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   loading="lazy"
-                  decoding="async"
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"                  
                 />
               </div>
             ` : ''}
