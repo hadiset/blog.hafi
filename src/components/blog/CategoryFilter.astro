@@ -39,7 +39,7 @@ const { categories, currentCategory = "All" } = Astro.props;
   </div>
 </div>
 
-<script>
+<script is:inline>
   // Category filter functionality
   document.addEventListener('DOMContentLoaded', function() {
     const categoryButtons = document.querySelectorAll('.category-btn');
