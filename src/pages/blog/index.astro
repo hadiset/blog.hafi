@@ -44,7 +44,7 @@ const allPostsData = sortedPosts.map(post => ({
     
     <!-- Articles Grid - Pre-rendered initial posts -->
     <div id="articles-container" class="grid md:grid-cols-2 gap-8 px-6">
-      {initialPosts.map(post => (
+      {initialPosts.map((post, index) => (
         <BlogCard 
           title={post.data.title}
           description={post.data.description}
@@ -55,6 +55,7 @@ const allPostsData = sortedPosts.map(post => ({
           image={post.data.image}
           slug={`blog/${post.slug}`}
           content={post.body}
+          loading={index < 4 ? 'eager' : 'lazy'}
         />
       ))}
     </div>
@@ -171,11 +172,15 @@ const allPostsData = sortedPosts.map(post => ({
             ${post.image ? `
               <div class="overflow-hidden h-48 relative z-10">
                 <img 
-                  src="${post.image}" 
+                  src="${post.image}"
+                  data-image-component="true" 
                   alt="${post.title}"
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
+                  fetchpriority="high"
+                  width="400"
+                  height="200"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
             ` : ''}

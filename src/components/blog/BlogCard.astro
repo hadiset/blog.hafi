@@ -13,6 +13,7 @@ export interface Props {
   slug: string;
   featured?: boolean;
   content?: string;
+  loading?: 'eager' | 'lazy';
 }
 
 const { 
@@ -25,26 +26,27 @@ const {
   image, 
   slug,
   featured = false,
-  content = ""
+  content = "",
+  loading = 'lazy'
 } = Astro.props;
 
 const readTime = calculateReadTimes(content);
 ---
 
-<article class={`group cursor-pointer ${featured ? 'md:col-span-2' : ''}`}>
+<article class={`group cursor-pointer`}>
   <a href={`/${slug}`} class="block">
     <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700">
       
       <!-- Image -->
       {image && (
-        <div class={`overflow-hidden ${featured ? 'h-64' : 'h-48'}`}>
+        <div class={`overflow-hidden h-48`}>
           <Image 
             src={image} 
             alt={title}
             width={400}
             height={200}
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            loading={featured ? "eager" : "lazy"}
+            loading={loading}
           />
         </div>
       )}
@@ -55,16 +57,11 @@ const readTime = calculateReadTimes(content);
         <div class="flex items-center gap-2 mb-3">
           <span class="inline-block bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded-full text-xs font-medium">
             {category}
-          </span>
-          {featured && (
-            <span class="inline-block bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 px-2 py-1 rounded-full text-xs font-medium">
-              Featured
-            </span>
-          )}
+          </span>          
         </div>
         
         <!-- Title -->
-        <h3 class={`font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors line-clamp-2 mb-3 ${featured ? 'text-2xl' : 'text-xl'}`}>
+        <h3 class={`font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors line-clamp-2 mb-3 text-xl`}>
           {title}
         </h3>
         
@@ -85,17 +82,6 @@ const readTime = calculateReadTimes(content);
             <span>{readTime} min read</span>
           </div>
         </div>
-        
-        <!-- Tags (only for featured) -->
-        {featured && tags.length > 0 && (
-          <div class="flex flex-wrap gap-2 mt-4">
-            {tags.slice(0, 3).map(tag => (
-              <span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full">
-                #{tag}
-              </span>
-            ))}
-          </div>
-        )}
       </div>
     </div>
   </a>
