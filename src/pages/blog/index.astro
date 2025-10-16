@@ -1,0 +1,215 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CategoryFilter from '../../components/blog/CategoryFilter.astro';
+import BlogCard from '../../components/blog/BlogCard.astro';
+import LoadMoreButton from '../../components/blog/LoadMoreButton.astro';
+import { formatDate, calculateReadTimes } from '../../utils/helpers.ts';
+
+// Get all published posts
+const allPosts = await getCollection('blog', ({ data }) => {
+  return !data.draft;
+});
+
+const sortedPosts = allPosts.sort((a, b) => 
+  new Date(b.data.publish_date).getTime() - new Date(a.data.publish_date).getTime()
+);
+
+// Get unique categories
+const categories = [...new Set(allPosts.map(post => post.data.category))].sort();
+
+// Initial posts to render (first 10)
+const initialPosts = sortedPosts.slice(0, 10);
+
+// Prepare ALL posts data for JavaScript (for filtering & load more)
+const allPostsData = sortedPosts.map(post => ({
+  slug: post.slug,
+  title: post.data.title,
+  description: post.data.description,
+  author: post.data.author,
+  category: post.data.category,
+  image: post.data.image,
+  date: formatDate(post.data.publish_date),
+  readTime: calculateReadTimes(post.body)
+}));
+---
+
+<BaseLayout 
+  pageTitle="Blog Hafi - Technology & Web Development"
+  description="Personal blog about technology, web development, and digital thoughts"
+>
+  <div class="max-w-6xl mx-auto py-16">
+    <!-- Category Filter -->
+    <CategoryFilter categories={categories} />
+    
+    <!-- Articles Grid - Pre-rendered initial posts -->
+    <div id="articles-container" class="grid md:grid-cols-2 gap-8 px-6">
+      {initialPosts.map(post => (
+        <BlogCard 
+          title={post.data.title}
+          description={post.data.description}
+          author={post.data.author}
+          publish_date={post.data.publish_date}
+          category={post.data.category}
+          tags={post.data.tags}
+          image={post.data.image}
+          slug={`blog/${post.slug}`}
+          content={post.body}
+        />
+      ))}
+    </div>
+    
+    <!-- Load More Button -->
+    <LoadMoreButton />
+  </div>
+  
+  <!-- Initialize posts data for JavaScript functionality -->
+  <script is:inline define:vars={{ allPostsData }}>
+    // Store all posts data globally
+    window.allPostsData = allPostsData;
+    window.currentDisplayedPosts = 10; // Track how many posts are currently shown
+    window.currentCategory = 'All'; // Track current category filter
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      const categoryButtons = document.querySelectorAll('.category-btn');
+      const articlesContainer = document.getElementById('articles-container');
+      const loadMoreBtn = document.getElementById('load-more-btn');
+      
+      // Category filter functionality
+      categoryButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const category = this.getAttribute('data-category');
+          window.currentCategory = category;
+          
+          // Update active state
+          categoryButtons.forEach(btn => {
+            btn.classList.remove('bg-purple-600', 'text-white', 'shadow-lg');
+            btn.classList.add('bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+          });
+          
+          this.classList.remove('bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+          this.classList.add('bg-purple-600', 'text-white', 'shadow-lg');
+          
+          // Filter and display posts
+          filterAndDisplayPosts();
+        });
+      });
+      
+      // Load more functionality
+      if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', function() {
+          loadMorePosts();
+        });
+      }
+      
+      // Initial load more button state
+      updateLoadMoreButton();
+    });
+    
+    function filterAndDisplayPosts() {
+      const articlesContainer = document.getElementById('articles-container');
+      let filteredPosts;
+      
+      if (window.currentCategory === 'All') {
+        filteredPosts = window.allPostsData;
+      } else {
+        filteredPosts = window.allPostsData.filter(post => post.category === window.currentCategory);
+      }
+      
+      // Clear container and show first 10 filtered posts
+      articlesContainer.innerHTML = '';
+      const postsToShow = filteredPosts.slice(0, 10);
+      
+      postsToShow.forEach(post => {        
+        const postElement = createPostElement(post);
+        articlesContainer.appendChild(postElement);
+      });
+      
+      window.currentDisplayedPosts = postsToShow.length;
+      window.currentFilteredPosts = filteredPosts;
+      updateLoadMoreButton();
+    }
+    
+    function loadMorePosts() {
+      let postsToUse = window.currentCategory === 'All' 
+        ? window.allPostsData 
+        : window.currentFilteredPosts || window.allPostsData;
+      
+      const startIndex = window.currentDisplayedPosts;
+      const endIndex = startIndex + 10;
+      const morePosts = postsToUse.slice(startIndex, endIndex);
+      
+      const articlesContainer = document.getElementById('articles-container');
+      morePosts.forEach(post => {
+        const postElement = createPostElement(post);
+        articlesContainer.appendChild(postElement);
+      });
+      
+      window.currentDisplayedPosts += morePosts.length;
+      updateLoadMoreButton();
+    }
+    
+    function updateLoadMoreButton() {
+      const loadMoreBtn = document.getElementById('load-more-btn');
+      if (!loadMoreBtn) return;
+      
+      let totalPosts = window.currentCategory === 'All' 
+        ? window.allPostsData.length 
+        : (window.currentFilteredPosts || window.allPostsData).length;
+      
+      const hasMore = window.currentDisplayedPosts < totalPosts;
+      loadMoreBtn.style.display = hasMore ? 'block' : 'none';
+    }
+    
+    function createPostElement(post) {
+      const article = document.createElement('article');
+      article.className = 'group cursor-pointer';
+      
+      article.innerHTML = `
+        <a href="/blog/${post.slug}" class="block">
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700">
+            ${post.image ? `
+              <div class="overflow-hidden h-48 relative z-10">
+                <img 
+                  src="${post.image}" 
+                  alt="${post.title}"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ` : ''}
+            
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="inline-block bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded-full text-xs font-medium">
+                  ${post.category}
+                </span>
+              </div>
+              
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors line-clamp-2 mb-3">
+                ${post.title}
+              </h3>
+              
+              <p class="text-gray-600 dark:text-gray-300 line-clamp-3 mb-4">
+                ${post.description}
+              </p>
+              
+              <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+                <div class="flex items-center space-x-2">
+                  <span class="font-medium">${post.author}</span>
+                  <span>•</span>
+                  <time>${post.date}</time>
+                  <span>•</span>
+                  <span>${post.readTime} min read</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      `;      
+      
+      return article;
+    }
+  </script>
+</BaseLayout>
