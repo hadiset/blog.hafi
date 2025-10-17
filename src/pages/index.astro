@@ -1,31 +1,70 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Image from "astro/components/Image.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import profileImage from "../images/hadi.webp";
 ---
 
-<BaseLayout 
+<BaseLayout
   pageTitle="About - Blog Hafi"
   description="Learn more about Hafi and this blog"
 >
-  <div class="max-w-4xl mx-auto px-6 py-16">
-    <div class="prose prose-lg dark:prose-invert max-w-none">
-      <h1>About This Blog</h1>
-      
-      <p>
-        Welcome to my personal blog where I share thoughts about technology, 
-        web development, and digital innovation.
-      </p>
-      
-      <p>
-        This blog is built with <a href="https://astro.build">Astro</a> and 
-        styled with <a href="https://tailwindcss.com">Tailwind CSS</a>.
-      </p>
-      
-      <p>
-        For more information about me, visit 
-        <a href="https://hafi.click" target="_blank" rel="noopener noreferrer">
-          my main website
-        </a>.
-      </p>
+  <div class="flex flex-col max-w-6xl mx-auto px-6 py-16">
+    <div class="flex flex-col-reverse md:flex-row p-12">
+      <div
+        class="flex flex-col basis-3/4 md:pr-24 justify-center items-center md:items-start text-center md:text-left"
+      >
+        <h1 class="font-extrabold text-4xl tracking-wide">
+          Hi, I am Hadi Setiawan,
+        </h1>
+        <h2 class="font-extrabold text-4xl tracking-wide">Website Developer</h2>
+        <p
+          class="mt-5 font-normal text-base/relaxed tracking-wide align-middle"
+        >
+          I’m a Web Developer and Server Administrator with over 7 years of
+          experience building and managing web applications. Starting from
+          WordPress development on Ubuntu-based VPS, I now focus on creating
+          modern Laravel web apps using Docker for consistent environments and
+          Git-based deployment. As a long-time Linux user, I value performance,
+          stability, and maintainability in every system I build.
+        </p>
+        <p class="mt-5 font-normal tracking-wide align-middle">
+          — turning ideas into fast, reliable, and always-available web
+          applications.
+        </p>
+        <button
+          type="button"
+          class="mt-7 cursor-pointer inline-flex items-center text-white bg-gradient-to-br from-purple-500 to-pink-500 hover:bg-gradient-to-tr focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-xl px-7 py-4 text-center me-2 mb-2 border-2 hover:border-purple-500 dark:hover:border-pink-300"
+        >
+          <svg
+            class="w-5 h-5 text-white me-2"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 20 16"
+          >
+            <path
+              d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z"
+            ></path>
+            <path
+              d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z"
+            ></path>
+          </svg>
+          Work with Me</button
+        >
+      </div>
+      <div
+        class="flex basis-1/4 justify-center items-center overflow-hidden mb-10"
+      >
+        <Image
+          src={profileImage}
+          alt="Hadi Setiawan, Website Developer"
+          class="rounded-full w-48 md:w-full object-cover group-hover:scale-105 transition-transform duration-300"
+          loading="eager"
+          format="webp"
+          quality={80}
+          fetchpriority="high"
+        />
+      </div>
     </div>
   </div>
 </BaseLayout>
