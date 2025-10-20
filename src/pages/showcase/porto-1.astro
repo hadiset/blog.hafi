@@ -1,0 +1,472 @@
+---
+import SlicingLayout from "../../layouts/SlicingLayout.astro";
+import gambar from "../../images/Prtfl1/thumb.webp";
+import Image from "astro/components/Image.astro";
+import heroMobile from "../../images/Prtfl1/heroMobile.webp";
+import logo from "../../images/Prtfl1/Logo.webp";
+import logo1 from "../../images/Prtfl1/Logo-1.webp";
+import logo2 from "../../images/Prtfl1/Logo-2.webp";
+import logo3 from "../../images/Prtfl1/Logo-3.webp";
+import logo4 from "../../images/Prtfl1/Logo-4.webp";
+import logo5 from "../../images/Prtfl1/Logo-5.webp";
+import accountIcon from "../../images/Prtfl1/Account icon.webp";
+import cableIcon from "../../images/Prtfl1/Cable icon.webp";
+import chartIcon from "../../images/Prtfl1/Chart icon.webp";
+import closeIcon from "../../images/Prtfl1/Close icon.webp";
+import earthIcon from "../../images/Prtfl1/Earth icon.webp";
+import governmentIcon from "../../images/Prtfl1/Government icon.webp";
+import paintIcon from "../../images/Prtfl1/Paint icon.webp";
+import vectorIcon from "../../images/Prtfl1/Vector icon.webp";
+import imgMountain from "../../images/Prtfl1/imgGal.webp";
+import imgRoll from "../../images/Prtfl1/imgGal4.webp";
+---
+
+<SlicingLayout
+  pageTitle="Modern Product Launch"
+  description="Build buzz around your launch with this bold product template. A clean, focused design that makes it easy to highlight features, share updates, and drive early interest."
+  image={gambar}
+  figmaUrl="https://www.figma.com/community/file/1487309170684591074/modern-product-launch"
+  designer="Figma"
+>
+  <!-- Navigation Bar -->
+  <nav
+    id="nav-bar"
+    class="fixed flex flex-col items-start top-0 w-full h-19.5 bg-white rounded-b-lg drop-shadow-lg transition-all duration-300 ease-in-out"
+  >
+    <div
+      class="flex flex-row w-full items-center justify-between px-5 pt-5 pb-12.5"
+    >
+      <p
+        class="font-dm-sans font-medium text-[30px]/[1.2em] -tracking-[0.08em]"
+      >
+        Area
+      </p>
+      <div class="md:hidden">
+        <svg
+          id="open-menu"
+          class="w-6 h-6 text-black cursor-pointer"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-width="2"
+            d="M5 7h14M5 12h14M5 17h14"></path>
+        </svg>
+        <svg
+          id="close-menu"
+          class="hidden w-6 h-6 text-black cursor-pointer"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18 17.94 6M18 18 6.06 6"></path>
+        </svg>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="md:hidden fixed flex flex-col items-center top-26.5 bg-white w-full px-5 pt-2 pb-8 rounded-b-lg drop-shadow-lg space-y-12.5 opacity-0 pointer-events-none -translate-y-24 transition-all duration-300 ease-in-out"
+  >
+    <div class="flex flex-col w-full">
+      <a
+        href="#"
+        class="w-full border-t border-t-[#E9E9E9] py-7.5 font-dm-sans font-bold text-[14px]/[1.4em] -tracking-[0.025em]"
+        >Benefit</a
+      >
+      <a
+        href="#"
+        class="w-full border-t border-t-[#E9E9E9] py-7.5 font-dm-sans font-bold text-[14px]/[1.4em] -tracking-[0.025em]"
+        >Specifications</a
+      >
+      <a
+        href="#"
+        class="w-full border-t border-t-[#E9E9E9] py-7.5 font-dm-sans font-bold text-[14px]/[1.4em] -tracking-[0.025em]"
+        >How-to</a
+      >
+      <a
+        href="#"
+        class="w-full border-t border-t-[#E9E9E9] py-7.5 font-dm-sans font-bold text-[14px]/[1.4em] -tracking-[0.025em]"
+        >Contact Us</a
+      >
+    </div>
+    <div class="flex items-start w-full">
+      <a
+        href="https://www.figma.com/sites"
+        class="text-white inline-flex bg-[#485C11] px-5.5 py-3.5 rounded-full font-dm-sans font-bold text-[14px]/[1.4em] -tracking-[0.025em]"
+        >Learn More
+        <svg
+          class="ms-1 w-4 h-4 rotate-45"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 6v13m0-13 4 4m-4-4-4 4"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section
+    class="flex flex-col items-center pt-30 px-4 space-y-30 h-183 overflow-clip"
+  >
+    <h1
+      class="text-center font-crimson-text text-[76px]/[0.85em] md:text-[140px]/[0.8em] xl:text-[160px]/[0.85em] -tracking-[0.045em] md:-tracking-[0.05em]"
+    >
+      Browse Everything.
+    </h1>
+
+    <Image
+      src={heroMobile}
+      alt="Mobile Applications Screenshots"
+      class="w-full md:hidden object-cover group-hover:scale-105 transition-transform duration-300 border-2 border-white"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </section>
+
+  <!-- Main Section -->
+  <section class="flex flex-col w-full">
+    <!-- Logo Cloud -->
+    <div class="flex flex-col px-4 py-12.5 space-y-7.5">
+      <p
+        class="font-dm-sans text-[#6F6F6F] text-[15px]/[1.4em] -tracking-[0.005em]"
+      >
+        Trusted by:
+      </p>
+      <div class="grid grid-cols-2 gap-x-10 gap-y-5">
+        <div class="flex justify-center items-center w-37.5 p-5">
+          <Image
+            src={logo}
+            alt="Logoipsum"
+            class="w-full transition-transform duration-300 ease-in hover:drop-shadow-lg/20"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="flex justify-center items-center w-37.5 p-5">
+          <Image
+            src={logo1}
+            alt="Logoipsum"
+            class="w-full transition-transform duration-300 ease-in hover:drop-shadow-lg/20"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="flex justify-center items-center w-37.5 p-5">
+          <Image
+            src={logo2}
+            alt="Logoipsum"
+            class="w-full transition-transform duration-300 ease-in hover:drop-shadow-lg/20"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="flex justify-center items-center w-37.5 p-5">
+          <Image
+            src={logo3}
+            alt="Logoipsum"
+            class="w-full transition-transform duration-300 ease-in hover:drop-shadow-lg/20"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="flex justify-center items-center w-37.5 p-5">
+          <Image
+            src={logo4}
+            alt="Logoipsum"
+            class="w-full transition-transform duration-300 ease-in hover:drop-shadow-lg/20"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="flex justify-center items-center w-37.5 p-5">
+          <Image
+            src={logo5}
+            alt="Logoipsum"
+            class="w-full transition-transform duration-300 ease-in hover:drop-shadow-lg/20"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- End Logo Cloud -->
+
+    <!-- Benefits section -->
+    <div class="flex flex-col w-full px-4 pb-25">
+      <div
+        class="flex flex-col pt-20 pb-15 justify-start items-center w-full border-t border-t-[#E9E9E9]"
+      >
+        <div class="flex flex-col pr-5 space-y-7.5">
+          <h2
+            class="text-[#485C11] font-roboto-mono text-[12px]/[1.4em] -tracking-[0.01em]"
+          >
+            Benefits
+          </h2>
+          <p class="font-crimson-text text-[60px]/[0.9em] -tracking-[0.03em]">
+            We’ve cracked the code.
+          </p>
+          <p
+            class="text-[#6F6F6F] font-dm-sans text-[15px]/[1.4em] -tracking-[0.005em]"
+          >
+            Area provides real insights, without the data overload.
+          </p>
+        </div>
+        <div class="flex flex-col pt-10 space-y-5">
+          <!-- Benefit Icon -->
+          <div
+            class="flex flex-col space-y-6 py-10 pr-5 justify-items-start border-t border-t-[#E9E9E9]"
+          >
+            <Image
+              src={cableIcon}
+              alt="Cable"
+              class="w-6 h-6"
+              loading="eager"
+              fetchpriority="high"
+            />
+            <div class="flex flex-col space-y-5 w-[323px]">
+              <h3
+                class="font-crimson-text text-[18px]/[1em] -tracking-[0.03em]"
+              >
+                Amplify Insights
+              </h3>
+              <p
+                class="font-dm-sans text-[#6F6F6F] text-[15px]/[1.4em] -tracking-[0.005em]"
+              >
+                Unlock data-driven decisions with comprehensive analytics,
+                revealing key opportunities for strategic regional growth.
+              </p>
+            </div>
+          </div>
+
+          <!-- Benefit Icon -->
+          <div
+            class="flex flex-col space-y-6 py-10 pr-5 justify-items-start border-t border-t-[#E9E9E9]"
+          >
+            <Image
+              src={earthIcon}
+              alt="Earth"
+              class="w-6 h-6"
+              loading="eager"
+              fetchpriority="high"
+            />
+            <div class="flex flex-col space-y-5 w-[323px]">
+              <h3
+                class="font-crimson-text text-[18px]/[1em] -tracking-[0.03em]"
+              >
+                Control Your Global Presence
+              </h3>
+              <p
+                class="font-dm-sans text-[#6F6F6F] text-[15px]/[1.4em] -tracking-[0.005em]"
+              >
+                Manage and track satellite offices, ensuring consistent
+                performance and streamlined operations everywhere.
+              </p>
+            </div>
+          </div>
+
+          <!-- Benefit Icon -->
+          <div
+            class="flex flex-col space-y-6 py-10 pr-5 justify-items-start border-t border-t-[#E9E9E9]"
+          >
+            <Image
+              src={accountIcon}
+              alt="Account"
+              class="w-6 h-6"
+              loading="eager"
+              fetchpriority="high"
+            />
+            <div class="flex flex-col space-y-5 w-[323px]">
+              <h3
+                class="font-crimson-text text-[18px]/[1em] -tracking-[0.03em]"
+              >
+                Remove Language Barriers
+              </h3>
+              <p
+                class="font-dm-sans text-[#6F6F6F] text-[15px]/[1.4em] -tracking-[0.005em]"
+              >
+                Adapt to diverse markets with built-in localization for clear
+                communication and enhanced user experience.
+              </p>
+            </div>
+          </div>
+
+          <!-- Benefit Icon -->
+          <div
+            class="flex flex-col space-y-6 py-10 pr-5 justify-items-start border-t border-t-[#E9E9E9]"
+          >
+            <Image
+              src={chartIcon}
+              alt="Chart"
+              class="w-6 h-6"
+              loading="eager"
+              fetchpriority="high"
+            />
+            <div class="flex flex-col space-y-5 w-[323px]">
+              <h3
+                class="font-crimson-text text-[18px]/[1em] -tracking-[0.03em]"
+              >
+                Visualize Growth
+              </h3>
+              <p
+                class="font-dm-sans text-[#6F6F6F] text-[15px]/[1.4em] -tracking-[0.005em]"
+              >
+                Generate precise, visually compelling reports that illustrate
+                your growth trajectories across all regions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex w-full">
+        <Image
+          src={imgMountain}
+          alt="A image that shows a mountain range "
+          class="h-150 object-cover rounded-[30px]"
+          loading="lazy"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+    <!-- End Benefits section -->
+
+    <!-- Features carousel -->
+    <div class="flex flex-col w-full px-8 pb-20">
+      <div class="flex w-full border-t border-t-[#E9E9E9]"></div>
+      <div class="flex flex-col w-full pt-15 pb-20 space-y-10">
+        <div class="flex flex-col w-full space-y-10">
+          <p class="font-crimson-text text-[60px]/[0.9em] -tracking-[0.03em]">
+            See the Big Picture
+          </p>
+          <p
+            class="text-[#6F6F6F] font-dm-sans text-[15px]/[1.4em] -tracking-[0.005em]"
+          >
+            Area turns your data into clear, vibrant visuals that show you
+            exactly what's happening in each region.
+          </p>
+        </div>
+        <div class="flex flex-col w-full">
+          <div
+            class="flex flex-row items-start justify-items-start w-full py-5 space-x-7.5 border-t border-t-[#E9E9E9]"
+          >
+            <p class="font-dm-sans text-[15px]/[1.4em] tracking-[0.005em]">
+              01
+            </p>
+            <p class="font-dm-sans text-[15px]/[1.4em] tracking-[0.005em]">
+              Spot Trends in Seconds: No more digging through numbers.
+            </p>
+          </div>
+          <div
+            class="flex flex-row items-start justify-items-start w-full py-5 space-x-7.5 border-t border-t-[#E9E9E9]"
+          >
+            <p class="font-dm-sans text-[15px]/[1.4em] tracking-[0.005em]">
+              02
+            </p>
+            <p class="font-dm-sans text-[15px]/[1.4em] tracking-[0.005em]">
+              Get Everyone on the Same Page: Share easy-to-understand reports
+              with your team.
+            </p>
+          </div>
+          <div
+            class="flex flex-row items-start justify-items-start w-full py-5 space-x-7.5 border-t border-t-[#E9E9E9]"
+          >
+            <p class="font-dm-sans text-[15px]/[1.4em] tracking-[0.005em]">
+              03
+            </p>
+            <p class="font-dm-sans text-[15px]/[1.4em] tracking-[0.005em]">
+              Make Presentations Pop: Interactive maps and dashboards keep your
+              audience engaged.
+            </p>
+          </div>
+          <div
+            class="flex flex-row items-start justify-items-start w-full py-5 space-x-7.5 border-t border-t-[#E9E9E9]"
+          >
+            <p class="font-dm-sans text-[15px]/[1.4em] tracking-[0.005em]">
+              04
+            </p>
+            <p class="font-dm-sans text-[15px]/[1.4em] tracking-[0.005em]">
+              Your Global Snapshot: Get a quick, clear overview of your entire
+              operation.
+            </p>
+          </div>
+        </div>
+        <a
+          href="https://www.figma.com/sites"
+          target="_blank"
+          class="w-34.5 space-y-2.5 px-5.5 py-3.5 justify-center items-center bg-[#DFECC6] rounded-full font-dm-sans font-bold text-[14px]/[1.4em] tracking-[0.025em] text-center cursor-pointer"
+        >
+          Discover More
+        </a>
+      </div>
+      <div class="flex space-y-10">
+        <Image
+          src={imgRoll}
+          alt="Paper Roll"
+          class="h-[385px] object-cover rounded-[30px]"
+          loading="lazy"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+    <!-- End Features carousel -->
+  </section>
+
+  <script>
+    const navBar = document.getElementById("nav-bar");
+    const openMenuBtn = document.getElementById("open-menu");
+    const closeMenuBtn = document.getElementById("close-menu");
+    const mblMenu = document.getElementById("mobile-menu");
+
+    openMenuBtn?.addEventListener("click", () => {
+      navBar?.classList.remove("rounded-b-lg", "drop-shadow-lg", "h-19.5");
+      navBar?.classList.add("h-26.5");
+      mblMenu?.classList.remove(
+        "opacity-0",
+        "pointer-events-none",
+        "-translate-y-24"
+      );
+      mblMenu?.classList.add("opacity-100", "translate-y-0");
+      openMenuBtn.classList.add("hidden");
+      closeMenuBtn?.classList.remove("hidden");
+    });
+
+    closeMenuBtn?.addEventListener("click", () => {
+      navBar?.classList.add("rounded-b-lg", "drop-shadow-lg", "h-19.5");
+      navBar?.classList.remove("h-26.5");
+      mblMenu?.classList.remove("opacity-100", "translate-y-0");
+      mblMenu?.classList.add(
+        "opacity-0",
+        "pointer-events-none",
+        "-translate-y-24"
+      );
+      openMenuBtn?.classList.remove("hidden");
+      closeMenuBtn.classList.add("hidden");
+    });
+  </script>
+</SlicingLayout>
