@@ -137,20 +137,18 @@ import appLogo from "../../assets/Prtfl1/AppLogo.webp";
 
   <!-- Hero Section -->
   <header
-    class="flex flex-col items-center pt-30 px-4 space-y-30 h-183 overflow-clip"
+    class="flex flex-col justify-start items-center pt-30 px-4 space-y-30"
   >
     <h1 class="text-center text-porto1-display">Browse Everything.</h1>
 
-    <Image
-      src={heroMobile}
-      alt="Mobile Applications Screenshots"
-      class="w-full md:hidden object-cover group-hover:scale-105 transition-transform duration-300 border-2 border-white"
-      loading="eager"
-      fetchpriority="high"
-      format="webp"
-      quality={80}
-      width={330}
-    />
+    <div class="w-full h-90.5 rounded-[30px] overflow-clip md:hidden">
+      <Image
+        src={heroMobile}
+        alt="Mobile Applications Screenshots"
+        loading="eager"
+        fetchpriority="high"      
+      />
+    </div>
   </header>
 
   <!-- Main Section -->
@@ -318,9 +316,7 @@ import appLogo from "../../assets/Prtfl1/AppLogo.webp";
           class="h-150 object-cover rounded-[30px]"
           loading="lazy"
           fetchpriority="high"
-          format="webp"
-          quality={80}
-          width={343}
+          format="webp"          
         />
       </div>
     </div>
