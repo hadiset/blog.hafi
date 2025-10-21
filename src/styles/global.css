@@ -9,4 +9,64 @@
   --font-crimson-text: "Crimson Text", serif;
   --font-dm-sans: "DM Sans", sans-serif;
   --font-roboto-mono: "Roboto Mono", monospace;
+  
+  --color-porto1-accent1: #485C11 ;
+  --color-porto1-accent2: #DFECC6 ;
+  --color-porto1-accent3: #8E9C78 ;
+  --color-porto1-accent4: #000000 ;
+  --color-porto1-accent5: #6F6F6F ;
+  --color-porto1-accent6: #929292 ;
+  --color-porto1-divider: #E9E9E9 ;
+}
+
+@layer components {
+  .text-porto1-display-statistics {
+    @apply font-dm-sans font-normal
+    text-[64px]/[1em] -tracking-[0.04em] 
+    md:text-[80px]/[1em];
+  }
+
+  .text-porto1-display {
+    @apply font-crimson-text font-normal
+    text-[76px]/[0.85em] -tracking-[0.045em]
+    md:text-[140px]/[0.8em] md:-tracking-[0.05em]
+    xl:text-[160px]/[0.85em] xl:-tracking-[0.045em];
+  }
+
+  .text-porto1-h1 {
+    @apply font-crimson-text font-normal
+    text-[50px]/[0.95em] -tracking-[0.03em]
+    md:text-[54px]/[0.9em] md:-tracking-[0.03em]
+    xl:text-[60px]/[0.9em] xl:-tracking-[0.03em];
+  }
+
+  .text-porto1-h2 {
+    @apply font-crimson-text font-normal
+    text-[32px]/[1.1em] -tracking-[0.04em]
+    md:text-[40px]/[1.1em] md:-tracking-[0.04em]
+    xl:text-[40px]/[1.05em] xl:-tracking-[0.04em];
+  }
+
+  .text-porto1-h3 {
+    @apply font-crimson-text font-normal
+    text-[18px]/[1em] -tracking-[0.03em];
+  }
+
+  .text-porto1-p {
+    @apply font-dm-sans font-normal
+    text-[15px]/[1.4em] -tracking-[0.005em];
+  }
+
+  .text-porto1-link {
+    @apply font-dm-sans font-bold
+    text-[14px]/[1.4em] -tracking-[0.025em];
+  }
+
+  .text-porto1-captions {
+    @apply font-roboto-mono font-normal
+    text-[10.5px]/[1.4em] -tracking-[0.03em]
+    md:text-[11px]/[1.4em] md:-tracking-[0.01em]
+    xl:text-[12px]/[1.45em] xl:-tracking-[0.01em];
+  }
+  
 }
