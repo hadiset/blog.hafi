@@ -1,27 +1,27 @@
 ---
 import SlicingLayout from "../../layouts/SlicingLayout.astro";
-import gambar from "../../images/Prtfl1/thumb.webp";
-import Image from "astro/components/Image.astro";
-import heroMobile from "../../images/Prtfl1/heroMobile.webp";
-import logo from "../../images/Prtfl1/Logo.webp";
-import logo1 from "../../images/Prtfl1/Logo-1.webp";
-import logo2 from "../../images/Prtfl1/Logo-2.webp";
-import logo3 from "../../images/Prtfl1/Logo-3.webp";
-import logo4 from "../../images/Prtfl1/Logo-4.webp";
-import logo5 from "../../images/Prtfl1/Logo-5.webp";
-import accountIcon from "../../images/Prtfl1/Account icon.webp";
-import cableIcon from "../../images/Prtfl1/Cable icon.webp";
-import chartIcon from "../../images/Prtfl1/Chart icon.webp";
-import closeIcon from "../../images/Prtfl1/Close icon.webp";
-import earthIcon from "../../images/Prtfl1/Earth icon.webp";
-import governmentIcon from "../../images/Prtfl1/Government icon.webp";
-import paintIcon from "../../images/Prtfl1/Paint icon.webp";
-import vectorIcon from "../../images/Prtfl1/Vector icon.webp";
-import imgMountain from "../../images/Prtfl1/imgGal.webp";
-import imgLandscape from "../../images/Prtfl1/imgGal2.webp";
-import imgSphere from "../../images/Prtfl1/imgGal3.webp";
-import imgRoll from "../../images/Prtfl1/imgGal4.webp";
-import appLogo from "../../images/Prtfl1/AppLogo.webp";
+import { Image } from "astro:assets";
+import gambar from "../../assets/Prtfl1/thumb.webp";
+import heroMobile from "../../assets/Prtfl1/heroMobile.webp";
+import logo from "../../assets/Prtfl1/Logo.webp";
+import logo1 from "../../assets/Prtfl1/Logo-1.webp";
+import logo2 from "../../assets/Prtfl1/Logo-2.webp";
+import logo3 from "../../assets/Prtfl1/Logo-3.webp";
+import logo4 from "../../assets/Prtfl1/Logo-4.webp";
+import logo5 from "../../assets/Prtfl1/Logo-5.webp";
+import accountIcon from "../../assets/Prtfl1/Account icon.webp";
+import cableIcon from "../../assets/Prtfl1/Cable icon.webp";
+import chartIcon from "../../assets/Prtfl1/Chart icon.webp";
+import closeIcon from "../../assets/Prtfl1/Close icon.webp";
+import earthIcon from "../../assets/Prtfl1/Earth icon.webp";
+import governmentIcon from "../../assets/Prtfl1/Government icon.webp";
+import paintIcon from "../../assets/Prtfl1/Paint icon.webp";
+import vectorIcon from "../../assets/Prtfl1/Vector icon.webp";
+import imgMountain from "../../assets/Prtfl1/imgGal.webp";
+import imgLandscape from "../../assets/Prtfl1/imgGal2.webp";
+import imgSphere from "../../assets/Prtfl1/imgGal3.webp";
+import imgRoll from "../../assets/Prtfl1/imgGal4.webp";
+import appLogo from "../../assets/Prtfl1/AppLogo.webp";
 
 ---
 
@@ -315,6 +315,8 @@ import appLogo from "../../images/Prtfl1/AppLogo.webp";
           class="h-150 object-cover rounded-[30px]"
           loading="lazy"
           fetchpriority="high"
+          format="webp"
+          quality={80}
         />
       </div>
     </div>
