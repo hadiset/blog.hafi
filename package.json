@@ -12,6 +12,9 @@
     "@astrojs/mdx": "^4.3.5",
     "@astrojs/rss": "^4.0.12",
     "@astrojs/sitemap": "^3.5.1",
+    "@fontsource/crimson-text": "^5.2.7",
+    "@fontsource/dm-sans": "^5.2.8",
+    "@fontsource/roboto-mono": "^5.2.8",
     "@tailwindcss/vite": "^4.1.13",
     "astro": "^5.11.0",
     "tailwindcss": "^4.1.13"
