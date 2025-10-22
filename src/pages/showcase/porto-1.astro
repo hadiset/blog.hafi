@@ -20,6 +20,7 @@ import governmentIcon from "../../assets/Prtfl1/Government icon.webp";
 import paintIcon from "../../assets/Prtfl1/Paint icon.webp";
 import vectorIcon from "../../assets/Prtfl1/Vector icon.webp";
 import imgMountain from "../../assets/Prtfl1/imgGal.webp";
+import mountainMobile from "../../assets/Prtfl1/mountainMobile.webp";
 import imgLandscape from "../../assets/Prtfl1/imgGal2.webp";
 import imgSphere from "../../assets/Prtfl1/imgGal3.webp";
 import imgRoll from "../../assets/Prtfl1/imgGal4.webp";
@@ -111,7 +112,9 @@ import appLogo from "../../assets/Prtfl1/AppLogo.webp";
       id="mobile-menu"
       class="fixed flex flex-col items-center top-26.5 bg-white w-full px-5 pt-2 pb-8 rounded-b-lg drop-shadow-lg gap-y-12.5 opacity-0 pointer-events-none -translate-y-24 transition-all duration-300 ease-in-out z-40 md:flex-row md:top-3 md:left-[50%] md:w-[399px] md:h-[60px] md:p-0 md:rounded-full md:drop-shadow-none md:opacity-100 md:translate-y-0 md:-translate-x-[50%] md:pointer-events-auto md:z-50 md:bg-white/30 md:backdrop-blur-lg"
     >
-      <div class="flex flex-col w-full md:flex-row md:justify-between md:items-center md:m-0 md:px-6 md:py-5">
+      <div
+        class="flex flex-col w-full md:flex-row md:justify-between md:items-center md:m-0 md:px-6 md:py-5"
+      >
         <a
           href="#benefit"
           class="w-full border-t border-t-porto1-divider py-7.5 text-porto1-link text-porto1-accent4 md:w-auto md:p-0 md:border-0"
@@ -164,14 +167,16 @@ import appLogo from "../../assets/Prtfl1/AppLogo.webp";
     >
       <h1 class="text-center text-porto1-display">Browse everything.</h1>
 
-      <div class="relative w-full h-[400px] overflow-clip md:h-[362px] md:overflow-visible">
+      <div
+        class="relative w-full h-[400px] overflow-clip md:h-[362px] md:overflow-visible"
+      >
         <div
           class="absolute h-9/12 w-full bg-porto1-accent1 rounded-[30px] bottom-0 -z-10 md:h-full"
         >
         </div>
         <picture>
-          <source srcset={heroDesktop.src} media="(min-width: 1024px)">
-          <source srcset={heroTablet.src} media="(min-width: 768px)">
+          <source srcset={heroDesktop.src} media="(min-width: 1024px)" />
+          <source srcset={heroTablet.src} media="(min-width: 768px)" />
           <Image
             src={heroMobile}
             alt="Mobile Applications Screenshots"
@@ -179,7 +184,7 @@ import appLogo from "../../assets/Prtfl1/AppLogo.webp";
             loading="eager"
             fetchpriority="high"
             width={270}
-          />        
+          />
         </picture>
       </div>
     </header>
@@ -189,7 +194,9 @@ import appLogo from "../../assets/Prtfl1/AppLogo.webp";
       <!-- Logo Cloud -->
       <div class="flex flex-col px-4 py-12.5 gap-y-7.5">
         <p class="text-porto1-p text-porto1-accent5">Trusted by:</p>
-        <div class="grid grid-cols-2 gap-x-10 gap-y-5 md:grid-cols-4 lg:grid-cols-6">
+        <div
+          class="grid grid-cols-2 gap-x-10 gap-y-5 md:grid-cols-4 lg:grid-cols-6"
+        >
           <div class="flex justify-center items-center w-37.5 p-5">
             <Image
               src={logo}
@@ -226,7 +233,9 @@ import appLogo from "../../assets/Prtfl1/AppLogo.webp";
               fetchpriority="auto"
             />
           </div>
-          <div class="flex justify-center items-center w-37.5 p-5 md:col-start-2 lg:col-start-auto">
+          <div
+            class="flex justify-center items-center w-37.5 p-5 md:col-start-2 lg:col-start-auto"
+          >
             <Image
               src={logo4}
               alt="Logoipsum"
@@ -253,14 +262,18 @@ import appLogo from "../../assets/Prtfl1/AppLogo.webp";
         <div
           class="flex flex-col pt-20 pb-15 justify-start items-center w-full border-t border-t-porto1-divider md:gap-y-12.5"
         >
-          <div class="flex flex-col w-full pr-5 gap-y-7.5 md:gap-y-12.5 md:pr-50 lg:pr-100">
+          <div
+            class="flex flex-col w-full pr-5 gap-y-7.5 md:gap-y-12.5 md:pr-50 lg:pr-100"
+          >
             <h2 class="text-porto1-captions text-porto1-accent1">Benefits</h2>
             <p class="text-porto1-h1">We’ve cracked the code.</p>
             <p class="text-porto1-p text-porto1-accent5">
               Area provides real insights, without the data overload.
             </p>
           </div>
-          <div class="flex flex-col w-full pt-10 gap-y-5 md:flex-row md:justify-between md:flex-wrap md:gap-x-5">
+          <div
+            class="flex flex-col w-full pt-10 gap-y-5 md:flex-row md:justify-between md:flex-wrap md:gap-x-5"
+          >
             <!-- Benefit Icon -->
             <div
               class="flex flex-col gap-y-6 py-10 justify-items-start pr-5 border-t border-t-porto1-divider md:w-[45%] lg:w-[21%]"
@@ -342,21 +355,28 @@ import appLogo from "../../assets/Prtfl1/AppLogo.webp";
             </div>
           </div>
         </div>
-        <div class="flex w-full">
-          <Image
-            src={imgMountain}
-            alt="A mountain range "
-            class="h-150 object-cover rounded-[30px] lg:w-full lg:h-154"
-            loading="lazy"
-            fetchpriority="high"
-          />
+        <div class="relative w-full">
+          <picture>
+            <source srcset={imgMountain.src} media="(min-width: 768px)" />
+            <Image
+              src={mountainMobile}
+              alt="A mountain range"              
+              class="h-150 object-cover rounded-[30px] lg:w-full"
+              loading="lazy"
+              fetchpriority="high"
+            />
+          </picture>
         </div>
       </div>
       <!-- End Benefits section -->
 
       <!-- Features carousel -->
-      <section class="flex flex-col w-full px-8 pb-20 md:px-0 md:pb-30 md:-gap-y-3 lg:flex-row lg:justify-start lg:items-stretch lg:space-x-5">        
-        <div class="flex flex-col w-full pt-15 pb-20 gap-y-10 border-t border-t-porto1-divider">
+      <section
+        class="flex flex-col w-full px-8 pb-20 md:px-0 md:pb-30 md:-gap-y-3 lg:flex-row lg:justify-start lg:items-stretch lg:space-x-5"
+      >
+        <div
+          class="flex flex-col w-full pt-15 pb-20 gap-y-10 border-t border-t-porto1-divider"
+        >
           <div class="flex flex-col w-full gap-y-10 md:pr-20">
             <p class="text-porto1-h1">See the Big Picture</p>
             <p class="text-porto1-p text-porto1-accent5">
@@ -425,7 +445,9 @@ import appLogo from "../../assets/Prtfl1/AppLogo.webp";
       <section
         class="flex flex-col gap-y-5 pb-30 border-t border-t-porto1-divider"
       >
-        <div class="flex flex-col gap-y-10 px-4 py-20 md:p-20 lg:px-60 lg:py-20">
+        <div
+          class="flex flex-col gap-y-10 px-4 py-20 md:p-20 lg:px-60 lg:py-20"
+        >
           <div
             class="flex flex-col justify-start items-center text-center gap-y-7.5 md:gap-y-10"
           >
@@ -675,7 +697,7 @@ import appLogo from "../../assets/Prtfl1/AppLogo.webp";
             </div>
           </section>
           <section
-            class="flex flex-col w-50 rounded-[20px] border-t border-t-white overflow-visible  md:w-1/3"
+            class="flex flex-col w-50 rounded-[20px] border-t border-t-white overflow-visible md:w-1/3"
           >
             <div
               class="flex justify-center items-center gap-y-4 px-7.5 py-10 h-24 border-b-2 border-b-black"
@@ -793,7 +815,9 @@ import appLogo from "../../assets/Prtfl1/AppLogo.webp";
       <!-- End Specifications table -->
 
       <!-- Testimonial Section -->
-      <div class="flex flex-col gap-y-10 px-4 pb-25 md:px-0 md:pb-30 lg:flex-row lg:gap-x-5 lg:justify-center lg:items-center ">
+      <div
+        class="flex flex-col gap-y-10 px-4 pb-25 md:px-0 md:pb-30 lg:flex-row lg:gap-x-5 lg:justify-center lg:items-center"
+      >
         <Image
           src={imgSphere}
           alt="A concrete sphere, balanced between two other larger spheres"
@@ -801,14 +825,18 @@ import appLogo from "../../assets/Prtfl1/AppLogo.webp";
           loading="lazy"
           fetchpriority="high"
         />
-        <section class="flex flex-col gap-y-12.5 px-4 py-10 md:p-0 md:h-94 lg:flex-1 lg:pl-12.5">
+        <section
+          class="flex flex-col gap-y-12.5 px-4 py-10 md:p-0 md:h-94 lg:flex-1 lg:pl-12.5"
+        >
           <p class="text-porto1-h2">
             “I was skeptical, but Area has completely transformed the way I
             manage my business. The data visualizations are so clear and
             intuitive, and the platform is so easy to use. I can't imagine
             running my company without it.”
           </p>
-          <div class="flex gap-x-2 justify-start items-center lg:flex-col lg:gap-y-2 lg:items-start">
+          <div
+            class="flex gap-x-2 justify-start items-center lg:flex-col lg:gap-y-2 lg:items-start"
+          >
             <p class="text-porto1-p">John Smith</p>
             <p class="text-porto1-captions text-porto1-accent1">Head of Data</p>
           </div>
@@ -872,7 +900,9 @@ import appLogo from "../../assets/Prtfl1/AppLogo.webp";
 
       <!-- Hero image -->
       <div class="flex justify-start items-center gap-x-2.5 pb-10">
-        <div class="flex justify-start items-center gap-x-2.5 px-4 md:p-0 lg:flex-1">
+        <div
+          class="flex justify-start items-center gap-x-2.5 px-4 md:p-0 lg:flex-1"
+        >
           <Image
             src={imgLandscape}
             alt="An eye-catching landscape of green."
@@ -923,7 +953,9 @@ import appLogo from "../../assets/Prtfl1/AppLogo.webp";
       class="flex flex-col justify-end items-start gap-y-20 px-4 pt-10 border-t border-t-porto1-divider md:px-0 md:pb-5"
     >
       <div class="flex flex-col gap-y-25 justify-start items-start md:flex-row">
-        <div class="flex flex-col justify-center items-start gap-y-[27px] md:flex-row md:gap-x-[27px]">
+        <div
+          class="flex flex-col justify-center items-start gap-y-[27px] md:flex-row md:gap-x-[27px]"
+        >
           <a href="#benefits" class="text-porto1-link">Benefits</a>
           <a href="#specifications" class="text-porto1-link">Specifications</a>
           <a href="#how-to" class="text-porto1-link">How-to</a>
@@ -939,7 +971,9 @@ import appLogo from "../../assets/Prtfl1/AppLogo.webp";
             fetchpriority="auto"
           />
         </div>
-        <div class="flex justify-start items-center gap-x-4 shrink-0 md:w-[75%]">
+        <div
+          class="flex justify-start items-center gap-x-4 shrink-0 md:w-[75%]"
+        >
           <p class="text-porto1-captions text-porto1-accent1">© Area.</p>
           <p class="text-porto1-captions text-porto1-accent1">2025</p>
         </div>
