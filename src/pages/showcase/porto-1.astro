@@ -168,20 +168,16 @@ import appLogo from "../../assets/Prtfl1/AppLogo.webp";
           class="absolute h-9/12 w-full bg-porto1-accent1 rounded-[30px] bottom-0 -z-10 md:h-full"
         >
         </div>
-        <Image
-          src={heroMobile}
-          alt="Mobile Applications Screenshots"
-          class="w-[270px] mx-auto object-cover object-top md:hidden"
-          loading="eager"
-          fetchpriority="high"
-        />
-        <Image
-          src={heroTablet}
-          alt="Tablet Applications Screenshots"
-          class="hidden w-[676px] mx-auto object-cover object-center md:flex md:-translate-y-15"
-          loading="eager"
-          fetchpriority="high"
-        />
+        <picture>
+          <source srcset={heroTablet.src} media="(min-width: 768px)">
+          <Image
+            src={heroMobile}
+            alt="Mobile Applications Screenshots"
+            class="w-[270px] mx-auto object-cover object-top md:w-[676px] md:object-center md:-translate-y-15"
+            loading="eager"
+            fetchpriority="high"
+          />        
+        </picture>
       </div>
     </header>
 
@@ -926,9 +922,9 @@ import appLogo from "../../assets/Prtfl1/AppLogo.webp";
     >
       <div class="flex flex-col gap-y-25 justify-start items-start md:flex-row">
         <div class="flex flex-col justify-center items-start gap-y-[27px] md:flex-row md:gap-x-[27px]">
-          <a href="#" class="text-porto1-link">Benefits</a>
-          <a href="#" class="text-porto1-link">Specifications</a>
-          <a href="#" class="text-porto1-link">How-to</a>
+          <a href="#benefits" class="text-porto1-link">Benefits</a>
+          <a href="#specifications" class="text-porto1-link">Specifications</a>
+          <a href="#how-to" class="text-porto1-link">How-to</a>
         </div>
       </div>
       <div class="flex w-full justify-between items-end gap-x-10">
