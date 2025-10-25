@@ -30,21 +30,21 @@
     @apply font-crimson-text font-normal
     text-[76px]/[0.85em] -tracking-[0.045em]
     md:text-[140px]/[0.8em] md:-tracking-[0.05em]
-    xl:text-[160px]/[0.85em] xl:-tracking-[0.045em];
+    lg:text-[160px]/[0.85em] lg:-tracking-[0.045em];
   }
 
   .text-porto1-h1 {
     @apply font-crimson-text font-normal
     text-[50px]/[0.95em] -tracking-[0.03em]
     md:text-[54px]/[0.9em] md:-tracking-[0.03em]
-    xl:text-[60px]/[0.9em] xl:-tracking-[0.03em];
+    lg:text-[60px]/[0.9em] lg:-tracking-[0.03em];
   }
 
   .text-porto1-h2 {
     @apply font-crimson-text font-normal
     text-[32px]/[1.1em] -tracking-[0.04em]
     md:text-[40px]/[1.1em] md:-tracking-[0.04em]
-    xl:text-[40px]/[1.05em] xl:-tracking-[0.04em];
+    lg:text-[40px]/[1.05em] lg:-tracking-[0.04em];
   }
 
   .text-porto1-h3 {
@@ -66,7 +66,7 @@
     @apply font-roboto-mono font-normal
     text-[10.5px]/[1.4em] -tracking-[0.03em]
     md:text-[11px]/[1.4em] md:-tracking-[0.01em]
-    xl:text-[12px]/[1.45em] xl:-tracking-[0.01em];
+    lg:text-[12px]/[1.45em] lg:-tracking-[0.01em];
   }
   
 }
