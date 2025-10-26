@@ -1,0 +1,50 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Porto1Thumbnail from "../../assets/Prtfl1/Thumbnail.webp";
+
+const projects = [
+  {
+    slug: "porto-1",
+    title: "Modern Product Launch",
+    thumbnail: Porto1Thumbnail,
+    tags: ["Landing Page", "Product Launch"],
+  },  
+];
+---
+
+<BaseLayout
+  pageTitle="Slicing Showcase - Design to Code Portfolio"
+  description="Frontend Developer Portfolio: Explore pixel-perfect, responsive results from slicing Figma UI/UX designs into high-quality website."
+>
+  <div class="flex flex-col pt-10">
+    <h1 class="text-center font-bold text-4xl">My Design Slicing Portfolio</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-8">
+      {
+        projects.map((project) => (
+          <a
+            href={`/showcase/${project.slug}`}
+            class="flex flex-col items-center p-4 rounded-xl overflow-hidden border-t border-t-slate-100 shadow-lg/25 transform ease-in duration-300 hover:-translate-y-2 hover:shadow-purple-600 dark:shadow-purple-50 dark:bg-slate-800"
+          >
+            <Image
+              src={project.thumbnail}
+              alt={project.title}
+              class="p-2"
+              loading="eager"
+              fetchpriority="high"
+            />
+            <div class="flex flex-col p-2 items-center gap-2">
+              <h3 class="text-lg font-bold">{project.title}</h3>
+              <div class="tags">
+                {project.tags.map((tag) => (
+                  <span class="bg-purple-100 text-purple-800 text-sm font-light me-2 px-2.5 py-0.5 rounded-sm dark:bg-purple-900 dark:text-purple-300">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>

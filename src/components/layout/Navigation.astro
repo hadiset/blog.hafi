@@ -159,6 +159,11 @@ function isActive(path: string) {
               class={`rounded-md px-3 py-2 text-base font-medium hover:bg-purple-700 hover:text-white dark:text-white ${isActive("/blog") ? 'text-white bg-purple-700' : 'text-black' } `}
               >Blog</a
             >            
+            <a
+              href="/showcase"
+              class={`rounded-md px-3 py-2 text-base font-medium hover:bg-purple-700 hover:text-white dark:text-white ${isActive("/showcase") ? 'text-white bg-purple-700' : 'text-black' } `}
+              >Showcase</a
+            >            
           </div>
         </div>
         <div class="flex basis-1/2 sm:basis-4/12 sm:w-full justify-end">
@@ -277,6 +282,11 @@ function isActive(path: string) {
         href="/blog"
         class={`block rounded-md px-3 py-2 text-base font-medium dark:text-purple-50 ${isActive("/blog") ? 'text-white bg-purple-700' : 'text-black' } `}
         >Blog</a
+      >      
+      <a
+        href="/showcase"
+        class={`block rounded-md px-3 py-2 text-base font-medium dark:text-purple-50 ${isActive("/showcase") ? 'text-white bg-purple-700' : 'text-black' } `}
+        >Showcase</a
       >      
     </div>
   </div>
