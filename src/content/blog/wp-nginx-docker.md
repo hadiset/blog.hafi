@@ -106,7 +106,6 @@ services:
   wordpress:
     image: wordpress:php8.4-fpm      
     volumes:
-      - /var/www/wordpress:/var/www/wordpress
       - /var/www/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini:ro
     restart: always
     ports:
