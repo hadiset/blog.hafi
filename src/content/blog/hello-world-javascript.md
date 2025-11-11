@@ -1,14 +1,14 @@
 ---
 title: "Cara Mencetak Hello World dengan JavaScript"
 author: "Hafi"
-publish_date: 2025-09-11
+publish_date: 2024-09-11
 category: "JavaScript"
 tags: ["javascript", "tutorial", "beginner", "console"]
 description: "Tutorial sederhana untuk mencetak Hello World menggunakan console.log() dalam JavaScript. Perfect untuk pemula yang baru belajar programming."
 image: "/images/hello-world-js.jpg"
 imageAlt: "JavaScript Hello World tutorial"
 draft: false
-featured: false
+featured: true
 ---
 
 Selamat datang di tutorial JavaScript! Kali ini kita akan belajar cara paling dasar dalam programming: mencetak "Hello World" ke console.
