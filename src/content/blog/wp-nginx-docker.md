@@ -41,7 +41,8 @@ Here’s the basic structure I’m using:
 │ └── adminer.css
 ├── php/
 │ └── custom.ini
-└── docker-compose.yml
+├── docker-compose.yml
+└── .env
 ```
 
 - The `adminer` folder contains a custom CSS file to slightly tweak the Adminer interface.  
