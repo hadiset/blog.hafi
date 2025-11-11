@@ -58,9 +58,11 @@ const readTime = calculateReadTimes(content);
       <div class="p-6">
         <!-- Category & Featured Badge -->
         <div class="flex items-center gap-2 mb-3">
-          <span class="inline-block bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded-full text-xs font-medium">
-            {category}
-          </span>          
+          {tags.map(tag => 
+            <span class="inline-block bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded-full text-xs font-medium">
+              {tag}
+            </span>
+          )}
         </div>
         
         <!-- Title -->
