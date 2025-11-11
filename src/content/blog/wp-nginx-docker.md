@@ -106,6 +106,7 @@ services:
   wordpress:
     image: wordpress:php8.4-fpm      
     volumes:
+      - /var/www/wordpress:/var/www/html
       - /var/www/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini:ro
     restart: always
     ports:
@@ -168,6 +169,7 @@ server {
 	server_name wp.yourdomain.com;
 	root /var/www/wordpress;
 	index index.php index.html;
+  set $docker_root /var/www/html;
 
 	access_log /var/www/logs/access.log;
 	error_log /var/www/logs/error.log;
@@ -182,7 +184,7 @@ server {
 		fastcgi_pass 127.0.0.1:9000;
 		fastcgi_index index.php;
 		include fastcgi_params;
-		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+		fastcgi_param SCRIPT_FILENAME $docker_root$fastcgi_script_name;
 		fastcgi_param PATH_INFO $fastcgi_path_info;
 	}
 	
