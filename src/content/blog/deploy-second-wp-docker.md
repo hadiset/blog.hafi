@@ -267,6 +267,4 @@ If everything is set up correctly you will see the WordPress installation screen
 
 Deploying multiple WordPress sites on a single VPS with limited resources is absolutely possible — as long as the architecture is planned carefully. Using a **shared database service** is one of the most effective optimizations, especially for low-spec servers. It reduces overhead, keeps your containers lightweight, and prevents your VPS from freezing under load.
 
-This approach may not be the traditional “full microservices” pattern, but for real-world constraints like a 1-core, 1 GB RAM VPS, it’s a practical and reliable solution. With Docker Compose, NGINX, and a shared MariaDB service, you can run multiple independent WordPress sites efficiently without sacrificing stability.
-
 I hope this walkthrough helps anyone who’s trying to achieve a similar setup. If you have suggestions or improvements, I’d be happy to learn from your experience as well.
