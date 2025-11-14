@@ -34,7 +34,8 @@ Inside Docker, I’m using the following images:
 
 This combination provides a clean, isolated environment that’s easy to rebuild, maintain, and scale when needed.
 
-For better organization, I keep all related files under the `/var/www/` directory on my server.  
+For better organization, I keep all related files under the `/var/www/` directory on my server. 
+ 
 Here’s the basic structure I’m using:
 
 ```yaml

@@ -11,11 +11,15 @@ draft: false
 featured: true
 ---
 
-This post is another part of my personal learning notes, this time focusing on how I deployed multiple WordPress sites on a single low-spec VPS using Docker Compose and an existing MariaDB service. The approach I’m sharing is based entirely on what I’ve tried, tested, and implemented in my own environment. It may not be the most perfect or the most optimized solution out there, but I hope these notes can be helpful for anyone working with a similar setup—especially those trying to maximize limited server resources. If you find areas that could be improved, I’d be grateful for any feedback or suggestions.
+This post is another part of my personal learning notes, this time focusing on how I deployed multiple WordPress sites on a single low-spec VPS using Docker Compose and an existing MariaDB service. The approach I’m sharing is based entirely on what I’ve tried, tested, and implemented in my own environment.
+
+It may not be the most perfect or the most optimized solution out there, but I hope these notes can be helpful for anyone working with a similar setup—especially those trying to maximize limited server resources. If you find areas that could be improved, I’d be grateful for any feedback or suggestions.
 
 ## Why Use a Shared Database Service ?
 
-Using a shared database service becomes almost a necessity when working with a low-spec VPS like mine, which only has 1 CPU core and 1 GB of RAM. I previously tried deploying multiple WordPress setups where each site had its own full stack—including its own MariaDB container—and the result was immediate: the VPS froze, services crashed, and everything became unusable. Running multiple database containers is simply too heavy for this kind of environment. That’s why using a shared database service is the most practical and resource-efficient approach. It keeps the server stable, reduces memory consumption, and still allows each WordPress site to run independently with its own database and user.
+Using a shared database service becomes almost a necessity when working with a low-spec VPS like mine, which only has 1 CPU core and 1 GB of RAM. I previously tried deploying multiple WordPress setups where each site had its own full stack—including its own MariaDB container—and the result was immediate: the VPS froze, services crashed, and everything became unusable. 
+
+Running multiple database containers is simply too heavy for this kind of environment. That’s why using a shared database service is the most practical and resource-efficient approach. It keeps the server stable, reduces memory consumption, and still allows each WordPress site to run independently with its own database and user.
 
 ## Existing Docker Setup Overview
 
@@ -66,6 +70,18 @@ FLUSH PRIVILEGES;
 And that’s it — your new WordPress instance now has its own dedicated database and user, ready to be connected through Docker Compose.
 
 ## Preparing Environment Variables
+
+For better organization, I keep all related files under the `/var/www2/` directory on my server.
+  
+Here’s the basic structure I’m using:
+
+```yaml
+/var/www2/
+├── php/
+│ └── custom.ini
+├── docker-compose.yml
+└── .env
+```
 
 Before spinning up the new WordPress container, we need to prepare the environment variables that will be used by Docker Compose. These variables define the database name, credentials, and the port where the new WordPress instance will run.
 
