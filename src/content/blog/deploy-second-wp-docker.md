@@ -72,7 +72,7 @@ And that’s it — your new WordPress instance now has its own dedicated databa
 ## Preparing Environment Variables
 
 For better organization, I keep all related files under the `/var/www2/` directory on my server.
-  
+
 Here’s the basic structure I’m using:
 
 ```yaml
@@ -148,13 +148,11 @@ networks:
 - **Environment variables** are pulled from the `.env` file for cleaner configuration and easier reusability.
 - **The wp-network is marked as external**, which means Docker will not recreate it; it simply joins the already existing network that both WordPress containers use to communicate with the database service.
 
-If you’re unsure about the name of your existing Docker network, you can easily check it using the Docker CLI. Run:
+If you’re unsure about the name of your existing Docker network, you can easily check it using this command:
 
 ```bash
 docker network ls
 ```
-
-This lightweight setup ensures that the new WordPress instance consumes minimal resources, making it ideal for low-spec VPS environments.
 
 ## NGINX Configuration for the New Site
 With the new WordPress container running on a different port, the next step is to configure NGINX so it can route traffic to this instance. The example configuration below shows how to set up HTTPS redirection, SSL handling (using Cloudflare in my case), and PHP-FPM forwarding to the new WordPress container.
@@ -181,7 +179,7 @@ server {
 	set $docker_root /var/www/html;
 
 	access_log /var/www2/logs/access.log;
-	error_log /var/www/logs/error.log;
+	error_log /var/www2/logs/error.log;
 	
 	location / {
         try_files $uri $uri/ /index.php?$args;
@@ -247,7 +245,7 @@ Verify that the container is running:
 ```bash
 docker compose ps -a
 ```
-You should see the **wordpress-second** service listed.
+You should see the your new WordPress service listed.
 
 ### 2. Enable the NGINX Configuration (Symlink)
 After confirming that Docker is running fine, test the NGINX configuration to make sure there are no syntax errors:
