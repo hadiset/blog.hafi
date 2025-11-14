@@ -1,8 +1,8 @@
 ---
-title: "Hafi Notes | Deploy Wordpress with Docker Compose and NGINX Reverse Proxy"
+title: "Deploy Wordpress with Docker Compose and NGINX Reverse Proxy"
 author: "Hafi"
 publish_date: 2025-11-11
-category: "Wordpress"
+category: "Docker"
 tags: ["wordpress", "docker", "nginx"]
 description: "Sharing my workflow and lessons learned from deploying WordPress with Docker Compose and NGINX reverse proxy."
 image: "/images/wp-nginx-docker.webp"
@@ -20,6 +20,8 @@ I started using Docker mostly out of curiosity — it just felt like the modern 
 ## My Setup: WordPress, Docker, and NGINX Specs
 
 For this setup, I’m using a VPS from **Alibaba Cloud**, which only costs **$9.9/year** — a great deal for anyone starting out with self-hosted WordPress. 
+
+[![Alibaba Cloud Promo](/images/alibaba-promo.webp)](https://www.alibabacloud.com/campaign/benefits?referral_code=A92NGT)
 
 If you’d like to try the same server, you can check it out [here](https://www.alibabacloud.com/campaign/benefits?referral_code=A92NGT).
 
