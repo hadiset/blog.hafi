@@ -1,6 +1,6 @@
 
 
-@import "tailwindcss";
+@import "tailwindcss" important;
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
@@ -17,6 +17,15 @@
   --color-porto1-accent5: #6F6F6F ;
   --color-porto1-accent6: #929292 ;
   --color-porto1-divider: #E9E9E9 ;
+}
+
+@layer utilities {
+  .prose pre code {
+    background-color: transparent !important;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+  }
 }
 
 @layer components {

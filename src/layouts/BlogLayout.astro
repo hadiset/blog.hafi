@@ -88,13 +88,17 @@ const readTime = content ? calculateReadTimes(content) : 0;
 
     <!-- Article Content -->
     <div
-      class="prose prose-lg dark:prose-invert max-w-none
+      class="prose prose-lg dark:prose-invert max-w-none text-gray-800 dark:text-gray-200
             prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white
-            prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed 
-            prose-li:text-gray-700 dark:prose-li:text-gray-300
-            prose-code:text-purple-800 dark:prose-code:text-purple-400
+            prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6
+            prose-h3:text-xl prose-h3:mt-10 prose-h3:mb-4
+            prose-hr:my-1
+            prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:mb-6 prose-p:text-lg prose-p:leading-8
+            prose-ul:my-6 prose-ol:my-6
+            prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-li:mb-2
+            prose-code:text-purple-800 dark:prose-code:text-purple-400 prose-code:before:content-none prose-code:after:content-none prose-code:bg-slate-200 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
             prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
-            prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:border prose-pre:border-gray-700
+            prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:border prose-pre:border-gray-700 
             prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:pl-6
             prose-img:mx-auto prose-img:rounded-lg prose-img:shadow-md"
     >
@@ -122,32 +126,3 @@ const readTime = content ? calculateReadTimes(content) : 0;
     }
   </article>
 </BaseLayout>
-
-<style>
-  @reference "tailwindcss";
-  /* Custom prose styles for better Medium-like appearance */
-  .prose {
-    @apply text-gray-800 dark:text-gray-200;
-  }
-
-  .prose h2 {
-    @apply text-2xl mt-12 mb-6;
-  }
-
-  .prose h3 {
-    @apply text-xl mt-10 mb-4;
-  }
-
-  .prose p {
-    @apply mb-6 text-lg leading-8;
-  }
-
-  .prose ul,
-  .prose ol {
-    @apply my-6;
-  }
-
-  .prose li {
-    @apply mb-2;
-  }
-</style>
