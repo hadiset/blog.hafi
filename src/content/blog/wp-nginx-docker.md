@@ -13,9 +13,13 @@ featured: false
 
 This post is part of my personal learning notes about deploying WordPress using Docker Compose and NGINX reverse proxy. It’s based on what I’ve tested and implemented on my own VPS setup. While it might not be perfect, I hope it can be useful for others who are exploring a similar workflow. If you notice anything that could be improved, I’d really appreciate your feedback.
 
+---
+
 ## Why I Use Docker for WordPress ?
 
 I started using Docker mostly out of curiosity — it just felt like the modern way to run web projects. Over time, I realized it also helps me maintain a consistent environment across different servers, especially when matching PHP and database versions. Using Docker for WordPress has made deployments feel cleaner and more predictable, even for small projects.
+
+---
 
 ## My Setup: WordPress, Docker, and NGINX Specs
 
@@ -54,6 +58,8 @@ Here’s the basic structure I’m using:
 
 This structure keeps things tidy and makes it easier to maintain or migrate the setup later.
 
+---
+
 ## Prepare `.env` File for Docker Compose
 
 Before running the containers, I prefer to store all environment variables in a separate `.env` file.  
@@ -82,6 +88,8 @@ ADMINER_PORT=8080
 Make sure to replace these placeholder values with your own secure credentials.
 Also, **never commit your `.env` file to version control (like GitHub) — it should always stay private**.
 You can add it to your `.gitignore` file to prevent accidental uploads.
+
+---
 
 ## Setting Up Docker Compose
 
@@ -144,6 +152,8 @@ networks:
   wp-network:
     driver: bridge
 ```
+
+---
 
 ## Configuring NGINX Reverse Proxy
 
@@ -223,6 +233,8 @@ server {
 
 This configuration ensures that requests are securely routed to WordPress and that static assets are served efficiently.
 
+---
+
 ## Configuring Cloudflare
 
 I’m using **Cloudflare** mainly for **DNS management** and **SSL**.  
@@ -234,6 +246,8 @@ On my VPS, I’ve configured NGINX to trust Cloudflare’s client certificate (`
 This way, even though SSL is managed by Cloudflare, the connection between Cloudflare and my VPS remains secure (Full SSL mode).
 
 You can also use other SSL solutions like **Let’s Encrypt**, but for this setup, Cloudflare’s Universal SSL is simpler and works perfectly for my needs.
+
+---
 
 ## Running the Setup
 
@@ -291,6 +305,8 @@ If everything looks good, reload NGINX to apply the changes:
 systemctl reload nginx
 ```
 
+---
+
 ### 3. Test the Setup
 
 Now, open your browser and visit your domain (e.g., https://wp.yourdomain.com). If everything is configured correctly, you should see the WordPress installation page.
@@ -302,6 +318,8 @@ At this point:
 - Cloudflare handles DNS and SSL.
 
 Your self-hosted WordPress on Docker is now live and ready to use.
+
+---
 
 ## Final Thoughts
 This setup might not be the most advanced way to run WordPress, but it works reliably for my needs.  

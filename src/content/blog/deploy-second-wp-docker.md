@@ -15,11 +15,15 @@ This post is another part of my personal learning notes, this time focusing on h
 
 It may not be the most perfect or the most optimized solution out there, but I hope these notes can be helpful for anyone working with a similar setup—especially those trying to maximize limited server resources. If you find areas that could be improved, I’d be grateful for any feedback or suggestions.
 
+---
+
 ## Why Use a Shared Database Service ?
 
 Using a shared database service becomes almost a necessity when working with a low-spec VPS like mine, which only has 1 CPU core and 1 GB of RAM. I previously tried deploying multiple WordPress setups where each site had its own full stack—including its own MariaDB container—and the result was immediate: the VPS froze, services crashed, and everything became unusable. 
 
 Running multiple database containers is simply too heavy for this kind of environment. That’s why using a shared database service is the most practical and resource-efficient approach. It keeps the server stable, reduces memory consumption, and still allows each WordPress site to run independently with its own database and user.
+
+---
 
 ## Existing Docker Setup Overview
 
@@ -32,6 +36,8 @@ If you’d like to try the same server, you can check it out [here](https://www.
 I already have one WordPress site running through Docker Compose along with a dedicated MariaDB service. This setup has been stable and efficient for my needs, especially considering the limited resources of my VPS. If you're curious about the full details of that initial setup, you can read my previous [docker compose setup here](/blog/wp-nginx-docker/).
 
 Since the database container is already running and properly configured, it makes sense to reuse it rather than spinning up a second database instance that would consume unnecessary RAM. At this point, my Docker network, volumes, and database storage are all established — so the goal now is simply to deploy a second WordPress instance that plugs into the existing infrastructure without adding unnecessary load or disrupting the current site.
+
+---
 
 ## Create a New Database and User in MariaDB
 
@@ -68,6 +74,8 @@ FLUSH PRIVILEGES;
 ```
 
 And that’s it — your new WordPress instance now has its own dedicated database and user, ready to be connected through Docker Compose.
+
+---
 
 ## Preparing Environment Variables
 
@@ -111,6 +119,8 @@ Here’s what each variable represents:
 
 By keeping these variables in a `.env` file, your setup stays clean, reusable, and easier to manage when deploying multiple WordPress instances.
 
+---
+
 ## Docker Compose for the New WordPress Container
 
 With the database prepared and environment variables defined, the next step is to create a new Docker Compose service for the second WordPress site. Since we are reusing the existing MariaDB service, this container only needs to run WordPress itself — no additional database service is required.
@@ -153,6 +163,8 @@ If you’re unsure about the name of your existing Docker network, you can easil
 ```bash
 docker network ls
 ```
+
+---
 
 ## NGINX Configuration for the New Site
 With the new WordPress container running on a different port, the next step is to configure NGINX so it can route traffic to this instance. The example configuration below shows how to set up HTTPS redirection, SSL handling (using Cloudflare in my case), and PHP-FPM forwarding to the new WordPress container.
@@ -227,6 +239,8 @@ server {
 
 This NGINX block ensures your additional WordPress instance routes correctly, serves files efficiently, and connects to the correct PHP-FPM container.
 
+---
+
 ## Running & Verifying the Setup
 
 With your database, `.env` file, Docker Compose configuration, and NGINX virtual host prepared, you can now start the new WordPress instance and confirm that everything is functioning correctly.
@@ -276,6 +290,7 @@ https://wp2.yourdomain.com
 ```
 If everything is set up correctly you will see the WordPress installation screen
 
+---
 
 ## Final Thoughts
 

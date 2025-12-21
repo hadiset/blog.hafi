@@ -13,12 +13,16 @@ featured: false
 
 This article is part of my personal learning journey. I’m writing it to help solidify my own understanding of JavaScript Promises—not to present myself as an expert or to provide an authoritative guide. If you find it helpful, that’s a bonus, but the main purpose is simply to document what I’ve learned.
 
+---
+
 ## Why Promises Matter in Modern JavaScript
 JavaScript—especially in the browser—runs on **a single thread**. This means it processes code one line at a time, waiting for each line to finish before moving on to the next. While this synchronous behavior is simple to reason about, it becomes a problem when a task takes too long. A long-running synchronous function can completely freeze the page: the UI stops responding, inputs don’t register, and the user is essentially locked out until the operation completes. Because the browser only has one main thread, it cannot do anything else while it’s stuck waiting.
 
 Before Promises existed, JavaScript developers relied heavily on callbacks to manage asynchronous behavior. Callbacks worked, but they came with their own set of problems. When an operation required multiple async steps, each step needed its own callback—and each callback often contained another callback. This created a deeply nested structure commonly known as **callback hell** or the **pyramid of doom**. Besides being difficult to read and reason about, nested callbacks made error handling messy, requiring you to deal with failures at multiple levels rather than in one central place.
 
 Promises were introduced to solve these challenges. They provide a cleaner, more structured way to handle asynchronous operations, avoid deeply nested code, and centralize error handling. Modern JavaScript APIs are built around Promises for exactly these reasons, making them a fundamental part of writing responsive and maintainable JavaScript today.
+
+---
 
 ## How Promises Work: Understanding the States
 **Promises are the foundation of modern asynchronous programming in JavaScript**. When you call an asynchronous function, it doesn’t return the final value right away. Instead, it returns a *Promise*—an object that acts as a placeholder for a value that will be available in the future. This promise gives you a structured way to react when the operation eventually succeeds or fails.
@@ -34,6 +38,8 @@ The operation completed successfully, and the Promise now holds the resulting va
 The operation failed—perhaps due to a network error, a 404 response, or any other issue. In this state, the Promise triggers any `.catch()` handlers attached to it.
 
 A key idea is that once a Promise moves from pending to either fulfilled or rejected, its state becomes final and cannot change again. This predictable lifecycle is what makes Promises easier to reason about compared to traditional callbacks.
+
+---
 
 ## Handling Promises: `.then`, `.catch`, `.finally`
 Once a Promise moves out of the pending state, we can react to its result using three essential methods: `.then()`, `.catch()`, and `.finally()`. These methods allow us to compose asynchronous operations in a readable, structured way.
@@ -96,6 +102,8 @@ checkMail()
   });
 ```
 
+---
+
 ## Promise Combinators: `all`, `race`, `allSettled`, `any`
 
 In many real-world scenarios, we need to work with more than one asynchronous operation at the same time. JavaScript provides a set of Promise combinators that help coordinate multiple Promises and determine how the final result should be produced. These combinators offer different behaviors depending on whether you want to wait for *all* tasks, the *first* task, or just want to inspect every outcome.
@@ -134,6 +142,8 @@ Use this when you want **complete results** from multiple operations without fai
 `Promise.any()` fulfills when **the first Promise fulfills**, ignoring rejections. It only rejects if every input Promise rejects, in which case it throws an AggregateError.
 
 This is great for scenarios where **any successful result is acceptable**, such as attempting multiple fallback API calls and using whichever succeeds first.
+
+---
 
 ## Async / Await (The Modern Way)
 While Promises provide a cleaner alternative to callback-based asynchronous code, JavaScript offers an even more intuitive way to work with Promises: **async/await**. By adding the `async` keyword in front of a function, JavaScript automatically wraps its return value in a Promise. Inside an `async` function, you can use the `await` keyword to pause execution until a Promise settles. If the Promise is fulfilled, `await` returns its value; if it’s rejected, the error is thrown and can be caught using `try...catch`.
@@ -180,6 +190,8 @@ async function processMail() {
 
 processMail();
 ```
+
+---
 
 ## Final Thought
 As a beginner, I believe it’s important to deepen our understanding of Promises because they form the foundation of asynchronous programming. And since modern JavaScript frameworks rely heavily on async patterns, getting comfortable with Promises early makes the learning journey much smoother.
