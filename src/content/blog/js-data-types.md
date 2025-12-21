@@ -222,35 +222,76 @@ Because references are compared, not values.
 
 ---
 
-## Common Bugs Related to Data Types
+## Common Bugs & Solutions Related to Data Types
 
-Some classic mistakes:
+Below are common JavaScript bugs caused by misunderstanding primitive vs reference behavior, plus simple solutions.
 
-### Unexpected mutation
+---
 
-```javascript
-function addItem(list) {
-  list.push("item");
-}
+### Bug 1: Unexpected Mutation
 
-const items = [];
-addItem(items);
+**Problem:**  
+Array methods like `push`, `pop`, `splice` mutate the original array.
 
-console.log(items); // ["item"]
+```js
+const arr = [1, 2];
+const newArr = arr;
+
+newArr.push(3);
+
+console.log(arr); // [1, 2, 3] (unexpected)
 ```
 
-### Object comparison bug
+**Why it happens??**
+Arrays are objects → shared reference.
 
-```javascript
-const a = { x: 1 };
-const b = { x: 1 };
+**Solution:**
+Create a new array instead of mutating the original.
 
-a === b; // false
+```js
+const arr = [1, 2];
+const newArr = [...arr, 3];
+
+console.log(arr);    // [1, 2]
+console.log(newArr); // [1, 2, 3]
 ```
 
-### Accidental shared reference
+---
 
-```javascript
+### Bug 2: Object Comparison Always Returns False
+
+**Problem:**
+Two objects with the same content are not equal.
+
+```js
+{} === {}; // false
+```
+
+**Why it happens??**
+Object comparison checks **reference**, not structure.
+
+**Solution 1: Simple comparison (small objects)**
+
+```js
+JSON.stringify(a) === JSON.stringify(b);
+```
+
+Order-sensitive, not for complex cases.
+
+**Solution 2: Deep comparison (recommended)**
+
+```js
+_.isEqual(objA, objB); // Lodash
+```
+
+---
+
+### Bug 3: Accidental Shared Reference (Default Parameters)
+
+**Problem:**
+Default objects are shared and can be mutated.
+
+```js
 const defaultConfig = { darkMode: false };
 
 function init(config = defaultConfig) {
@@ -259,6 +300,52 @@ function init(config = defaultConfig) {
 
 init();
 console.log(defaultConfig.darkMode); // true (unexpected)
+```
+
+**Why it happens??**
+`config` receives a reference to the same object.
+
+**Solution 1: Create default inside function**
+
+```js
+function init(config) {
+  const safeConfig = config ?? { darkMode: false };
+  safeConfig.darkMode = true;
+}
+```
+
+**Solution 2: Freeze default object**
+
+```js
+const defaultConfig = Object.freeze({ darkMode: false });
+```
+
+Mutation will now fail (or be ignored in non-strict mode).
+
+---
+
+### Bug 4: Mutating Object Passed to Function
+
+**Problem:**
+
+```js
+function update(user) {
+  user.age = 30;
+}
+
+const person = { age: 20 };
+update(person);
+
+console.log(person.age); // 30
+```
+
+**Solution:**
+Work with a copy.
+
+```js
+function update(user) {
+  return { ...user, age: 30 };
+}
 ```
 
 ---
