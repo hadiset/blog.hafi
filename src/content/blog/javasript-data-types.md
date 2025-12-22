@@ -31,7 +31,16 @@ This difference affects:
 
 ## Primitive Data Types and Immutability
 
-A good way to understand primitive values is to think of them as **photocopies**. When you assign a primitive value, JavaScript **copies the value**, not the memory location.
+A good way to understand primitive values is to think of them as **photocopies**. When you assign a primitive value, JavaScript **copies the value**, not the memory location. Primitive data types are **immutable** (cannot be changed directly).
+
+Primitive types in JavaScript:
+- `string`
+- `number`
+- `boolean`
+- `null`
+- `undefined`
+- `symbol`
+- `bigint`
 
 ### Analogy: Money and Photocopy
 
@@ -69,7 +78,12 @@ Important points:
 
 ## Non-Primitive Data Types and Mutability
 
-Objects work very differently. Instead of copying the value, JavaScript **copies the reference**.
+Objects work very differently. Instead of copying the value, JavaScript **copies the reference**. Non-primitive types are mutable and stored as references.
+
+Common non-primitive types:
+- `object`
+- `array`
+- `function`
 
 ### Analogy: Address, Not the House
 
