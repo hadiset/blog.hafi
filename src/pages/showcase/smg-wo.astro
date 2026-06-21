@@ -1,0 +1,600 @@
+---
+import SlicingLayout from "../../layouts/SlicingLayout.astro";
+import { Image } from "astro:assets";
+
+// Import Assets
+import heroImg from "../../assets/Prtfl2/hero.webp";
+import logo from "../../assets/Prtfl2/logo.webp";
+import asset1 from "../../assets/Prtfl2/assets.webp";
+import asset2 from "../../assets/Prtfl2/assets2.webp";
+import asset3 from "../../assets/Prtfl2/assets3.webp";
+import asset4 from "../../assets/Prtfl2/assets4.webp";
+import asset5 from "../../assets/Prtfl2/assets5.webp";
+import team1 from "../../assets/Prtfl2/ourteam.webp";
+import team2 from "../../assets/Prtfl2/ourteam2.webp";
+import team3 from "../../assets/Prtfl2/ourteam3.webp";
+import thumb from "../../assets/Prtfl2/Thumbnail.webp";
+
+// Partner Logos
+import p2 from "../../assets/Prtfl2/partner2-150x150.webp";
+import p3 from "../../assets/Prtfl2/partner3-150x150.webp";
+import p4 from "../../assets/Prtfl2/partner4-150x150.webp";
+import p5 from "../../assets/Prtfl2/partner5-150x150.webp";
+import p6 from "../../assets/Prtfl2/partner6-150x150.webp";
+import p7 from "../../assets/Prtfl2/partner7-150x150.webp";
+import p8 from "../../assets/Prtfl2/partner8-150x150.webp";
+import p9 from "../../assets/Prtfl2/partner9-150x150.webp";
+
+const partners = [p2, p3, p4, p5, p6, p7, p8, p9];
+---
+
+<SlicingLayout
+  pageTitle="Baskara Wedding Organizer - Semarang"
+  description="Jasa wedding organizer profesional di Semarang. Wujudkan pernikahan impian Anda tanpa stress bersama tim ahli kami."
+  image={thumb}
+  figmaUrl="https://baskaraweddingorganizer.com/"
+  designer="Baskara WO"
+>
+  <div class="paper-grain bg-wo-paper min-h-screen text-wo-forest selection:bg-wo-terracotta selection:text-white">
+    
+    <!-- Header/Nav -->
+    <header class="fixed top-0 w-full z-50 px-6 py-8 flex justify-between items-center bg-transparent backdrop-blur-sm transition-all duration-300" id="main-header">
+      <div class="flex items-center gap-3">
+        <Image src={logo} alt="Baskara Logo" class="w-12 h-12 rounded-full border border-wo-sage" />
+        <span class="font-playfair font-bold text-xl tracking-tighter">BASKARA</span>
+      </div>
+      
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex gap-10 font-dm-sans text-sm font-medium uppercase tracking-widest">
+        <a href="#services" class="hover:text-wo-terracotta transition-colors">Layanan</a>
+        <a href="#about" class="hover:text-wo-terracotta transition-colors">Tentang</a>
+        <a href="#gallery" class="hover:text-wo-terracotta transition-colors">Galeri</a>
+        <a href="#contact" class="hover:text-wo-terracotta transition-colors">Kontak</a>
+      </nav>
+
+      <div class="flex items-center gap-4">
+        <a href="https://wa.me/6281225610652" class="hidden sm:block bg-wo-forest text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-wo-terracotta transition-all shadow-lg">Konsultasi Gratis</a>
+        
+        <!-- Mobile Menu Toggle -->
+        <button id="menu-toggle" class="md:hidden p-2 text-wo-forest focus:outline-none" aria-label="Toggle Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Overlay -->
+      <div id="mobile-menu" class="fixed inset-0 bg-wo-paper/95 z-[-1] flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none -translate-y-10 transition-all duration-500 md:hidden">
+        <nav class="flex flex-col items-center gap-8 font-playfair text-3xl">
+          <a href="#services" class="mobile-link transition-colors duration-300 hover:text-wo-terracotta">Layanan</a>
+          <a href="#about" class="mobile-link transition-colors duration-300 hover:text-wo-terracotta">Tentang</a>
+          <a href="#gallery" class="mobile-link transition-colors duration-300 hover:text-wo-terracotta">Galeri</a>
+          <a href="#contact" class="mobile-link transition-colors duration-300 hover:text-wo-terracotta">Kontak</a>
+        </nav>
+        <a href="https://wa.me/6281225610652" class="bg-wo-terracotta text-white px-8 py-4 rounded-full font-bold">Konsultasi Gratis</a>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-40 pb-32 px-6 text-center overflow-hidden">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-10 pointer-events-none">
+        <div class="w-[800px] h-[800px] bg-wo-sage rounded-full blur-[120px] absolute -top-40 -left-40 animate-pulse"></div>
+        <div class="w-[600px] h-[600px] bg-wo-clay rounded-full blur-[100px] absolute -bottom-20 -right-20"></div>
+      </div>
+
+      <div class="max-w-4xl mx-auto space-y-8">
+        <span class="inline-block font-dm-sans text-xs font-bold uppercase tracking-[0.3em] text-wo-terracotta animate-fade-in">Wedding Organizer Profesional Semarang</span>
+        <h1 class="text-wo-display animate-fade-in-slow">
+          Wujudkan Pernikahan <span class="italic font-normal">Impian</span> Anda Tanpa Stress
+        </h1>
+        <p class="text-wo-body max-w-2xl mx-auto text-lg md:text-xl">
+          Baskara Wedding Organizer membantu pasangan mewujudkan momen paling bersejarah dalam hidup dengan perencanaan yang matang, koordinasi yang solid, dan eksekusi yang sempurna.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+          <a href="#services" class="bg-wo-terracotta text-white px-10 py-5 rounded-full font-bold shadow-xl hover:scale-105 transition-transform">Lihat Paket Kami</a>
+          <a href="#gallery" class="bg-white/80 border border-wo-sage text-wo-forest px-10 py-5 rounded-full font-bold hover:bg-white transition-all">Lihat Galeri</a>
+        </div>
+      </div>
+
+      <div class="mt-20 max-w-6xl mx-auto relative group">
+        <div class="arch-image overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.01]">
+          <Image src={heroImg} alt="Baskara Wedding" class="w-full h-[600px] object-cover" />
+        </div>
+        <div class="absolute -bottom-10 -right-10 bg-white p-8 rounded-2xl shadow-xl hidden lg:block animate-bounce-slow">
+          <p class="font-playfair text-3xl font-bold">500+</p>
+          <p class="text-xs uppercase tracking-widest text-wo-sage font-bold">Pernikahan Sukses</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-32 bg-wo-forest text-wo-paper relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6 text-center space-y-16 relative z-10">
+        <div class="space-y-4">
+           <span class="font-dm-sans text-xs font-bold uppercase tracking-[0.3em] text-wo-sand">Baskara WO</span>
+           <h2 class="text-wo-h2 text-white">Dipercaya Ribuan Pasangan</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-16 md:gap-8 items-start">
+          <div class="space-y-2">
+            <p class="text-6xl font-playfair">1000+</p>
+            <p class="text-sm uppercase tracking-[0.2em] font-bold text-wo-sand">Pasangan yang Telah Dibantu</p>
+          </div>
+          <div class="space-y-2">
+            <p class="text-6xl font-playfair">10+</p>
+            <p class="text-sm uppercase tracking-[0.2em] font-bold text-wo-sand">Tahun Pengalaman</p>
+          </div>
+          <div class="space-y-2">
+            <p class="text-6xl font-playfair">50+</p>
+            <p class="text-sm uppercase tracking-[0.2em] font-bold text-wo-sand">Vendor Terpercaya</p>
+          </div>
+        </div>
+
+        <div class="max-w-3xl mx-auto pt-8 border-t border-white/10">
+          <p class="text-lg md:text-xl leading-relaxed opacity-90 font-light italic text-wo-paper/80">
+            "Sejak 2015, Baskara Wedding Organizer di bawah naungan PT Baskara Raja Mandiri telah menjadi bagian dalam merayakan pernikahan lebih dari 1.000 calon pengantin. Kami percaya bahwa setiap pasangan berhak merayakan momen sakral sekali seumur hidup ini dengan sempurna. Dengan dukungan kami dan mitra terpercaya, kami siap menghadirkan hari indah yang tak terlupakan."
+          </p>
+        </div>
+      </div>
+      
+      <!-- Decorative element -->
+      <div class="absolute top-0 right-0 w-96 h-96 bg-wo-sage/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="py-24 border-b border-wo-forest/5 bg-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6 space-y-12">
+        <div class="text-center space-y-2">
+          <span class="font-dm-sans text-xs font-bold uppercase tracking-[0.3em] text-wo-terracotta">Network</span>
+          <h2 class="text-wo-h2 text-wo-forest">Mitra Terpercaya Kami</h2>
+        </div>
+
+        <!-- Desktop: 4-column grid -->
+        <div class="hidden md:grid md:grid-cols-4 gap-8 items-center">
+          {partners.map((partner) => (
+            <div class="flex justify-center">
+              <Image src={partner} alt="Partner Logo" class="h-24 w-auto object-contain opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
+            </div>
+          ))}
+        </div>
+
+        <!-- Mobile: 2-column slides with snap -->
+        <div id="partner-carousel" class="md:hidden flex overflow-x-auto gap-4 pb-4 no-scrollbar snap-x snap-mandatory scroll-smooth">
+          {partners.map((partner) => (
+            <div class="flex-none w-[calc(50%-0.5rem)] snap-center flex justify-center">
+              <Image src={partner} alt="Partner Logo" class="h-20 w-auto object-contain opacity-40 grayscale transition-all duration-500" />
+            </div>
+          ))}
+        </div>
+
+        <!-- Mobile nav dots -->
+        <div id="partner-dots" class="md:hidden flex justify-center gap-2">
+          <button class="partner-dot w-2 h-2 rounded-full bg-wo-terracotta transition-all" data-dot="0"></button>
+          <button class="partner-dot w-2 h-2 rounded-full bg-wo-sage/40 transition-all" data-dot="1"></button>
+          <button class="partner-dot w-2 h-2 rounded-full bg-wo-sage/40 transition-all" data-dot="2"></button>
+          <button class="partner-dot w-2 h-2 rounded-full bg-wo-sage/40 transition-all" data-dot="3"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-32 px-6 bg-wo-sand/10">
+      <div class="max-w-7xl mx-auto space-y-20">
+        <div class="text-center space-y-4">
+          <span class="font-dm-sans text-xs font-bold uppercase tracking-[0.3em] text-wo-terracotta">Excellence</span>
+          <h2 class="text-wo-h2 text-wo-forest">Mengapa Memilih Kami?</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Benefit 1 -->
+          <div class="bg-white p-10 rounded-[40px] shadow-sm border border-wo-sage/10 hover:shadow-xl transition-all duration-500 group">
+            <div class="w-16 h-16 bg-wo-sage/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-wo-sage group-hover:text-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.972 11.972 0 0112 21c-1.257 0-2.472-.193-3.618-.556a4.992 4.992 0 00-2.936 0A11.973 11.973 0 014.382 15.984M14.618 4.016A11.972 11.972 0 0012 3c-1.257 0-2.472.193-3.618.556a4.992 4.992 0 01-2.936 0A11.973 11.973 0 002.382 8.016" />
+              </svg>
+            </div>
+            <h3 class="font-playfair text-2xl mb-4 font-bold text-wo-forest">Legalitas Terjamin</h3>
+            <p class="text-wo-body text-sm">Beroperasi di bawah badan hukum PT Baskara Raja Mandiri — profesional dan terpercaya.</p>
+          </div>
+          <!-- Benefit 2 -->
+          <div class="bg-white p-10 rounded-[40px] shadow-sm border border-wo-sage/10 hover:shadow-xl transition-all duration-500 group">
+            <div class="w-16 h-16 bg-wo-sage/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-wo-sage group-hover:text-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+              </svg>
+            </div>
+            <h3 class="font-playfair text-2xl mb-4 font-bold text-wo-forest">Kualitas Terbaik</h3>
+            <p class="text-wo-body text-sm">Standar tinggi di setiap detail untuk menciptakan momen pernikahan yang sempurna.</p>
+          </div>
+          <!-- Benefit 3 -->
+          <div class="bg-white p-10 rounded-[40px] shadow-sm border border-wo-sage/10 hover:shadow-xl transition-all duration-500 group">
+            <div class="w-16 h-16 bg-wo-sage/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-wo-sage group-hover:text-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+            </div>
+            <h3 class="font-playfair text-2xl mb-4 font-bold text-wo-forest">Kreativitas Tanpa Batas</h3>
+            <p class="text-wo-body text-sm">Konsep segar dan inovatif yang disesuaikan sepenuhnya dengan keinginan Anda.</p>
+          </div>
+          <!-- Benefit 4 -->
+          <div class="bg-white p-10 rounded-[40px] shadow-sm border border-wo-sage/10 hover:shadow-xl transition-all duration-500 group">
+            <div class="w-16 h-16 bg-wo-sage/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-wo-sage group-hover:text-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+              </svg>
+            </div>
+            <h3 class="font-playfair text-2xl mb-4 font-bold text-wo-forest">Jaringan Vendor Luas</h3>
+            <p class="text-wo-body text-sm">Didukung vendor-vendor terbaik yang telah terseleksi untuk melengkapi hari spesial Anda.</p>
+          </div>
+          <!-- Benefit 5 -->
+          <div class="bg-white p-10 rounded-[40px] shadow-sm border border-wo-sage/10 hover:shadow-xl transition-all duration-500 group">
+            <div class="w-16 h-16 bg-wo-sage/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-wo-sage group-hover:text-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+              </svg>
+            </div>
+            <h3 class="font-playfair text-2xl mb-4 font-bold text-wo-forest">Solusi Lengkap</h3>
+            <p class="text-wo-body text-sm">Dari perencanaan awal hingga eksekusi hari-H, semua ditangani oleh tim kami.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-32 px-6 bg-white/50">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+          <div class="space-y-4 max-w-2xl">
+            <span class="font-dm-sans text-xs font-bold uppercase tracking-[0.3em] text-wo-terracotta">Layanan Kami</span>
+            <h2 class="text-wo-h2 text-wo-forest">Paket Pernikahan Terintegrasi & <span class="italic">Customizable</span></h2>
+          </div>
+          <p class="text-wo-body max-w-sm mb-2">Pilih paket yang paling sesuai dengan kebutuhan dan budget Anda. Semua layanan dapat dipersonalisasi.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Service 1 -->
+          <div class="bg-white p-10 rounded-[40px] border border-wo-sage/20 hover:shadow-2xl transition-all hover:-translate-y-2 group">
+            <div class="w-16 h-16 bg-wo-sage/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-wo-sage group-hover:text-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21l-8.228-9.912a6 6 0 118.228 0 6 6 0 118.228 0L12 21z" />
+              </svg>
+            </div>
+            <h3 class="font-playfair text-2xl mb-4 font-bold">Wedding Organizer</h3>
+            <p class="text-wo-body text-sm mb-8">Pendampingan penuh mulai dari perencanaan, pemilihan vendor, hingga eksekusi di hari bahagia Anda.</p>
+            <ul class="space-y-3 text-sm font-medium opacity-80 mb-8">
+              <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-wo-terracotta rounded-full"></div> Hari-H Coordination</li>
+              <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-wo-terracotta rounded-full"></div> Vendor Management</li>
+              <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-wo-terracotta rounded-full"></div> Budget Planning</li>
+            </ul>
+            <a href="#" class="text-wo-terracotta font-bold text-xs uppercase tracking-widest flex items-center gap-2 group/link">Selengkapnya <span class="group-hover/link:translate-x-1 transition-transform">→</span></a>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="bg-wo-sage p-10 rounded-[40px] text-white shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 group">
+            <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-white group-hover:text-wo-sage transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <h3 class="font-playfair text-2xl mb-4 font-bold">All in Venue</h3>
+            <p class="opacity-80 text-sm mb-8">Solusi praktis dengan paket lengkap di gedung pilihan Anda di Semarang. Termasuk katering dan dekorasi.</p>
+            <ul class="space-y-3 text-sm font-medium opacity-80 mb-8">
+              <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-white rounded-full"></div> Gedung Exclusive</li>
+              <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-white rounded-full"></div> Catering (Buffet)</li>
+              <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-white rounded-full"></div> Decoration & Sound</li>
+            </ul>
+            <a href="#" class="text-white font-bold text-xs uppercase tracking-widest flex items-center gap-2 group/link">Selengkapnya <span class="group-hover/link:translate-x-1 transition-transform">→</span></a>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="bg-white p-10 rounded-[40px] border border-wo-sage/20 hover:shadow-2xl transition-all hover:-translate-y-2 group">
+            <div class="w-16 h-16 bg-wo-clay/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-wo-clay group-hover:text-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+              </svg>
+            </div>
+            <h3 class="font-playfair text-2xl mb-4 font-bold">All in Hotel</h3>
+            <p class="text-wo-body text-sm mb-8">Paket pernikahan mewah di hotel-hotel berbintang dengan fasilitas lengkap dan pelayanan standar internasional.</p>
+            <ul class="space-y-3 text-sm font-medium opacity-80 mb-8">
+              <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-wo-terracotta rounded-full"></div> Luxury Hotel Venue</li>
+              <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-wo-terracotta rounded-full"></div> Staycation Room</li>
+              <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-wo-terracotta rounded-full"></div> Fine Dining Quality</li>
+            </ul>
+            <a href="#" class="text-wo-terracotta font-bold text-xs uppercase tracking-widest flex items-center gap-2 group/link">Selengkapnya <span class="group-hover/link:translate-x-1 transition-transform">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-32 px-6 overflow-hidden bg-wo-sand/30">
+      <div class="max-w-7xl mx-auto mb-16 text-center space-y-4">
+        <span class="font-dm-sans text-xs font-bold uppercase tracking-[0.3em] text-wo-terracotta">Galeri Momen</span>
+        <h2 class="text-wo-h2 text-wo-forest">Setiap Detik yang <span class="italic text-wo-clay">Penuh Makna</span></h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 auto-rows-[300px] md:auto-rows-[400px]">
+        <div class="md:col-span-2 md:row-span-1 rounded-3xl overflow-hidden hover:scale-[1.02] transition-transform duration-700 shadow-xl">
+          <Image src={asset1} alt="Baskara Moment" class="w-full h-full object-cover" />
+        </div>
+        <div class="rounded-3xl overflow-hidden hover:scale-[1.02] transition-transform duration-700 shadow-xl">
+          <Image src={asset2} alt="Baskara Moment" class="w-full h-full object-cover" />
+        </div>
+        <div class="row-span-2 rounded-3xl overflow-hidden hover:scale-[1.02] transition-transform duration-700 shadow-xl">
+          <Image src={asset3} alt="Baskara Moment" class="w-full h-full object-cover" />
+        </div>
+        <div class="rounded-3xl overflow-hidden hover:scale-[1.02] transition-transform duration-700 shadow-xl">
+          <Image src={asset4} alt="Baskara Moment" class="w-full h-full object-cover" />
+        </div>
+        <div class="md:col-span-2 rounded-3xl overflow-hidden hover:scale-[1.02] transition-transform duration-700 shadow-xl">
+          <Image src={asset5} alt="Baskara Moment" class="w-full h-full object-cover" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="about" class="py-32 px-6 bg-wo-forest text-wo-paper">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+          <div class="space-y-10">
+            <div class="space-y-4">
+              <span class="font-dm-sans text-xs font-bold uppercase tracking-[0.3em] text-wo-clay">Tim Kami</span>
+              <h2 class="text-wo-h2 text-white">Dedikasi Untuk <span class="italic font-normal">Kebahagiaan</span> Anda</h2>
+            </div>
+            <p class="text-lg opacity-80 leading-relaxed">
+              Dibalik setiap pernikahan sukses, ada tim yang bekerja keras dengan hati. Di Baskara Wedding Organizer, kami percaya bahwa setiap detail kecil memiliki peran besar dalam menciptakan kesempurnaan.
+            </p>
+            <div class="grid grid-cols-2 gap-8">
+              <div class="space-y-2">
+                <h4 class="font-playfair text-xl">Kreatif & Inovatif</h4>
+                <p class="text-sm opacity-60">Konsep segar yang selalu up-to-date.</p>
+              </div>
+              <div class="space-y-2">
+                <h4 class="font-playfair text-xl">Hati yang Melayani</h4>
+                <p class="text-sm opacity-60">Prioritas kami adalah kenyamanan Anda.</p>
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <Image src={team1} alt="Tim Baskara" class="rounded-2xl h-80 object-cover mt-12" />
+            <Image src={team2} alt="Tim Baskara" class="rounded-2xl h-80 object-cover" />
+            <div class="col-span-2">
+               <Image src={team3} alt="Tim Baskara" class="rounded-2xl w-full h-64 object-cover" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA / Footer / FAQ Section -->
+    <section id="contact" class="py-32 px-6 bg-white relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-64 h-64 bg-wo-sage/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+      
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-start">
+        <!-- Left Column: Form -->
+        <div class="bg-wo-paper p-10 md:p-16 rounded-[60px] space-y-10 shadow-inner order-2 lg:order-2">
+          <div class="space-y-4">
+            <h2 class="text-wo-h2 text-wo-forest">Mulai Konsultasi</h2>
+            <p class="text-wo-body text-sm">Isi data di bawah ini untuk mendapatkan penawaran terbaik.</p>
+          </div>
+          
+          <form class="space-y-6" id="consultation-form">
+            <div class="space-y-2">
+              <label class="text-xs font-bold uppercase tracking-widest opacity-60">Nama Lengkap *</label>
+              <input type="text" required name="nama" class="w-full bg-transparent border-b border-wo-forest/20 py-3 outline-none focus:border-wo-terracotta transition-colors" placeholder="Masukkan nama Anda..." />
+            </div>
+            <div class="space-y-2">
+              <label class="text-xs font-bold uppercase tracking-widest opacity-60">Nomor WhatsApp *</label>
+              <input type="tel" required name="wa" class="w-full bg-transparent border-b border-wo-forest/20 py-3 outline-none focus:border-wo-terracotta transition-colors" placeholder="Contoh: 0812..." />
+            </div>
+            <div class="space-y-2">
+              <label class="text-xs font-bold uppercase tracking-widest opacity-60">Email (Opsional)</label>
+              <input type="email" name="email" class="w-full bg-transparent border-b border-wo-forest/20 py-3 outline-none focus:border-wo-terracotta transition-colors" placeholder="alamat@email.com" />
+            </div>
+            <div class="space-y-2">
+              <label class="text-xs font-bold uppercase tracking-widest opacity-60">Pilihan Layanan *</label>
+              <select required name="layanan" class="w-full bg-transparent border-b border-wo-forest/20 py-3 outline-none focus:border-wo-terracotta transition-colors appearance-none cursor-pointer">
+                <option value="" disabled selected>Pilih layanan...</option>
+                <option value="Wedding Organizer">Wedding Organizer</option>
+                <option value="All in Venue">All in Venue</option>
+                <option value="All in Hotel">All in Hotel</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label class="text-xs font-bold uppercase tracking-widest opacity-60">Tanggal Pernikahan *</label>
+              <input type="date" required name="tanggal" class="w-full bg-transparent border-b border-wo-forest/20 py-3 outline-none focus:border-wo-terracotta transition-colors" />
+            </div>
+            <button type="submit" class="w-full bg-wo-forest text-white py-6 rounded-3xl font-bold shadow-lg hover:bg-wo-terracotta transition-all uppercase tracking-widest text-sm">Konsultasi Gratis Sekarang</button>
+          </form>
+        </div>
+
+        <!-- Right Column: FAQ -->
+        <div class="space-y-12 order-1 lg:order-1 py-10">
+          <div class="space-y-4">
+             <span class="font-dm-sans text-xs font-bold uppercase tracking-[0.3em] text-wo-terracotta">Common Questions</span>
+             <h2 class="text-wo-h2 text-wo-forest">Pertanyaan Umum</h2>
+          </div>
+
+          <div class="space-y-4 no-scrollbar">
+            <!-- FAQ 1 -->
+            <details class="group bg-wo-sand/10 rounded-3xl p-6 transition-all duration-300 open:bg-wo-sand/20">
+              <summary class="flex justify-between items-center cursor-pointer list-none font-playfair text-xl font-bold text-wo-forest">
+                Apa saja layanan yang ditawarkan?
+                <span class="transition-transform duration-300 group-open:rotate-180">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                </span>
+              </summary>
+              <p class="pt-4 text-wo-body text-sm leading-relaxed">Kami menyediakan layanan lengkap mulai dari wedding planner, koordinasi hari-H, dekorasi, catering, hiburan, hingga dokumentasi.</p>
+            </details>
+
+            <!-- FAQ 2 -->
+            <details class="group bg-wo-sand/10 rounded-3xl p-6 transition-all duration-300 open:bg-wo-sand/20">
+              <summary class="flex justify-between items-center cursor-pointer list-none font-playfair text-xl font-bold text-wo-forest">
+                Berapa biaya menggunakan layanan Baskara WO?
+                <span class="transition-transform duration-300 group-open:rotate-180">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                </span>
+              </summary>
+              <p class="pt-4 text-wo-body text-sm leading-relaxed">Biaya bervariasi tergantung paket dan layanan yang dipilih. Hubungi kami untuk mendapatkan penawaran yang sesuai dengan kebutuhan Anda.</p>
+            </details>
+
+            <!-- FAQ 3 -->
+            <details class="group bg-wo-sand/10 rounded-3xl p-6 transition-all duration-300 open:bg-wo-sand/20">
+              <summary class="flex justify-between items-center cursor-pointer list-none font-playfair text-xl font-bold text-wo-forest">
+                Apakah tersedia vendor yang direkomendasikan?
+                <span class="transition-transform duration-300 group-open:rotate-180">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                </span>
+              </summary>
+              <p class="pt-4 text-wo-body text-sm leading-relaxed">Ya, kami telah bermitra dengan berbagai vendor terpercaya yang siap melengkapi pernikahan Anda.</p>
+            </details>
+
+            <!-- FAQ 4 -->
+            <details class="group bg-wo-sand/10 rounded-3xl p-6 transition-all duration-300 open:bg-wo-sand/20">
+              <summary class="flex justify-between items-center cursor-pointer list-none font-playfair text-xl font-bold text-wo-forest">
+                Bagaimana cara menghubungi Baskara Wedding Organizer?
+                <span class="transition-transform duration-300 group-open:rotate-180">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                </span>
+              </summary>
+              <p class="pt-4 text-wo-body text-sm leading-relaxed">Anda dapat menghubungi kami melalui WhatsApp di nomor <strong>081227920242</strong> atau mengisi form konsultasi di halaman ini.</p>
+            </details>
+
+            <!-- FAQ 5 -->
+            <details class="group bg-wo-sand/10 rounded-3xl p-6 transition-all duration-300 open:bg-wo-sand/20">
+              <summary class="flex justify-between items-center cursor-pointer list-none font-playfair text-xl font-bold text-wo-forest">
+                Apakah Baskara WO sudah memiliki legalitas resmi?
+                <span class="transition-transform duration-300 group-open:rotate-180">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                </span>
+              </summary>
+              <p class="pt-4 text-wo-body text-sm leading-relaxed">Ya, kami beroperasi secara resmi di bawah badan hukum <strong>PT. Baskara Raja Mandiri</strong>.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mt-32 pt-12 border-t border-wo-forest/10 text-center space-y-6">
+        <p class="font-dm-sans text-xs uppercase tracking-[0.4em] opacity-40">© 2026 Baskara Wedding Organizer • Semarang, Indonesia</p>
+      </footer>
+    </section>
+
+  </div>
+</SlicingLayout>
+
+<style>
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+  }
+  .animate-fade-in-slow {
+    animation: fade-in 1.5s ease-out forwards;
+  }
+  @keyframes bounce-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .animate-bounce-slow {
+    animation: bounce-slow 4s ease-in-out infinite;
+  }
+
+  /* Carousel Styles */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Form shadow inner */
+  .shadow-inner {
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+  }
+</style>
+
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const mainHeader = document.getElementById('main-header');
+
+  let isMenuOpen = false;
+
+  function toggleMenu() {
+    isMenuOpen = !isMenuOpen;
+    
+    if (isMenuOpen) {
+      mobileMenu.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-10');
+      mobileMenu.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12'); // X icon
+      document.body.style.overflow = 'hidden';
+    } else {
+      mobileMenu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-10');
+      mobileMenu.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16'); // Hamburger icon
+      document.body.style.overflow = '';
+    }
+  }
+
+  menuToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+
+  // Close on click outside
+  document.addEventListener('click', (e) => {
+    if (isMenuOpen && !mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+      toggleMenu();
+    }
+  });
+
+  // Close on link click
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (isMenuOpen) toggleMenu();
+    });
+  });
+
+  // Header scroll effect
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      mainHeader.classList.add('bg-white/90', 'py-4', 'shadow-md');
+      mainHeader.classList.remove('py-8', 'bg-transparent');
+    } else {
+      mainHeader.classList.remove('bg-white/90', 'py-4', 'shadow-md');
+      mainHeader.classList.add('py-8', 'bg-transparent');
+    }
+  });
+
+  // Partner carousel dots
+  const partnerCarousel = document.getElementById('partner-carousel');
+  const partnerDots = document.querySelectorAll('.partner-dot');
+  if (partnerCarousel && partnerDots.length) {
+    const itemsPerView = 2;
+    const totalDots = partnerDots.length;
+    partnerDots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        const scrollTarget = i * itemsPerView * (partnerCarousel.scrollWidth / partnerCarousel.children.length);
+        partnerCarousel.scrollTo({ left: scrollTarget, behavior: 'smooth' });
+      });
+    });
+    partnerCarousel.addEventListener('scroll', () => {
+      const itemWidth = partnerCarousel.scrollWidth / partnerCarousel.children.length;
+      const activeIndex = Math.round(partnerCarousel.scrollLeft / (itemWidth * itemsPerView));
+      partnerDots.forEach((dot, i) => {
+        if (i === activeIndex) {
+          dot.classList.remove('bg-wo-sage/40');
+          dot.classList.add('bg-wo-terracotta');
+        } else {
+          dot.classList.remove('bg-wo-terracotta');
+          dot.classList.add('bg-wo-sage/40');
+        }
+      });
+    });
+  }
+</script>

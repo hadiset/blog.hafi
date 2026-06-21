@@ -1,6 +1,5 @@
-
-
-@import "tailwindcss" important;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&family=Crimson+Text&family=Roboto+Mono&display=swap');
+@import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
@@ -8,6 +7,7 @@
 @theme {
   --font-crimson-text: "Crimson Text", serif;
   --font-dm-sans: "DM Sans", sans-serif;
+  --font-playfair: "Playfair Display", serif;
   --font-roboto-mono: "Roboto Mono", monospace;
   
   --color-porto1-accent1: #485C11 ;
@@ -17,6 +17,14 @@
   --color-porto1-accent5: #6F6F6F ;
   --color-porto1-accent6: #929292 ;
   --color-porto1-divider: #E9E9E9 ;
+
+  /* Baskara WO Palette — Pink Pastel */
+  --color-wo-sage: #F4B6C2;
+  --color-wo-clay: #C97B84;
+  --color-wo-terracotta: #E8709A;
+  --color-wo-paper: #FFF0F5;
+  --color-wo-forest: #8B2956;
+  --color-wo-sand: #F5D5DE;
 }
 
 @layer utilities {
@@ -26,9 +34,46 @@
     border: 0;
     border-radius: 0;
   }
+
+  .arch-image {
+    border-radius: 200px 200px 0 0;
+  }
+
+  .paper-grain {
+    position: relative;
+  }
+
+  .paper-grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 10;
+  }
 }
 
 @layer components {
+  /* SMG-WO Showcase Classes */
+  .text-wo-display {
+    @apply font-playfair font-normal
+    text-[56px]/[1.1em] -tracking-[0.02em]
+    md:text-[80px]/[1em]
+    lg:text-[100px]/[1em];
+  }
+
+  .text-wo-h2 {
+    @apply font-playfair font-normal
+    text-[36px]/[1.2em]
+    md:text-[48px]/[1.1em];
+  }
+
+  .text-wo-body {
+    @apply font-dm-sans font-normal
+    text-[16px]/[1.6em] text-wo-forest/80;
+  }
+
   .text-porto1-display-statistics {
     @apply font-dm-sans font-normal
     text-[64px]/[1em] -tracking-[0.04em] 
