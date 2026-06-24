@@ -10,9 +10,9 @@ import asset2 from "../../assets/Prtfl2/assets2.webp";
 import asset3 from "../../assets/Prtfl2/assets3.webp";
 import asset4 from "../../assets/Prtfl2/assets4.webp";
 import asset5 from "../../assets/Prtfl2/assets5.webp";
-import team1 from "../../assets/Prtfl2/ourteam3.webp";
-import team2 from "../../assets/Prtfl2/ourteam.webp";
-import team3 from "../../assets/Prtfl2/ourteam2.webp";
+import team1 from "../../assets/Prtfl2/ourteam.webp";
+import team2 from "../../assets/Prtfl2/ourteam2.webp";
+import team3 from "../../assets/Prtfl2/ourteam3.webp";
 import thumb from "../../assets/Prtfl2/Thumbnail.webp";
 
 // Partner Logos
@@ -49,38 +49,31 @@ const partners = [p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, 
   <div class="paper-grain bg-wo-paper min-h-screen text-wo-forest selection:bg-wo-terracotta selection:text-white">
     
     <!-- Header/Nav -->
-    <header class="fixed top-0 w-full md:relative md:w-auto z-50 px-6 py-8 flex justify-between items-center bg-transparent transition-all duration-300" id="main-header">
-      <!-- Mobile: Logo -->
-      <div class="flex items-center gap-3 md:hidden">
+    <header class="fixed top-0 w-full z-50 px-6 py-8 flex justify-between items-center bg-transparent backdrop-blur-sm transition-all duration-300" id="main-header">
+      <div class="flex items-center gap-3">
         <Image src={logo} alt="Baskara Logo" class="w-12 h-12 rounded-full border border-wo-sage" />
         <span class="font-playfair font-bold text-xl tracking-tighter">BASKARA</span>
       </div>
+      
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex gap-10 font-dm-sans text-sm font-medium uppercase tracking-widest">
+        <a href="#services" class="hover:text-wo-terracotta transition-colors">Layanan</a>
+        <a href="#about" class="hover:text-wo-terracotta transition-colors">Tentang</a>
+        <a href="#gallery" class="hover:text-wo-terracotta transition-colors">Galeri</a>
+        <a href="#contact" class="hover:text-wo-terracotta transition-colors">Kontak</a>
+      </nav>
 
-      <!-- Desktop: Pill Navbar -->
-      <div class="hidden md:flex w-full max-w-4xl mx-auto mt-4 px-4 items-center justify-center">
-        <div class="flex items-center justify-between gap-8 w-full rounded-full bg-white/70 backdrop-blur-md border border-wo-sage/20 shadow-lg px-6 py-3">
-          <a href="#" class="flex items-center gap-2 shrink-0">
-            <Image src={logo} alt="Baskara Logo" class="w-8 h-8 rounded-full border border-wo-sage" />
-            <span class="font-playfair font-bold text-sm tracking-tighter text-wo-forest">BASKARA</span>
-          </a>
-
-          <nav class="flex gap-8 font-dm-sans text-sm font-medium">
-            <a href="#services" class="text-wo-forest hover:text-wo-terracotta transition-colors">Layanan</a>
-            <a href="#about" class="text-wo-forest hover:text-wo-terracotta transition-colors">Tentang</a>
-            <a href="#gallery" class="text-wo-forest hover:text-wo-terracotta transition-colors">Galeri</a>
-            <a href="#contact" class="text-wo-forest hover:text-wo-terracotta transition-colors">Kontak</a>
-          </nav>
-
-          <a href="https://wa.me/6281225610652" class="bg-wo-forest text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-wo-terracotta transition-all whitespace-nowrap shrink-0">Konsultasi Gratis</a>
-        </div>
+      <div class="flex items-center gap-4">
+        <a href="https://wa.me/6281225610652" class="hidden sm:block bg-wo-forest text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-wo-terracotta transition-all shadow-lg">Konsultasi Gratis</a>
+        
+        <!-- Mobile Menu Toggle -->
+        <button id="menu-toggle" class="md:hidden p-2 text-wo-forest focus:outline-none" aria-label="Toggle Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
       </div>
 
-      <!-- Mobile: Hamburger -->
-      <button id="menu-toggle" class="md:hidden p-2 text-wo-forest focus:outline-none" aria-label="Toggle Menu">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
     </header>
 
     <!-- Mobile Menu Overlay -->
@@ -618,7 +611,7 @@ const partners = [p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, 
 
   </div>
 <!-- Floating WA Button -->
-<div id="wa-toggle" class="cursor-pointer fixed bottom-20 right-6 z-50 flex items-center gap-3">
+<div id="wa-toggle" class="cursor-pointer fixed bottom-14 right-6 z-50 flex items-center gap-3">
   <span class="hidden sm:block bg-white text-[#25D366] px-3 py-1.5 rounded-full text-sm font-semibold shadow-md whitespace-nowrap">Hubungi Kami</span>
   <button class="w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-200" aria-label="Hubungi Kami via WhatsApp">
     <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
@@ -628,7 +621,7 @@ const partners = [p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, 
 </div>
 
 <!-- WA Popup Box -->
-<div id="wa-popup" class="fixed bottom-35 right-6 w-80 bg-white rounded-xl shadow-2xl z-50 hidden">
+<div id="wa-popup" class="fixed bottom-30 right-6 w-80 bg-white rounded-xl shadow-2xl z-50 hidden">
   <div class="bg-[#25D366] text-white p-4 rounded-t-xl relative">
     <div class="flex items-center gap-2 mb-1">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
