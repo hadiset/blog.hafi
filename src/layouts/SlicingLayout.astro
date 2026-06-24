@@ -63,8 +63,8 @@ const fullImageUrl = imageUrl
 
     {
       figmaUrl && (
-        <div class="flex flex-col max-w-7xl left-[50%] -translate-x-[50%] gap-y-2 fixed inset-shadow-sm bottom-0 w-full justify-start items-center text-left px-5 py-2 text-sm bg-white text-gray-500 z-50 dark:text-gray-400 md:flex-row md:justify-between">
-          <div class="flex flex-col items-center basis-1/2 md:justify-center md:items-start">
+        <div class="mx-auto flex max-w-7xl w-full flex-col items-center justify-start gap-y-2 inset-shadow-sm px-5 py-2 text-sm text-left bg-white text-gray-500 dark:text-gray-400 md:flex-row md:justify-between">
+          <div class="flex items-center justify-center md:justify-start">
             <p>
               Original Design:{" "}
               <a
@@ -75,31 +75,28 @@ const fullImageUrl = imageUrl
                 {designer}
               </a>
             </p>
-            {designer && <p>Designer: {designer}</p>}
           </div>
-          <div class="flex basis-1/2 justify-end">
-            <a
-              href="/showcase"
-              class="inline-flex w-full items-center shadow-md/50 shadow-purple-800 justify-center p-3.5 text-base/[1em] font-medium text-white rounded-lg bg-purple-600 hover:bg-purple-800 md:w-[60%] md:py-4 lg:w-[40%]"
+          <a
+            href="/showcase"
+            class="inline-flex w-full items-center justify-center gap-1 rounded-lg bg-purple-600 p-3.5 text-base/[1em] font-medium text-white shadow-md/50 shadow-purple-800 hover:bg-purple-800 md:w-auto md:py-4 md:px-6 lg:w-auto"
+          >
+            Back to Showcase
+            <svg
+              class="w-4 h-4 rtl:rotate-180"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 10"
             >
-              Back to Showcase
-              <svg
-                class="w-4 h-4 ms-1 rtl:rotate-180"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M1 5h12m0 0L9 1m4 4L9 9"
-                />
-              </svg>
-            </a>
-          </div>
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 5h12m0 0L9 1m4 4L9 9"
+              />
+            </svg>
+          </a>
         </div>
       )
     }
