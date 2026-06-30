@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@source "../pages/showcase/smg-wo.astro";
+@source "../layouts/SlicingLayout.astro";
+@source "../pages/showcase/index.astro";
+
+:root {
+  --wo-sage: #F4B6C2;
+  --wo-clay: #C97B84;
+  --wo-terracotta: #E8709A;
+  --wo-paper: #FFF0F5;
+  --wo-forest: #8B2956;
+  --wo-sand: #F5D5DE;
+}
+
+@layer components {
+  .text-wo-display {
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    font-size: 56px;
+    line-height: 1.1em;
+    letter-spacing: -0.02em;
+  }
+  @media (width >= 768px) {
+    .text-wo-display {
+      font-size: 80px;
+      line-height: 1em;
+    }
+  }
+  @media (width >= 1024px) {
+    .text-wo-display {
+      font-size: 100px;
+      line-height: 1em;
+    }
+  }
+
+  .text-wo-h2 {
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 1.2em;
+  }
+  @media (width >= 768px) {
+    .text-wo-h2 {
+      font-size: 48px;
+      line-height: 1.1em;
+    }
+  }
+
+  .text-wo-body {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6em;
+    color: rgba(139, 41, 86, 0.8);
+  }
+}
+
+@layer utilities {
+  .arch-image {
+    border-radius: 200px 200px 0 0;
+  }
+
+  .paper-grain {
+    position: relative;
+  }
+
+  .paper-grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 10;
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 1s ease-out forwards;
+}
+.animate-fade-in-slow {
+  animation: fade-in 1.5s ease-out forwards;
+}
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-bounce-slow {
+  animation: bounce-slow 4s ease-in-out infinite;
+}
+
+/* Carousel Styles */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Form shadow inner */
+.shadow-inner {
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+}

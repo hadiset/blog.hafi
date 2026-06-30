@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@source "../pages/showcase/porto-1.astro";
+@source "../layouts/SlicingLayout.astro";
+@source "../pages/showcase/index.astro";
+
+@theme {
+  --color-porto1-accent1: #485C11;
+  --color-porto1-accent2: #DFECC6;
+  --color-porto1-accent3: #8E9C78;
+  --color-porto1-accent4: #000000;
+  --color-porto1-accent5: #6F6F6F;
+  --color-porto1-accent6: #929292;
+  --color-porto1-divider: #E9E9E9;
+
+  --font-crimson-text: "Crimson Text", serif;
+  --font-dm-sans: "DM Sans", sans-serif;
+  --font-playfair: "Playfair Display", serif;
+  --font-roboto-mono: "Roboto Mono", monospace;
+
+  --duration-1500: 1500ms;
+  --duration-2000: 2000ms;
+}
+
+@layer utilities {
+  .prose pre code {
+    background-color: transparent !important;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+  }
+}
+
+@layer components {
+  .text-porto1-display-statistics {
+    @apply font-dm-sans font-normal
+    text-[64px]/[1em] -tracking-[0.04em]
+    md:text-[80px]/[1em];
+  }
+
+  .text-porto1-display {
+    @apply font-crimson-text font-normal
+    text-[76px]/[0.85em] -tracking-[0.045em]
+    md:text-[140px]/[0.8em] md:-tracking-[0.05em]
+    lg:text-[160px]/[0.85em] lg:-tracking-[0.045em];
+  }
+
+  .text-porto1-h1 {
+    @apply font-crimson-text font-normal
+    text-[50px]/[0.95em] -tracking-[0.03em]
+    md:text-[54px]/[0.9em] md:-tracking-[0.03em]
+    lg:text-[60px]/[0.9em] lg:-tracking-[0.03em];
+  }
+
+  .text-porto1-h2 {
+    @apply font-crimson-text font-normal
+    text-[32px]/[1.1em] -tracking-[0.04em]
+    md:text-[40px]/[1.1em] md:-tracking-[0.04em]
+    lg:text-[40px]/[1.05em] lg:-tracking-[0.04em];
+  }
+
+  .text-porto1-h3 {
+    @apply font-crimson-text font-normal
+    text-[18px]/[1em] -tracking-[0.03em];
+  }
+
+  .text-porto1-p {
+    @apply font-dm-sans font-normal
+    text-[15px]/[1.4em] -tracking-[0.005em];
+  }
+
+  .text-porto1-link {
+    @apply font-dm-sans font-bold
+    text-[14px]/[1.4em] -tracking-[0.025em];
+  }
+
+  .text-porto1-captions {
+    @apply font-roboto-mono font-normal
+    text-[10.5px]/[1.4em] -tracking-[0.03em]
+    md:text-[11px]/[1.4em] md:-tracking-[0.01em]
+    lg:text-[12px]/[1.45em] lg:-tracking-[0.01em];
+  }
+
+  .fade-in {
+    @apply opacity-0 translate-y-10 will-change-transform transition-all ease-out duration-1500;
+  }
+
+  .fade-in-fast {
+    @apply opacity-0 translate-y-10 will-change-transform transition-all ease-out duration-1000;
+  }
+
+  .fade-in-slow {
+    @apply opacity-0 translate-y-15 will-change-transform transition-all ease-out duration-2000;
+  }
+
+  .show {
+    @apply opacity-100 translate-y-0;
+  }
+}
