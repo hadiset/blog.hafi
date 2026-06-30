@@ -18,13 +18,6 @@
   --color-porto1-accent6: #929292 ;
   --color-porto1-divider: #E9E9E9 ;
 
-  /* Baskara WO Palette — Pink Pastel */
-  --color-wo-sage: #F4B6C2;
-  --color-wo-clay: #C97B84;
-  --color-wo-terracotta: #E8709A;
-  --color-wo-paper: #FFF0F5;
-  --color-wo-forest: #8B2956;
-  --color-wo-sand: #F5D5DE;
 }
 
 @layer utilities {
@@ -55,25 +48,6 @@
 }
 
 @layer components {
-  /* SMG-WO Showcase Classes */
-  .text-wo-display {
-    @apply font-playfair font-normal
-    text-[56px]/[1.1em] -tracking-[0.02em]
-    md:text-[80px]/[1em]
-    lg:text-[100px]/[1em];
-  }
-
-  .text-wo-h2 {
-    @apply font-playfair font-normal
-    text-[36px]/[1.2em]
-    md:text-[48px]/[1.1em];
-  }
-
-  .text-wo-body {
-    @apply font-dm-sans font-normal
-    text-[16px]/[1.6em] text-wo-forest/80;
-  }
-
   .text-porto1-display-statistics {
     @apply font-dm-sans font-normal
     text-[64px]/[1em] -tracking-[0.04em] 
