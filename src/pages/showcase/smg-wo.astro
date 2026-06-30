@@ -838,5 +838,30 @@ const partners = [p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, 
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     }
+
+    // Form submit to WhatsApp
+    const form = document.getElementById('consultation-form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nama = document.getElementById('nama').value.trim();
+        const wa = document.getElementById('wa').value.trim();
+        const email = document.getElementById('email').value.trim() || '-';
+        const layanan = document.getElementById('layanan').value;
+        const tanggal = document.getElementById('tanggal').value;
+
+        const msg = `Halo saya ${nama}
+
+Nama: ${nama}
+Nomor: ${wa}
+Email: ${email}
+Layanan: ${layanan}
+Tanggal: ${tanggal}
+
+Mohon dibantu infokan layanan seperti info diatas`;
+
+        window.open(`https://wa.me/6281225610652?text=${encodeURIComponent(msg)}`, '_blank');
+      });
+    }
   });
 </script>
