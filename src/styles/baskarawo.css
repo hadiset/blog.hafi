@@ -60,20 +60,6 @@
   .arch-image {
     border-radius: 200px 200px 0 0;
   }
-
-  .paper-grain {
-    position: relative;
-  }
-
-  .paper-grain::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url("/images/paper-fibers.webp");
-    opacity: 0.05;
-    pointer-events: none;
-    z-index: 10;
-  }
 }
 
 @keyframes fade-in {
