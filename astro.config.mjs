@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://hafi.click', 
+  site: 'https://hadiset.com', 
   base: '/',
   integrations: [    
     mdx(),
