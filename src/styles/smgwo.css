@@ -4,13 +4,19 @@
 @source "../layouts/SlicingLayout.astro";
 @source "../pages/showcase/index.astro";
 
-:root {
-  --wo-sage: #F4B6C2;
-  --wo-clay: #C97B84;
-  --wo-terracotta: #E8709A;
-  --wo-paper: #FFF0F5;
-  --wo-forest: #8B2956;
-  --wo-sand: #F5D5DE;
+@theme {
+  --color-wo-accent1: #fb6f92;
+  --color-wo-accent2: #ff8fab;
+  --color-wo-accent3: #ffb3c6;
+  --color-wo-accent4: #ffc2d1;
+  --color-wo-accent5: #ffe5ec;
+
+  --font-crimson-text: "Crimson Text", serif;
+  --font-dm-sans: "DM Sans", sans-serif;
+  --font-playfair: "Playfair Display", serif;
+
+  --duration-1500: 1500ms;
+  --duration-2000: 2000ms;
 }
 
 @layer components {
@@ -51,8 +57,7 @@
     font-family: "DM Sans", sans-serif;
     font-weight: 400;
     font-size: 16px;
-    line-height: 1.6em;
-    color: rgba(139, 41, 86, 0.8);
+    line-height: 1.6em;    
   }
 }
 
