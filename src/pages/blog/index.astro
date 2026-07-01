@@ -23,14 +23,14 @@ const initialPosts = sortedPosts.slice(0, 10);
 
 // Prepare ALL posts data for JavaScript (for filtering & load more)
 const allPostsData = sortedPosts.map(post => ({
-  slug: post.slug,
+  slug: post.id,
   title: post.data.title,
   description: post.data.description,
   author: post.data.author,
   category: post.data.category,
   image: post.data.image,
   date: formatDate(post.data.publish_date),
-  readTime: calculateReadTimes(post.body)
+  readTime: calculateReadTimes(post.body ?? '')
 }));
 ---
 
@@ -53,7 +53,7 @@ const allPostsData = sortedPosts.map(post => ({
           category={post.data.category}
           tags={post.data.tags}
           image={post.data.image}
-          slug={`blog/${post.slug}`}
+          slug={`blog/${post.id}`}
           content={post.body}
           loading={index < 4 ? 'eager' : 'lazy'}
         />

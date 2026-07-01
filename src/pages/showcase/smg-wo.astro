@@ -698,7 +698,7 @@ const partners = [p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, 
 
     // Close on click outside
     document.addEventListener('click', (e) => {
-      if (isMenuOpen && !mobileMenu?.contains(e.target) && !menuToggle?.contains(e.target)) {
+      if (isMenuOpen && !mobileMenu?.contains(e.target as Node) && !menuToggle?.contains(e.target as Node)) {
         toggleMenu();
       }
     });
@@ -742,8 +742,8 @@ const partners = [p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, 
       // Close popup when clicking outside
       document.addEventListener('click', (e) => {
         if (!waPopup.classList.contains("hidden") &&
-            !waPopup.contains(e.target) &&
-            !waToggle.contains(e.target)) {
+            !waPopup.contains(e.target as Node) &&
+            !waToggle.contains(e.target as Node)) {
           waPopup.classList.add("hidden");
         }
       });
@@ -762,11 +762,11 @@ const partners = [p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, 
     if (form) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        const nama = document.getElementById('nama').value.trim();
-        const wa = document.getElementById('wa').value.trim();
-        const email = document.getElementById('email').value.trim() || '-';
-        const layanan = document.getElementById('layanan').value;
-        const tanggal = document.getElementById('tanggal').value;
+        const nama = (document.getElementById('nama') as HTMLInputElement).value.trim();
+        const wa = (document.getElementById('wa') as HTMLInputElement).value.trim();
+        const email = (document.getElementById('email') as HTMLInputElement).value.trim() || '-';
+        const layanan = (document.getElementById('layanan') as HTMLInputElement).value;
+        const tanggal = (document.getElementById('tanggal') as HTMLInputElement).value;
 
         const msg = `Halo saya
 
