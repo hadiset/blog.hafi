@@ -89,7 +89,7 @@ The biggest changes came from performance optimization. The original website str
 | PageSpeed Mobile | 59 🟡 | 97 🟢 |
 | PageSpeed Desktop | 64 🟡 | 99 🟢 |
 | Core Web Vitals | Failed ❌ | Pass ✅ |
-| LCP Mobile | 14.8 detik | 1.7 detik |
+| LCP Mobile | 14.8 second | 1.7 second |
 | Total Blocking Time | 240 ms | 0 ms |
 | First impression | Hard to understand | Clear at first glance |
 
