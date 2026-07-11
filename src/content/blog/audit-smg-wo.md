@@ -13,8 +13,6 @@ featured: false
 
 That day, I was learning how to create a landing page that doesn't look sloppy using AI. I searched for "Wedding Organizer Semarang" and found several websites ranking at the top of search results. I opened one of them and noticed that the design felt outdated and didn't really stand out. So, I decided to take a deeper look and audit the website. The results were quite surprising, not only did the visual need design improvement, but the website's Google PageSpeed Insights score was also far from ideal and it even failed the Core Web Vital assessment.
 
-![Original Hero Section](/images/smg-wo/smg-wo-before-0.webp)
-
 ---
 
 ## SEO ≠ Conversion
@@ -37,6 +35,8 @@ Every additional second of loading time increases the chance of losing potential
 
 ### 2 . The Hero Section Lacks Readability
 The hero section is the first thing visitors see, but the contrast between the text and background colors makes the main message difficult to read.
+
+![Original Hero Section](/images/smg-wo/smg-wo-before-0.webp)
 
 A strong first impression matters. If visitors struggle to understand your value within the first few seconds, they may leave before exploring further.
 
