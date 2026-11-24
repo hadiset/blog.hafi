@@ -74,7 +74,7 @@ Kalau menambah atau mengubah warna, hitung ulang kontrasnya dulu.
 ### Elemen gaya (semua dipakai)
 1. **Prompt sebagai heading section** — komponen `Prompt.astro`: `$ ls ./skills`, `$ cat about.md`, `$ git log --oneline ./blog`. `$` berwarna green, perintah berwarna text, argumen/path berwarna blue.
 2. **Window chrome** — komponen `TerminalWindow.astro`: kartu dengan title bar (titik red/yellow/green + judul seperti `hadi@hadiset: ~`). Dipakai untuk hero, kartu penting; jangan setiap elemen dibungkus window (maks. ±1 per section).
-3. **Animasi mengetik** — hanya di hero (`whoami`). Kursor blok berkedip. Wajib mati saat `prefers-reduced-motion: reduce` (teks langsung tampil penuh).
+3. **Animasi mengetik** — hanya perintah `whoami` di hero yang diketik; nama, role dan ringkasan **langsung tampil** sejak paint pertama (menyembunyikannya menunda LCP ±1.5 s dan menjatuhkan skor PSI mobile). Kursor blok berkedip. Wajib mati saat `prefers-reduced-motion: reduce`.
 4. **Scanline / CRT glow** — overlay scanline sangat halus (dark mode saja) + glow tipis pada teks aksen hero. **Dimatikan di halaman artikel** (`BaseLayout` prop `crt={false}`) karena menutupi teks dan gambar.
 
 ### Bentuk & spacing
