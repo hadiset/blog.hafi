@@ -1,0 +1,16 @@
+/* Article typography. Kept out of global.css because CSS is inlined into every page,
+   and prose styles (~3 KB gzip) are only needed on blog posts. */
+@reference "./global.css";
+@import "tailwindcss/utilities" source(none);
+@source "../layouts/BlogLayout.astro";
+
+@plugin "@tailwindcss/typography";
+
+@layer utilities {
+  .prose pre code {
+    background-color: transparent !important;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+  }
+}

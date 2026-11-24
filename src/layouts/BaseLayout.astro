@@ -12,10 +12,6 @@ import "@fontsource/jetbrains-mono/latin-500.css";
 import "@fontsource/jetbrains-mono/latin-600.css";
 import "@fontsource/jetbrains-mono/latin-700.css";
 import "../styles/global.css";
-// Fonts visible above the fold, preloaded so text renders in the final font sooner (LCP).
-import jbMono700 from "@fontsource/jetbrains-mono/files/jetbrains-mono-latin-700-normal.woff2?url";
-import jbMono400 from "@fontsource/jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff2?url";
-import dmSans400 from "@fontsource/dm-sans/files/dm-sans-latin-400-normal.woff2?url";
 
 export interface Props {
   pageTitle: string;
@@ -56,9 +52,6 @@ const fullImageUrl = imageUrl
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
-    {[jbMono700, jbMono400, dmSans400].map((href) => (
-      <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />
-    ))}
     <link rel="alternate" type="application/rss+xml" title="Hadi Setiawan | Blog" href={new URL("rss.xml", Astro.site)} />
 
     <!-- SEO Meta Tags -->

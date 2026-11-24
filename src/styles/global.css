@@ -12,7 +12,7 @@
 @source "../pages/tag";
 @source "../pages/showcase/index.astro";
 
-@plugin "@tailwindcss/typography";
+/* The typography plugin (prose) lives in prose.css, loaded only by BlogLayout. */
 
 /* Dark is the default; light (Catppuccin Latte) applies only with data-theme="light". */
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
@@ -148,14 +148,5 @@
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .cursor-block { animation: none; }
-  }
-}
-
-@layer utilities {
-  .prose pre code {
-    background-color: transparent !important;
-    padding: 0;
-    border: 0;
-    border-radius: 0;
   }
 }
