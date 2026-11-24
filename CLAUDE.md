@@ -25,7 +25,7 @@ Deployment: every push to `main` builds and deploys to GitHub Pages through `.gi
 
 **Data.** Profile facts and homepage copy (highlights, achievements, skills, links) live in `src/data/profile.ts`. The list of showcase projects lives in `src/data/showcase.ts`, which the homepage and `/showcase` both use. The CV download is `public/cv-hadi-setiawan.pdf`.
 
-**Blog content.** Posts are Markdown/MDX files in `src/content/blog/`, loaded by the `blog` collection in `src/content.config.ts`. That file holds the schema for frontmatter: required fields are `title`, `author`, `publish_date` (a date), `category`, `tags`, and `description` (at most 160 characters). Post images are stored in `public/images/` and referenced by absolute path. The post URL is `/blog/<entry id>`, and the entry id comes from the filename. Each page that lists posts filters `!data.draft` itself. `pages/rss.xml.js` does not filter drafts yet.
+**Blog content.** Posts are Markdown/MDX files in `src/content/blog/`, loaded by the `blog` collection in `src/content.config.ts`. That file holds the schema for frontmatter: required fields are `title`, `author`, `publish_date` (a date), `category`, `tags`, and `description` (at most 160 characters). Post images are stored in `public/images/` and referenced by absolute path. The post URL is `/blog/<entry id>`, and the entry id comes from the filename. Each page that lists posts, including `pages/rss.xml.js`, filters `!data.draft` itself.
 
 **Blog index.** `pages/blog/index.astro` renders the first 10 posts on the server. It also serializes all post data into the page, and client-side JS handles category filtering and "load more". Its `createPostElement()` duplicates the markup of `components/blog/BlogCard.astro`, so change both together.
 
