@@ -13,7 +13,7 @@ const latestPosts = (await getCollection("blog", ({ data }) => !data.draft))
   .sort((a, b) => b.data.publish_date.getTime() - a.data.publish_date.getTime())
   .slice(0, 3);
 
-const section = "mx-auto max-w-5xl px-4 py-12 md:px-6";
+const section = "reveal mx-auto max-w-5xl px-4 py-12 md:px-6";
 ---
 
 <BaseLayout
@@ -29,7 +29,10 @@ const section = "mx-auto max-w-5xl px-4 py-12 md:px-6";
       {highlights.map((item) => (
         <div class="flex flex-col-reverse gap-1 bg-ctp-mantle p-4 md:p-5">
           <dt class="text-sm text-ctp-subtext">{item.label}</dt>
-          <dd class="font-mono text-2xl font-bold text-ctp-peach md:text-3xl">{item.value}</dd>
+          <dd class="font-mono text-2xl font-bold text-ctp-peach tabular-nums md:text-3xl">
+            <span class="sr-only">{item.value}</span>
+            <span aria-hidden="true" data-scramble>{item.value}</span>
+          </dd>
         </div>
       ))}
     </dl>
@@ -125,4 +128,49 @@ const section = "mx-auto max-w-5xl px-4 py-12 md:px-6";
       </div>
     </TerminalWindow>
   </section>
+  <script>
+    // "Decrypt" effect for the highlight numbers: digits cycle randomly, then lock in left to
+    // right. Bundled as a deferred module, so nothing runs while the HTML is parsed. Only digits
+    // change and the font is monospaced, so the layout never shifts. Screen readers get the
+    // sr-only copy; the animated text is aria-hidden.
+    const targets = document.querySelectorAll<HTMLElement>("[data-scramble]");
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function scramble(el: HTMLElement, delay: number) {
+      const final = el.textContent ?? "";
+      const duration = 900;
+      const tick = 45; // ms between updates: steppy like a terminal, and cheap
+      let start: number | null = null;
+      let last = 0;
+      const frame = (now: number) => {
+        if (start === null) start = now + delay;
+        if (now < start) return requestAnimationFrame(frame);
+        const t = Math.min(1, (now - start) / duration);
+        if (now - last >= tick || t === 1) {
+          last = now;
+          const locked = Math.floor(t * final.length);
+          el.textContent = [...final]
+            .map((c, i) => (i < locked || !/\d/.test(c) ? c : String(Math.floor(Math.random() * 10))))
+            .join("");
+        }
+        if (t < 1) requestAnimationFrame(frame);
+      };
+      requestAnimationFrame(frame);
+    }
+
+    if (targets.length && !reduced && "IntersectionObserver" in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            io.unobserve(entry.target);
+            const index = [...targets].indexOf(entry.target as HTMLElement);
+            scramble(entry.target as HTMLElement, (index % 3) * 120);
+          }
+        },
+        { threshold: 0.6 },
+      );
+      targets.forEach((el) => io.observe(el));
+    }
+  </script>
 </BaseLayout>

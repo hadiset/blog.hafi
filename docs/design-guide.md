@@ -80,6 +80,8 @@ Kalau menambah atau mengubah warna, hitung ulang kontrasnya dulu.
    - **Tanpa JavaScript.** Kode ada di `.hero-type-cover` / `.hero-print-cover` di `global.css`.
    - `prefers-reduced-motion: reduce` → tanpa animasi, konten langsung tampil.
 4. **Scanline / CRT glow** — overlay scanline sangat halus (dark mode saja) + glow tipis pada teks aksen hero. **Dimatikan di halaman artikel** (`BaseLayout` prop `crt={false}`) karena menutupi teks dan gambar.
+5. **Animasi masuk section** — class `reveal` (fade + naik 24px) memakai CSS scroll-driven animation (`animation-timeline: view()`), tanpa JavaScript. Browser yang belum mendukung menampilkan section biasa. Jangan pasang di hero / elemen above-the-fold (menurunkan Speed Index).
+6. **Angka highlights: efek "decrypt"** — digit diacak lalu terkunci kiri→kanan (±1 s), hanya saat masuk viewport. Module script (deferred), angka asli untuk screen reader di `sr-only`, versi animasi `aria-hidden`. Hanya digit yang berubah dan font mono → tidak ada layout shift.
 
 ### Bentuk & spacing
 - Radius kecil: `rounded-md` (window/kartu), `rounded` (badge/tombol) di konten. Tidak pakai shadow tebal.
