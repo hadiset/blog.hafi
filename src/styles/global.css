@@ -17,7 +17,7 @@
   --ctp-surface1: #45475a;
   --ctp-text: #cdd6f4;
   --ctp-subtext: #a6adc8;
-  --ctp-overlay: #7f849c;
+  --ctp-overlay: #9399b2; /* overlay2: overlay1 is 4.4:1 on base */
   --ctp-mauve: #cba6f7;
   --ctp-green: #a6e3a1;
   --ctp-blue: #89b4fa;
@@ -30,6 +30,8 @@
 }
 
 :root[data-theme=light] {
+  /* Catppuccin Latte, with text/accent colors darkened to reach WCAG AA (4.5:1)
+     on surface0. The stock Latte accents are only 2-3:1. See docs/design-guide.md. */
   color-scheme: light;
   --ctp-base: #eff1f5;
   --ctp-mantle: #e6e9ef;
@@ -37,16 +39,16 @@
   --ctp-surface0: #ccd0da;
   --ctp-surface1: #bcc0cc;
   --ctp-text: #4c4f69;
-  --ctp-subtext: #6c6f85;
-  --ctp-overlay: #8c8fa1;
-  --ctp-mauve: #8839ef;
-  --ctp-green: #40a02b;
-  --ctp-blue: #1e66f5;
-  --ctp-peach: #fe640b;
-  --ctp-lavender: #7287fd;
-  --ctp-pink: #ea76cb;
-  --ctp-red: #d20f39;
-  --ctp-yellow: #df8e1d;
+  --ctp-subtext: #555869;
+  --ctp-overlay: #5f6275;
+  --ctp-mauve: #7113ec;
+  --ctp-green: #29661b;
+  --ctp-blue: #094cd2;
+  --ctp-peach: #9b3901;
+  --ctp-lavender: #1538fc;
+  --ctp-pink: #a1197d;
+  --ctp-red: #b30d31;
+  --ctp-yellow: #7c4f10;
   --glow: none;
 }
 

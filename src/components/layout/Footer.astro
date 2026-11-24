@@ -12,8 +12,8 @@ const links = [
 <footer class="border-t border-ctp-surface0 bg-ctp-crust">
   <div class="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-6 font-mono text-xs text-ctp-overlay md:flex-row md:items-center md:justify-between md:px-6">
     <p>
-      <span class="text-ctp-green">$</span> echo "© {new Date().getFullYear()} {profile.name}" <span class="text-ctp-overlay">·</span> built with
-      <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="text-ctp-mauve hover:underline">Astro</a>
+      <span class="text-ctp-green">$</span> echo "© {new Date().getFullYear()} {profile.name}"{" · "}built with{" "}
+      <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="text-ctp-mauve underline decoration-ctp-mauve/50 underline-offset-2 hover:decoration-ctp-mauve">Astro</a>
     </p>
     <ul class="flex flex-wrap gap-x-4 gap-y-1">
       {links.map((link) => (

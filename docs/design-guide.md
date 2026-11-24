@@ -43,18 +43,25 @@ Dark (default) = **Mocha**, light = **Latte**. Warna selalu dipakai lewat token 
 | Border | `surface0` | `#313244` | `#ccd0da` |
 | Border hover / divider kuat | `surface1` | `#45475a` | `#bcc0cc` |
 | Teks utama | `text` | `#cdd6f4` | `#4c4f69` |
-| Teks sekunder | `subtext` | `#a6adc8` | `#6c6f85` |
-| Teks redup / komentar | `overlay` | `#7f849c` | `#8c8fa1` |
-| **Aksen utama** (link, CTA, active) | `mauve` | `#cba6f7` | `#8839ef` |
-| Prompt `$`, sukses, Open to work | `green` | `#a6e3a1` | `#40a02b` |
-| Path / direktori `~/...` | `blue` | `#89b4fa` | `#1e66f5` |
-| Angka / highlight / warning | `peach` | `#fab387` | `#fe640b` |
-| Heading sekunder, focus ring | `lavender` | `#b4befe` | `#7287fd` |
-| Tag / hashtag | `pink` | `#f5c2e7` | `#ea76cb` |
-| Error, titik close window | `red` | `#f38ba8` | `#d20f39` |
-| Titik minimize window | `yellow` | `#f9e2af` | `#df8e1d` |
+| Teks sekunder | `subtext` | `#a6adc8` | `#555869` |
+| Teks redup / komentar | `overlay` | `#9399b2` | `#5f6275` |
+| **Aksen utama** (link, CTA, active) | `mauve` | `#cba6f7` | `#7113ec` |
+| Prompt `$`, sukses, Open to work | `green` | `#a6e3a1` | `#29661b` |
+| Path / direktori `~/...` | `blue` | `#89b4fa` | `#094cd2` |
+| Angka / highlight / warning | `peach` | `#fab387` | `#9b3901` |
+| Heading sekunder, focus ring | `lavender` | `#b4befe` | `#1538fc` |
+| Tag / hashtag | `pink` | `#f5c2e7` | `#a1197d` |
+| Error, titik close window | `red` | `#f38ba8` | `#b30d31` |
+| Titik minimize window | `yellow` | `#f9e2af` | `#7c4f10` |
 
 Aturan: background tetap netral, warna hidup di teks/ikon. Background solid aksen hanya untuk satu elemen aktif (CTA utama, kategori terpilih).
+
+**Aksesibilitas (WCAG AA):** semua warna teks harus ≥4.5:1 terhadap background tempat ia dipakai (sampai `surface0`). Karena itu nilai di tabel **bukan Catppuccin murni**:
+- Mocha `overlay` memakai overlay2 (`#9399b2`), karena overlay1 hanya 4.4:1 di `base`.
+- Semua warna teks/aksen Latte digelapkan (hue sama) karena Latte asli hanya 2–3:1.
+Kalau menambah atau mengubah warna, hitung ulang kontrasnya dulu.
+
+**Link:** link di dalam kalimat/paragraf wajib ber-underline (`underline decoration-ctp-mauve/50 underline-offset-2`), karena warna saja tidak cukup membedakannya dari teks sekitar. Link yang berdiri sendiri (nav, tombol, daftar link, kartu) boleh tanpa underline.
 
 ### Mode
 - **Default dark**; ada toggle ke light. Pilihan pengunjung disimpan di `localStorage.theme`.

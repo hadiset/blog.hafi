@@ -34,7 +34,7 @@ const { posts, tag } = Astro.props;
     <header class="mb-8">
       <Prompt as="h1" cmd="grep" args={`-r "#${tag}" ~/blog`} />
       <p class="mt-2 font-mono text-sm text-ctp-overlay">
-        {posts.length} article{posts.length !== 1 ? 's' : ''} with this tag · <a href="/blog" class="text-ctp-mauve hover:underline">cd ~/blog</a>
+        {posts.length} article{posts.length !== 1 ? 's' : ''} with this tag · <a href="/blog" class="text-ctp-mauve underline decoration-ctp-mauve/50 underline-offset-2 hover:decoration-ctp-mauve">cd ~/blog</a>
       </p>
     </header>
 
