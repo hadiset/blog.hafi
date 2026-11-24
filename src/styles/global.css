@@ -145,8 +145,34 @@
     50% { opacity: 0; }
   }
 
+  /* Hero animation: compositor-only (transform), no JavaScript. The content is always
+     rendered; these decorative covers sit on top of it, so LCP and Speed Index are measured
+     on the real text from the first paint. */
+  .hero-type-cover {
+    /* Block cursor + mask slide right one character per step: types "whoami". */
+    animation: hero-type 0.6s steps(6, end) 0.3s both;
+    will-change: transform;
+  }
+  .hero-print-cover {
+    /* Shrinks toward the bottom in steps: reveals the output line by line. */
+    transform-origin: bottom;
+    animation: hero-print 0.5s steps(6, end) 1s both;
+    will-change: transform;
+  }
+
+  @keyframes hero-type {
+    from { transform: translateX(0); }
+    to { transform: translateX(6ch); }
+  }
+  @keyframes hero-print {
+    from { transform: scaleY(1); }
+    to { transform: scaleY(0); }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .cursor-block { animation: none; }
+    .hero-type-cover { animation: none; transform: translateX(6ch); }
+    .hero-print-cover { display: none; }
   }
 }
