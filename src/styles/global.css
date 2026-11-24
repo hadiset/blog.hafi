@@ -1,5 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
-@import "tailwindcss";
+@import "tailwindcss" source(none);
+
+/* Scan only the site itself. Showcase client pages (porto-1, smg-wo, SlicingLayout) and plan/
+   have their own stylesheets; scanning them bloated this CSS, which is inlined into every page. */
+@source "../layouts/BaseLayout.astro";
+@source "../layouts/BlogLayout.astro";
+@source "../components";
+@source "../data";
+@source "../pages/index.astro";
+@source "../pages/blog";
+@source "../pages/category";
+@source "../pages/tag";
+@source "../pages/showcase/index.astro";
 
 @plugin "@tailwindcss/typography";
 

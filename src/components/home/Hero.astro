@@ -88,28 +88,23 @@ import { profile } from "../../data/profile";
   </TerminalWindow>
 </section>
 
-<!-- Typing effect. Runs inline so the hidden state applies before paint; skipped under reduced motion. -->
+<!-- Typing effect on the command only. The output stays visible from the first paint so it
+     counts for LCP; hiding it until typing finished delayed LCP/Speed Index by ~1.5s. -->
 <script is:inline>
   (() => {
     const cmd = document.getElementById("hero-cmd");
     const cursor = document.getElementById("hero-cursor");
-    const output = document.getElementById("hero-output");
-    if (!cmd || !cursor || !output) return;
+    if (!cmd || !cursor) return;
     cursor.classList.remove("hidden");
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const text = cmd.textContent;
     cmd.textContent = "";
-    output.style.opacity = "0";
     let i = 0;
     const type = () => {
       cmd.textContent = text.slice(0, ++i);
-      if (i < text.length) return setTimeout(type, 90);
-      setTimeout(() => {
-        output.style.transition = "opacity 400ms ease-out";
-        output.style.opacity = "1";
-      }, 250);
+      if (i < text.length) setTimeout(type, 90);
     };
-    setTimeout(type, 400);
+    setTimeout(type, 300);
   })();
 </script>

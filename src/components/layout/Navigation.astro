@@ -15,8 +15,9 @@ const links = [
 
 <nav class="sticky top-0 z-50 border-b border-ctp-surface0 bg-ctp-crust/90 backdrop-blur">
   <div class="mx-auto flex h-14 max-w-5xl items-center justify-between gap-4 px-4 md:px-6">
-    <a href="/" class="font-mono text-sm font-semibold whitespace-nowrap" aria-label="Hadi Setiawan, home">
-      <span class="text-ctp-green">hadi</span><span class="text-ctp-overlay">@</span><span class="text-ctp-mauve">hadiset</span><span class="text-ctp-overlay">:</span><span class="text-ctp-blue">~</span><span class="text-ctp-overlay">$</span>
+    <!-- No aria-label: the accessible name must contain the visible text (WCAG 2.5.3, label-in-name). -->
+    <a href="/" class="font-mono text-sm font-semibold whitespace-nowrap">
+      <span class="text-ctp-green">hadi</span><span class="text-ctp-overlay">@</span><span class="text-ctp-mauve">hadiset</span><span class="text-ctp-overlay">:</span><span class="text-ctp-blue">~</span><span class="text-ctp-overlay">$</span><span class="sr-only"> Hadi Setiawan, home</span>
     </a>
 
     <div class="hidden items-center gap-1 sm:flex">
