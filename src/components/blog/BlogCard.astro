@@ -16,16 +16,13 @@ export interface Props {
   loading?: 'eager' | 'lazy';
 }
 
-const { 
-  title, 
-  description, 
-  author, 
-  publish_date, 
-  category, 
-  tags, 
-  image, 
+const {
+  title,
+  description,
+  publish_date,
+  category,
+  image,
   slug,
-  featured = false,
   content = "",
   loading = 'lazy'
 } = Astro.props;
@@ -33,61 +30,31 @@ const {
 const readTime = calculateReadTimes(content);
 ---
 
-<article class={`group cursor-pointer`}>
-  <a href={`/${slug}`} class="block">
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700">
-      
-      <!-- Image -->
-      {image && (
-        <div class={`overflow-hidden h-48`}>
-          <Image 
-            src={image} 
-            alt={title}
-            width={400}
-            height={200}
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            loading={loading}
-            format="webp"
-            quality={80}
-            fetchpriority={loading === 'eager' ? 'high' : 'auto'}
-          />
-        </div>
-      )}
-      
-      <!-- Content -->
-      <div class="p-6">
-        <!-- Category & Featured Badge -->
-        <div class="flex items-center gap-2 mb-3">
-          {tags.map(tag => 
-            <span class="inline-block bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded-full text-xs font-medium">
-              {tag}
-            </span>
-          )}
-        </div>
-        
-        <!-- Title -->
-        <h3 class={`font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors line-clamp-2 mb-3 text-xl`}>
-          {title}
-        </h3>
-        
-        <!-- Description -->
-        <p class="text-gray-600 dark:text-gray-300 line-clamp-3 mb-4">
-          {description}
-        </p>
-        
-        <!-- Meta Info -->
-        <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
-          <div class="flex items-center space-x-2">
-            <span class="font-medium">{author}</span>
-            <span>•</span>
-            <time datetime={publish_date.toISOString()}>
-              {formatDate(publish_date)}
-            </time>
-            <span>•</span>
-            <span>{readTime} min read</span>
-          </div>
-        </div>
+<!-- Keep the markup in sync with createPostElement() in src/pages/blog/index.astro. -->
+<article class="group">
+  <a href={`/${slug}`} class="flex h-full flex-col overflow-hidden rounded-md border border-ctp-surface0 bg-ctp-mantle transition-colors hover:border-ctp-mauve">
+    {image && (
+      <div class="h-48 overflow-hidden border-b border-ctp-surface0">
+        <Image
+          src={image}
+          alt={title}
+          width={400}
+          height={200}
+          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          loading={loading}
+          format="webp"
+          quality={80}
+          fetchpriority={loading === 'eager' ? 'high' : 'auto'}
+        />
       </div>
+    )}
+    <div class="flex flex-1 flex-col p-5">
+      <p class="font-mono text-xs text-ctp-blue">{category.toLowerCase()}/</p>
+      <h3 class="mt-2 line-clamp-2 font-mono text-lg font-semibold text-ctp-text transition-colors group-hover:text-ctp-mauve">{title}</h3>
+      <p class="mt-2 mb-4 line-clamp-3 text-ctp-subtext">{description}</p>
+      <p class="mt-auto font-mono text-xs text-ctp-overlay">
+        <time datetime={publish_date.toISOString()} class="text-ctp-peach">{formatDate(publish_date)}</time> · {readTime} min read
+      </p>
     </div>
   </a>
 </article>

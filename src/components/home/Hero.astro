@@ -1,0 +1,115 @@
+---
+import { Image } from "astro:assets";
+import TerminalWindow from "../terminal/TerminalWindow.astro";
+import profileImage from "../../assets/hadi.webp";
+import { profile } from "../../data/profile";
+---
+
+<section class="mx-auto max-w-5xl px-4 pt-10 pb-12 md:px-6 md:pt-16">
+  <TerminalWindow title="hadi@hadiset: ~ — zsh" bodyClass="p-5 md:p-8">
+    <div class="flex flex-col-reverse gap-8 md:flex-row md:items-center md:gap-10">
+      <div class="min-w-0 flex-1">
+        <p class="font-mono text-sm md:text-base">
+          <span class="text-ctp-green">hadi@hadiset</span><span class="text-ctp-overlay">:</span><span class="text-ctp-blue">~</span><span class="text-ctp-overlay">$ </span><span id="hero-cmd" class="text-ctp-text">whoami</span><span id="hero-cursor" class="cursor-block ml-0.5 hidden" aria-hidden="true"></span>
+        </p>
+
+        <div id="hero-output" class="mt-4">
+          <h1 class="glow font-mono text-3xl font-bold tracking-tight text-ctp-mauve md:text-5xl">
+            {profile.name}
+          </h1>
+          <p class="mt-2 font-mono text-sm text-ctp-lavender md:text-base">{profile.role}</p>
+
+          <p class="mt-5 max-w-xl text-base/relaxed text-ctp-subtext md:text-lg/relaxed">
+            {profile.summary}
+          </p>
+
+          <ul class="mt-5 flex flex-wrap gap-2 font-mono text-xs">
+            {profile.openToWork && (
+              <li class="inline-flex items-center gap-2 rounded border border-ctp-green/40 bg-ctp-green/10 px-2.5 py-1 text-ctp-green">
+                <span class="size-2 rounded-full bg-ctp-green" aria-hidden="true"></span>
+                Open to work
+              </li>
+            )}
+            <li class="rounded border border-ctp-surface0 px-2.5 py-1 text-ctp-subtext">{profile.location}</li>
+            <li class="rounded border border-ctp-surface0 px-2.5 py-1 text-ctp-subtext">{profile.remote}</li>
+          </ul>
+
+          <div class="mt-7 flex flex-wrap gap-3 font-mono text-sm">
+            <a
+              href={profile.cv}
+              download
+              class="inline-flex items-center gap-2 rounded bg-ctp-mauve px-4 py-2.5 font-semibold text-ctp-crust transition-opacity hover:opacity-90"
+            >
+              <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"></path>
+              </svg>
+              Download CV
+            </a>
+            <a
+              href={`mailto:${profile.email}`}
+              class="inline-flex items-center rounded border border-ctp-surface1 px-4 py-2.5 text-ctp-text transition-colors hover:border-ctp-mauve hover:text-ctp-mauve"
+            >
+              {profile.email}
+            </a>
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center rounded border border-ctp-surface0 px-4 py-2.5 text-ctp-subtext transition-colors hover:border-ctp-mauve hover:text-ctp-mauve"
+            >
+              LinkedIn
+            </a>
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center rounded border border-ctp-surface0 px-4 py-2.5 text-ctp-subtext transition-colors hover:border-ctp-mauve hover:text-ctp-mauve"
+            >
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="shrink-0 self-center">
+        <Image
+          src={profileImage}
+          alt={`${profile.name}, ${profile.role}`}
+          width={240}
+          height={240}
+          class="size-32 rounded-md border border-ctp-surface1 object-cover md:size-56"
+          loading="eager"
+          fetchpriority="high"
+          format="webp"
+          quality={80}
+        />
+      </div>
+    </div>
+  </TerminalWindow>
+</section>
+
+<!-- Typing effect. Runs inline so the hidden state applies before paint; skipped under reduced motion. -->
+<script is:inline>
+  (() => {
+    const cmd = document.getElementById("hero-cmd");
+    const cursor = document.getElementById("hero-cursor");
+    const output = document.getElementById("hero-output");
+    if (!cmd || !cursor || !output) return;
+    cursor.classList.remove("hidden");
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const text = cmd.textContent;
+    cmd.textContent = "";
+    output.style.opacity = "0";
+    let i = 0;
+    const type = () => {
+      cmd.textContent = text.slice(0, ++i);
+      if (i < text.length) return setTimeout(type, 90);
+      setTimeout(() => {
+        output.style.transition = "opacity 400ms ease-out";
+        output.style.opacity = "1";
+      }, 250);
+    };
+    setTimeout(type, 400);
+  })();
+</script>

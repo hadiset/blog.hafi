@@ -1,71 +1,128 @@
 ---
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import profileImage from "../assets/hadi.webp";
+import Hero from "../components/home/Hero.astro";
+import Prompt from "../components/terminal/Prompt.astro";
+import TerminalWindow from "../components/terminal/TerminalWindow.astro";
+import { profile, highlights, achievements, skills } from "../data/profile";
+import { projects } from "../data/showcase";
+import { formatDate } from "../utils/helpers";
+
+const latestPosts = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publish_date.getTime() - a.data.publish_date.getTime())
+  .slice(0, 3);
+
+const section = "mx-auto max-w-5xl px-4 py-12 md:px-6";
 ---
 
 <BaseLayout
-  pageTitle="Hafi | Web Developer & Server Administrator"
-  description="Indonesian Freelance Web Developer and Server Administrator specializing in modern web applications using Laravel, Docker, and Git-based deployment."
+  pageTitle={`${profile.name} | Full Stack Web Developer & Server Administrator`}
+  description="Full Stack Web Developer and Server Administrator in Semarang, Indonesia. 6+ years building Laravel and Node.js apps and running Linux servers. Open to work."
 >
-  <div class="flex flex-col max-w-6xl mx-auto px-6 py-16">
-    <div class="flex flex-col-reverse md:flex-row p-12">
-      <div
-        class="flex flex-col basis-3/4 md:pr-24 justify-center items-center md:items-start text-center md:text-left"
-      >
-        <h1 class="font-extrabold text-4xl tracking-wide">
-          Hi, I am Hadi Setiawan,
-        </h1>
-        <h2 class="font-extrabold text-4xl tracking-wide">Website Developer</h2>
-        <p
-          class="mt-5 font-normal text-base/relaxed tracking-wide align-middle"
-        >
-          I’m a Web Developer and Server Administrator with over 7 years of
-          experience building and managing web applications. Starting from
-          WordPress development on Ubuntu-based VPS, I now focus on creating
-          modern Laravel web apps using Docker for consistent environments and
-          Git-based deployment. As a long-time Linux user, I value performance,
-          stability, and maintainability in every system I build.
-        </p>
-        <p class="mt-5 font-normal tracking-wide align-middle">
-          — turning ideas into fast, reliable, and always-available web
-          applications.
-        </p>
-        <a
-          href="mailto:work@hadiset.com"
-          type="button"
-          class="mt-7 cursor-pointer inline-flex items-center text-white bg-linear-45 from-purple-500 from-40% dark:from-purple-700 to-pink-500 to-90% hover:bg-linear-225 focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-xl px-7 py-4 text-center me-2 mb-2 shadow-lg shadow-purple-600/50 dark:shadow-white/30 transition-all"
-        >
-          <svg
-            class="w-5 h-5 text-white me-2"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 20 16"
-          >
-            <path
-              d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z"
-            ></path>
-            <path
-              d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z"
-            ></path>
-          </svg>
-          Work with Me</a
-        >
-      </div>
-      <div
-        class="flex basis-1/4 justify-center items-center overflow-hidden mb-10"
-      >
-        <Image
-          src={profileImage}
-          alt="Hadi Setiawan, Website Developer"
-          class="rounded-full w-48 md:w-full object-cover group-hover:scale-105 transition-transform duration-300 border-2 border-white"
-          loading="eager"
-          format="webp"
-          quality={80}
-          fetchpriority="high"
-        />
-      </div>
+  <Hero />
+
+  <!-- Highlights -->
+  <section class={section} aria-labelledby="highlights">
+    <Prompt id="highlights" cmd="cat" args="highlights.log" />
+    <dl class="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-md border border-ctp-surface0 bg-ctp-surface0 md:grid-cols-3">
+      {highlights.map((item) => (
+        <div class="flex flex-col-reverse gap-1 bg-ctp-mantle p-4 md:p-5">
+          <dt class="text-sm text-ctp-subtext">{item.label}</dt>
+          <dd class="font-mono text-2xl font-bold text-ctp-peach md:text-3xl">{item.value}</dd>
+        </div>
+      ))}
+    </dl>
+    <ul class="mt-6 space-y-2 text-ctp-subtext">
+      {achievements.map((line) => (
+        <li class="flex gap-3">
+          <span class="font-mono text-ctp-green select-none" aria-hidden="true">→</span>
+          <span>{line}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- Skills -->
+  <section class={section} aria-labelledby="skills">
+    <Prompt id="skills" cmd="ls" args="./skills" />
+    <div class="mt-6 grid gap-4 md:grid-cols-2">
+      {skills.map((group) => (
+        <div class="rounded-md border border-ctp-surface0 bg-ctp-mantle p-4">
+          <h3 class="font-mono text-sm font-semibold">
+            <span class="text-ctp-blue">{group.group}/</span>
+            <span class="ml-2 font-normal text-ctp-overlay"># {group.label}</span>
+          </h3>
+          <ul class="mt-3 flex flex-wrap gap-1.5 font-mono text-xs">
+            {group.items.map((item) => (
+              <li class="rounded border border-ctp-surface0 bg-ctp-base px-2 py-1 text-ctp-text">{item}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
-  </div>
+  </section>
+
+  <!-- Showcase -->
+  <section class={section} aria-labelledby="showcase">
+    <div class="flex items-baseline justify-between gap-4">
+      <Prompt id="showcase" cmd="ls" args="./showcase" />
+      <a href="/showcase" class="shrink-0 font-mono text-sm text-ctp-mauve hover:underline">cd showcase →</a>
+    </div>
+    <p class="mt-2 text-ctp-subtext">Figma designs sliced into responsive, fast landing pages.</p>
+    <div class="mt-6 grid gap-6 md:grid-cols-2">
+      {projects.map((project) => (
+        <a href={`/showcase/${project.slug}`} class="group block">
+          <TerminalWindow title={`~/showcase/${project.slug}`} bodyClass="" class="transition-colors group-hover:border-ctp-mauve">
+            <Image src={project.thumbnail} alt={project.title} class="aspect-[16/10] w-full object-cover object-top" widths={[480, 800]} sizes="(min-width: 768px) 480px, 100vw" />
+            <div class="border-t border-ctp-surface0 p-4">
+              <h3 class="font-mono font-semibold text-ctp-text group-hover:text-ctp-mauve">{project.title}</h3>
+              <p class="mt-1 font-mono text-xs text-ctp-pink">{project.tags.map((t) => `#${t.toLowerCase().replaceAll(" ", "-")}`).join(" ")}</p>
+            </div>
+          </TerminalWindow>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Latest writing -->
+  <section class={section} aria-labelledby="writing">
+    <div class="flex items-baseline justify-between gap-4">
+      <Prompt id="writing" cmd="git log" args="-3 ./blog" />
+      <a href="/blog" class="shrink-0 font-mono text-sm text-ctp-mauve hover:underline">cd blog →</a>
+    </div>
+    <ol class="mt-6 divide-y divide-ctp-surface0 rounded-md border border-ctp-surface0 bg-ctp-mantle">
+      {latestPosts.map((post) => (
+        <li>
+          <a href={`/blog/${post.id}`} class="group flex flex-col gap-1 p-4 transition-colors hover:bg-ctp-surface0/50 md:flex-row md:items-baseline md:gap-4">
+            <time datetime={post.data.publish_date.toISOString()} class="shrink-0 font-mono text-xs text-ctp-peach md:w-36">
+              {formatDate(post.data.publish_date)}
+            </time>
+            <div class="min-w-0">
+              <h3 class="font-mono font-semibold text-ctp-text group-hover:text-ctp-mauve">{post.data.title}</h3>
+              <p class="mt-1 line-clamp-2 text-sm text-ctp-subtext">{post.data.description}</p>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- Contact -->
+  <section class={`${section} pb-20`} aria-labelledby="contact">
+    <TerminalWindow title="~/contact.sh">
+      <Prompt id="contact" cmd="./contact.sh" />
+      <p class="mt-4 max-w-2xl text-ctp-subtext">
+        Hiring for a web developer or server administrator role? Get the CV or send an email. Based in {profile.location}, open to remote.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3 font-mono text-sm">
+        <a href={profile.cv} download class="inline-flex items-center rounded bg-ctp-mauve px-4 py-2.5 font-semibold text-ctp-crust transition-opacity hover:opacity-90">
+          Download CV
+        </a>
+        <a href={`mailto:${profile.email}`} class="inline-flex items-center rounded border border-ctp-surface1 px-4 py-2.5 text-ctp-text transition-colors hover:border-ctp-mauve hover:text-ctp-mauve">
+          {profile.email}
+        </a>
+      </div>
+    </TerminalWindow>
+  </section>
 </BaseLayout>

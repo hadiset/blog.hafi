@@ -10,14 +10,17 @@ export interface Props {
   image?: ImageMetadata | string;
   articleDate?: string;
   author?: string;
+  /** CRT scanline overlay. Off on article pages for readability. */
+  crt?: boolean;
 }
 
 const {
   pageTitle,
-  description = "Hafi's personal blog about my learning journwy.",
+  description = "Hadi Setiawan: Full Stack Web Developer and Server Administrator. Projects, articles and notes on Laravel, Node.js and Linux servers.",
   image = "/og-default.jpg",
   articleDate,
   author,
+  crt = true,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -34,7 +37,7 @@ const fullImageUrl = imageUrl
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -63,12 +66,18 @@ const fullImageUrl = imageUrl
     <!-- Article Specific Meta Tags-->
     {articleDate && (
       <>
-        <meta property="article:published_time" content="articleDate" />
-        {author && <meta property="article:author" content="author" />}
+        <meta property="article:published_time" content={articleDate} />
+        {author && <meta property="article:author" content={author} />}
       </>
     )}
+
+    <!-- Dark is the default; only an explicit "light" choice switches it. Runs before paint. -->
+    <script is:inline>
+      document.documentElement.dataset.theme =
+        localStorage.getItem("theme") === "light" ? "light" : "dark";
+    </script>
   </head>
-  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col min-h-screen">
+  <body class:list={["flex min-h-screen flex-col", { crt }]}>
     <Navigation />
     <main class="flex-1">
       <slot />
@@ -78,28 +87,6 @@ const fullImageUrl = imageUrl
     <script>
       import "../scripts/menu.js";
     </script>
-
-    <script is:inline>
-      if (
-        localStorage.theme === "dark" ||
-        (!("theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.dataset.theme = "dark";
-      } else {
-        delete document.documentElement.dataset.theme;
-      }
-    </script>
   </body>
 </html>
 
-<style>
-  html {
-    scroll-behavior: smooth;
-  },
-  body {
-    margin: 0;
-    font-family: system-ui, -apple-system, sans-serif;
-    line-height: 1.6;
-  }
-</style>

@@ -2,6 +2,9 @@
 import BaseLayout from "./BaseLayout.astro";
 import { formatDate, calculateReadTimes } from "../utils/helpers";
 import { Image } from "astro:assets";
+import TagList from "../components/blog/TagList.astro";
+import TableOfContents from "../components/blog/TableOfContents.astro";
+import type { MarkdownHeading } from "astro";
 
 export interface Props {
   frontmatter: {
@@ -15,9 +18,10 @@ export interface Props {
     tags?: string[];
   };
   content?: string;
+  headings?: MarkdownHeading[];
 }
 
-const { frontmatter, content } = Astro.props;
+const { frontmatter, content, headings = [] } = Astro.props;
 const readTime = content ? calculateReadTimes(content) : 0;
 ---
 
@@ -27,102 +31,84 @@ const readTime = content ? calculateReadTimes(content) : 0;
   image={frontmatter.image}
   articleDate={frontmatter.publish_date.toISOString()}
   author={frontmatter.author}
+  crt={false}
 >
-  <article class="max-w-4xl mx-auto px-6 py-12">
-    <!-- Article Header -->
-    <header class="mb-12">
-      <!-- Category Badge -->
-      <div class="mb-6">
-        <span
-          class="inline-block bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium"
-        >
-          {frontmatter.category}
-        </span>
-      </div>
+  <div class="mx-auto max-w-6xl px-4 py-12 md:px-6 lg:grid lg:grid-cols-[minmax(0,48rem)_15rem] lg:justify-center lg:gap-12">
+  <article class="min-w-0">
+    <header class="mb-10">
+      <p class="font-mono text-sm">
+        <a href="/blog" class="text-ctp-blue hover:underline">~/blog</a>{frontmatter.category && (
+          <>
+            <span class="text-ctp-overlay">/</span>
+            <a href={`/category/${frontmatter.category}`} class="text-ctp-blue hover:underline">{frontmatter.category.toLowerCase()}</a>
+          </>
+        )}
+      </p>
 
-      <!-- Title -->
-      <h1
-        class="text-4xl md:text-5xl font-bold leading-tight mb-6 text-gray-900 dark:text-white"
-      >
+      <h1 class="mt-4 font-mono text-3xl leading-tight font-bold text-ctp-text md:text-4xl">
         {frontmatter.title}
       </h1>
 
-      <!-- Subtitle/Description -->
-      <p
-        class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed mb-8 font-light"
-      >
+      <p class="mt-4 text-lg leading-relaxed text-ctp-subtext md:text-xl">
         {frontmatter.description}
       </p>
 
-      <!-- Meta Info -->
-      <div
-        class="flex items-center text-gray-500 dark:text-gray-400 text-sm space-x-4 mb-8"
-      >
-        <span class="font-medium text-gray-700 dark:text-gray-300">
-          {frontmatter.author}
-        </span>
-        <span>•</span>
-        <time datetime={frontmatter.publish_date.toISOString()}>
-          {formatDate(frontmatter.publish_date)}
-        </time>
-        <span>•</span>
+      <p class="mt-6 font-mono text-xs text-ctp-overlay">
+        <span class="text-ctp-text">{frontmatter.author}</span>
+        <span> · </span>
+        <time datetime={frontmatter.publish_date.toISOString()} class="text-ctp-peach">{formatDate(frontmatter.publish_date)}</time>
+        <span> · </span>
         <span>{readTime} min read</span>
-      </div>
+      </p>
 
-      <!-- Featured Image -->
       {
         frontmatter.image && (
-          <div class="mb-12">
-            <Image
-              src={frontmatter.image}
-              alt={frontmatter.imageAlt || frontmatter.title}
-              width={800}
-              height={400}
-              class="w-full h-auto rounded-lg shadow-lg"
-              loading="eager"
-            />
-          </div>
+          <Image
+            src={frontmatter.image}
+            alt={frontmatter.imageAlt || frontmatter.title}
+            width={800}
+            height={400}
+            class="mt-8 h-auto w-full rounded-md border border-ctp-surface0"
+            loading="eager"
+          />
         )
       }
+
+      <div class="mt-8 lg:hidden">
+        <TableOfContents headings={headings} variant="inline" />
+      </div>
     </header>
 
-    <!-- Article Content -->
     <div
-      class="prose prose-lg dark:prose-invert max-w-none text-gray-800 dark:text-gray-200
-            prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white
-            prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:underline prose-h2:decoration-purple-500
-            prose-h3:text-xl prose-h3:mt-10 prose-h3:mb-4
-            prose-hr:my-1
-            prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:mb-6 prose-p:text-lg prose-p:leading-8
-            prose-ul:my-6 prose-ol:my-6
-            prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-li:mb-2
-            prose-code:text-purple-800 dark:prose-code:text-purple-400 prose-code:before:content-none prose-code:after:content-none prose-code:bg-slate-200 prose-code:py-0.5 prose-code:rounded
-            prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
-            prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:border prose-pre:border-gray-700 
-            prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:pl-6
-            prose-img:mx-auto prose-img:rounded-lg prose-img:shadow-md"
+      class="prose prose-lg max-w-none
+        prose-headings:scroll-mt-20 prose-headings:font-mono prose-headings:font-semibold prose-headings:text-ctp-text
+        prose-h2:mt-12 prose-h2:mb-5 prose-h2:text-2xl prose-h2:before:content-['##_'] prose-h2:before:text-ctp-mauve
+        prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-xl prose-h3:before:content-['###_'] prose-h3:before:text-ctp-mauve
+        prose-p:text-ctp-text prose-p:leading-8
+        prose-li:text-ctp-text prose-li:marker:text-ctp-overlay
+        prose-strong:text-ctp-text
+        prose-a:text-ctp-mauve prose-a:no-underline hover:prose-a:underline
+        prose-code:rounded prose-code:bg-ctp-surface0 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-sm prose-code:font-normal prose-code:text-ctp-peach prose-code:before:content-none prose-code:after:content-none
+        prose-pre:rounded-md prose-pre:border prose-pre:border-ctp-surface0
+        prose-blockquote:border-l-ctp-mauve prose-blockquote:text-ctp-subtext prose-blockquote:not-italic
+        prose-hr:my-10 prose-hr:border-ctp-surface0
+        prose-th:text-ctp-text prose-td:text-ctp-text prose-thead:border-ctp-surface1 prose-tr:border-ctp-surface0
+        prose-img:mx-auto prose-img:rounded-md prose-img:border prose-img:border-ctp-surface0"
     >
       <slot />
     </div>
 
-    <!-- Tags -->
     {
       frontmatter.tags && frontmatter.tags.length > 0 && (
-        <footer class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-          <div class="flex flex-wrap gap-2">
-            {frontmatter.tags.map((tag) => (
-              <a
-                href={`/tag/${tag}`}
-                class="inline-block bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 
-                     px-3 py-1 rounded-full text-sm hover:bg-gray-200 dark:hover:bg-gray-700 
-                     transition-colors duration-200"
-              >
-                #{tag}
-              </a>
-            ))}
-          </div>
+        <footer class="mt-12 border-t border-ctp-surface0 pt-8">
+          <TagList tags={frontmatter.tags} />
         </footer>
       )
     }
   </article>
+
+  <aside class="hidden lg:block">
+    <TableOfContents headings={headings} variant="sidebar" />
+  </aside>
+  </div>
 </BaseLayout>

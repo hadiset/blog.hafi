@@ -13,12 +13,12 @@ const featuredPosts = posts.filter(post => post.data.featured);
 const regularPosts = posts.filter(post => !post.data.featured);
 ---
 
-<div class="max-w-6xl mx-auto px-6">
+<div>
   <!-- Featured Posts Section -->
   {showFeatured && featuredPosts.length > 0 && (
     <section class="mb-16">
-      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Featured Articles</h2>
-      <div class="grid md:grid-cols-2 gap-8">
+      <h2 class="mb-6 font-mono text-xl font-semibold text-ctp-lavender">Featured</h2>
+      <div class="grid md:grid-cols-2 gap-6">
         {featuredPosts.slice(0, 1).map(post => (
           <BlogCard 
             title={post.data.title}
@@ -28,7 +28,7 @@ const regularPosts = posts.filter(post => !post.data.featured);
             category={post.data.category}
             tags={post.data.tags}
             image={post.data.image}
-            slug={post.slug}
+            slug={`blog/${post.id}`}
             featured={true}
             content={post.body}
           />
@@ -39,10 +39,8 @@ const regularPosts = posts.filter(post => !post.data.featured);
   
   <!-- Recent Posts Section -->
   <section>
-    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">
-      {showFeatured ? 'Recent Articles' : 'All Articles'}
-    </h2>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {showFeatured && <h2 class="mb-6 font-mono text-xl font-semibold text-ctp-lavender">Recent</h2>}
+    <div class="grid md:grid-cols-2 gap-6">
       {regularPosts.map(post => (
         <BlogCard 
           title={post.data.title}
@@ -52,7 +50,7 @@ const regularPosts = posts.filter(post => !post.data.featured);
           category={post.data.category}
           tags={post.data.tags}
           image={post.data.image}
-          slug={post.slug}
+          slug={`blog/${post.id}`}
           content={post.body}
         />
       ))}

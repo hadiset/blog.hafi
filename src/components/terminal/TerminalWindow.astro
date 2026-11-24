@@ -1,0 +1,25 @@
+---
+// Card framed like a terminal window: title bar with traffic-light dots.
+export interface Props {
+  title?: string;
+  class?: string;
+  bodyClass?: string;
+}
+
+const { title = "hadi@hadiset: ~", class: className = "", bodyClass = "p-5 md:p-6" } = Astro.props;
+---
+
+<div class={`overflow-hidden rounded-md border border-ctp-surface0 bg-ctp-mantle ${className}`}>
+  <div class="flex items-center gap-3 border-b border-ctp-surface0 bg-ctp-crust px-4 py-2.5">
+    <div class="flex gap-1.5" aria-hidden="true">
+      <span class="size-3 rounded-full bg-ctp-red"></span>
+      <span class="size-3 rounded-full bg-ctp-yellow"></span>
+      <span class="size-3 rounded-full bg-ctp-green"></span>
+    </div>
+    <p class="flex-1 truncate text-center font-mono text-xs text-ctp-overlay">{title}</p>
+    <span class="w-[3.25rem]" aria-hidden="true"></span>
+  </div>
+  <div class={bodyClass}>
+    <slot />
+  </div>
+</div>

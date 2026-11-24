@@ -1,0 +1,76 @@
+---
+import type { MarkdownHeading } from "astro";
+import TocList from "./TocList.astro";
+
+// Article outline built from h2/h3. Rendered twice by BlogLayout: a sticky sidebar
+// (lg and up) and a collapsible block (below lg). The script highlights the section in view.
+export interface Props {
+  headings: MarkdownHeading[];
+  variant: "sidebar" | "inline";
+}
+
+const { headings, variant } = Astro.props;
+const items = headings.filter((h) => h.depth === 2 || h.depth === 3);
+
+---
+
+{items.length >= 2 && (
+  variant === "sidebar" ? (
+    <nav aria-label="Table of contents" class="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto">
+      <p class="mb-3 px-2 font-mono text-xs text-ctp-overlay">
+        <span class="text-ctp-green">$</span> cat toc
+      </p>
+      <TocList items={items} />
+    </nav>
+  ) : (
+    <details class="group/toc rounded-md border border-ctp-surface0 bg-ctp-mantle">
+      <summary class="flex cursor-pointer list-none items-center justify-between px-4 py-3 font-mono text-sm text-ctp-text [&::-webkit-details-marker]:hidden">
+        <span><span class="text-ctp-green">$</span> cat toc <span class="text-ctp-overlay"># {items.length} sections</span></span>
+        <span class="text-ctp-overlay transition-transform group-open/toc:rotate-90" aria-hidden="true">›</span>
+      </summary>
+      <nav aria-label="Table of contents" class="border-t border-ctp-surface0 px-2 py-3">
+        <TocList items={items} />
+      </nav>
+    </details>
+  )
+)}
+
+<script>
+  // Mark the heading currently being read in every TOC on the page.
+  const links = [...document.querySelectorAll<HTMLAnchorElement>("[data-toc-link]")];
+  const ids = [...new Set(links.map((a) => a.dataset.tocLink!))];
+  const headings = ids
+    .map((id) => document.getElementById(id))
+    .filter((el): el is HTMLElement => el !== null);
+
+  if (headings.length) {
+    const setActive = (id: string) => {
+      for (const a of links) a.toggleAttribute("data-active", a.dataset.tocLink === id);
+    };
+
+    // The active section is the last heading that has scrolled past the top band.
+    const update = () => {
+      let current = headings[0].id;
+      for (const h of headings) {
+        if (h.getBoundingClientRect().top <= 120) current = h.id;
+        else break;
+      }
+      setActive(current);
+    };
+
+    let ticking = false;
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          update();
+          ticking = false;
+        });
+      },
+      { passive: true },
+    );
+    update();
+  }
+</script>

@@ -1,0 +1,26 @@
+---
+import type { MarkdownHeading } from "astro";
+
+export interface Props {
+  items: MarkdownHeading[];
+}
+
+const { items } = Astro.props;
+---
+
+<ol class="space-y-1 font-mono text-[13px] leading-snug">
+  {items.map((h) => (
+    <li class={h.depth === 3 ? "pl-4" : ""}>
+      <a
+        href={`#${h.slug}`}
+        data-toc-link={h.slug}
+        class="group flex gap-2 rounded px-2 py-1 text-ctp-subtext transition-colors hover:bg-ctp-surface0 hover:text-ctp-text data-[active]:bg-ctp-surface0 data-[active]:text-ctp-mauve"
+      >
+        <span class="text-ctp-overlay select-none group-data-[active]:text-ctp-mauve" aria-hidden="true">
+          {h.depth === 2 ? "##" : "└"}
+        </span>
+        <span>{h.text}</span>
+      </a>
+    </li>
+  ))}
+</ol>

@@ -1,0 +1,16 @@
+---
+// Section heading written as a shell command: `$ cmd args`.
+export interface Props {
+  cmd: string;
+  args?: string;
+  as?: "h1" | "h2" | "h3";
+  id?: string;
+  class?: string;
+}
+
+const { cmd, args, as: Tag = "h2", id, class: className = "" } = Astro.props;
+---
+
+<Tag id={id} class={`font-mono text-xl font-semibold md:text-2xl ${className}`}>
+  <span class="text-ctp-green select-none" aria-hidden="true">$ </span><span class="text-ctp-text">{cmd}</span>{args && <span class="text-ctp-blue"> {args}</span>}
+</Tag>

@@ -2,292 +2,99 @@
 const currentPath = Astro.url.pathname;
 
 function isActive(path: string) {
-  if(path === '/') return currentPath === '/';
+  if (path === "/") return currentPath === "/";
   return currentPath.startsWith(path);
 }
+
+const links = [
+  { href: "/", label: "~/" },
+  { href: "/blog", label: "~/blog" },
+  { href: "/showcase", label: "~/showcase" },
+];
 ---
 
-<nav class="bg-purple-300 sticky top-0 shadow dark:bg-purple-950 dark:shadow-purple-700 z-50">
-  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-    <div class="relative flex h-16 items-center justify-between">
-      <div
-        class="absolute inset-y-0 left-0 flex items-center sm:hidden"
-        id="mobile-menu-button"
+<nav class="sticky top-0 z-50 border-b border-ctp-surface0 bg-ctp-crust/90 backdrop-blur">
+  <div class="mx-auto flex h-14 max-w-5xl items-center justify-between gap-4 px-4 md:px-6">
+    <a href="/" class="font-mono text-sm font-semibold whitespace-nowrap" aria-label="Hadi Setiawan, home">
+      <span class="text-ctp-green">hadi</span><span class="text-ctp-overlay">@</span><span class="text-ctp-mauve">hadiset</span><span class="text-ctp-overlay">:</span><span class="text-ctp-blue">~</span><span class="text-ctp-overlay">$</span>
+    </a>
+
+    <div class="hidden items-center gap-1 sm:flex">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          aria-current={isActive(link.href) ? "page" : undefined}
+          class={`rounded px-3 py-1.5 font-mono text-sm transition-colors ${
+            isActive(link.href)
+              ? "bg-ctp-surface0 text-ctp-mauve"
+              : "text-ctp-subtext hover:bg-ctp-surface0 hover:text-ctp-text"
+          }`}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        id="theme-selector"
+        class="flex size-9 items-center justify-center rounded border border-ctp-surface0 text-ctp-yellow transition-colors hover:border-ctp-surface1 hover:bg-ctp-surface0"
       >
-        <!-- Mobile menu button-->
+        <span class="sr-only">Toggle light and dark mode</span>
+        <!-- Sun: shown in dark mode -->
+        <svg class="size-4 light:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <!-- Moon: shown in light mode -->
+        <svg class="hidden size-4 text-ctp-mauve light:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+
+      <div id="mobile-menu-button" class="sm:hidden">
         <button
           type="button"
-          class="relative inline-flex items-center justify-center rounded-md p-2 text-emerald-900 hover:bg-purple-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset"
+          class="flex size-9 items-center justify-center rounded border border-ctp-surface0 text-ctp-text hover:bg-ctp-surface0"
           aria-controls="mobile-menu"
           aria-expanded="false"
         >
-          <span class="absolute -inset-0.5"></span>
           <span class="sr-only">Open main menu</span>
-          <!--
-            Icon when menu is closed.
-
-            Menu open: "hidden", Menu closed: "block"
-          -->
-          <svg
-            id="open-menu-button"
-            class="block size-6 dark:stroke-purple-50"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+          <svg id="open-menu-button" class="block size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
           </svg>
-          <!--
-            Icon when menu is open.
-
-            Menu open: "block", Menu closed: "hidden"
-          -->
-          <svg
-            id="close-menu-button"
-            class="hidden size-6 dark:stroke-purple-50"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18 18 6M6 6l12 12"></path>
+          <svg id="close-menu-button" class="hidden size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
           </svg>
         </button>
       </div>
-      <div
-        class="flex flex-row flex-1 items-center justify-end sm:items-stretch sm:justify-start"
-      >
-        <div class="flex basis-1/2 sm:basis-1/12 items-center justify-end sm:justify-start">
-          <svg
-            version="1.0"
-            class="h-8 w-auto"
-            id="Layer_1"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            viewBox="0 0 64 64"
-            enable-background="new 0 0 64 64"
-            xml:space="preserve"
-            fill="#000000"
-            ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
-              id="SVGRepo_tracerCarrier"
-              stroke-linecap="round"
-              stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
-              <g>
-                <path
-                  fill="#e1b4f9"
-                  d="M32,2c6,4,14,14,14,30c0,4.401-0.539,8.531-1.221,12H19.221C18.539,40.531,18,36.401,18,32C18,16,26,6,32,2 z"
-                ></path>
-                <path
-                  fill="#e1b4f9"
-                  d="M2,44l14.117-8.471c0.234,3.901,0.814,7.484,1.472,10.471H2V44z"
-                ></path>
-                <path
-                  fill="#8b46b9"
-                  d="M2,50v-2h16.059c0.182,0.728,0.362,1.396,0.54,2.022c-0.003-0.008-0.005-0.015-0.007-0.022H2z"
-                ></path>
-                <path
-                  fill="#ccf755"
-                  d="M32,62c-1,0-3-2-3-6h6C35,60,33,62,32,62z"></path>
-                <path
-                  fill="#8b46b9"
-                  d="M42,54H22c0,0-1.254-3.136-2.357-8h24.715C43.254,50.864,42,54,42,54z"
-                ></path>
-                <path
-                  fill="#8b46b9"
-                  d="M62,50H45.408c-0.002,0.008-0.004,0.015-0.007,0.022c0.178-0.626,0.358-1.295,0.54-2.022H62V50z"
-                ></path>
-                <path
-                  fill="#e1b4f9"
-                  d="M62,46H46.411c0.657-2.986,1.237-6.569,1.472-10.471L62,44V46z"
-                ></path>
-                <g>
-                  <path
-                    fill="#394240"
-                    d="M63.029,42.285l-15.054-9.032c0,0.004,0,0.009-0.001,0.013C47.984,32.844,48,32.427,48,32 c0-16.026-7.692-26.865-14.891-31.664C32.773,0.112,32.387,0,32,0s-0.773,0.112-1.109,0.336C23.692,5.135,16,15.974,16,32 c0,0.427,0.016,0.844,0.025,1.266c-0.001-0.004-0.001-0.009-0.001-0.013L0.971,42.285C0.368,42.646,0,43.297,0,44v6 c0,1.104,0.896,2,2,2h17.188c0.516,1.627,0.904,2.617,0.954,2.742C20.447,55.502,21.183,56,22,56h5c0,4.785,2.585,8,5,8 c2.396,0,4.961-3.166,5-7.891c0.002-0.036,0.003-0.072,0.003-0.109H42c0.817,0,1.553-0.498,1.857-1.258 c0.05-0.125,0.438-1.115,0.954-2.742H62c1.104,0,2-0.896,2-2v-6C64,43.297,63.632,42.646,63.029,42.285z M2,44l14.117-8.471 c0.234,3.901,0.814,7.484,1.472,10.471H2V44z M18.592,50H2v-2h16.059c0.182,0.728,0.362,1.396,0.54,2.022 C18.596,50.015,18.594,50.008,18.592,50z M32,62c-1,0-3-2-3-6h6C35,60,33,62,32,62z M42,54H22c0,0-1.254-3.136-2.357-8h24.715 C43.254,50.864,42,54,42,54z M44.779,44H19.221C18.539,40.531,18,36.401,18,32c0-16,8-26,14-30c6,4,14,14,14,30 C46,36.401,45.461,40.531,44.779,44z M62,50H45.408c-0.002,0.008-0.004,0.015-0.007,0.022c0.178-0.626,0.358-1.295,0.54-2.022H62 V50z M62,46H46.411c0.657-2.986,1.237-6.569,1.472-10.471L62,44V46z"
-                  ></path>
-                  <path
-                    fill="#394240"
-                    d="M32,18c-3.313,0-6,2.687-6,6s2.687,6,6,6s6-2.687,6-6S35.313,18,32,18z M32,28c-2.209,0-4-1.791-4-4 s1.791-4,4-4s4,1.791,4,4S34.209,28,32,28z"
-                  ></path>
-                </g>
-                <circle fill="#f2e5f6" cx="32" cy="24" r="4"></circle>
-                <g opacity="0.15">
-                  <path
-                    fill="#231F20"
-                    d="M2,44v2h15.589c-0.657-2.986-1.237-6.569-1.472-10.471L2,44z"
-                  ></path>
-                  <path
-                    fill="#231F20"
-                    d="M47.883,35.529c-0.234,3.901-0.814,7.484-1.472,10.471H62v-2L47.883,35.529z"
-                  ></path>
-                </g>
-                <g opacity="0.2">
-                  <path
-                    fill="#231F20"
-                    d="M2,48v2h16.592c0.002,0.008,0.004,0.015,0.007,0.022c-0.178-0.626-0.358-1.295-0.54-2.022H2z"
-                  ></path>
-                  <path
-                    fill="#231F20"
-                    d="M45.941,48c-0.182,0.728-0.362,1.396-0.54,2.022c0.003-0.008,0.005-0.015,0.007-0.022H62v-2H45.941z"
-                  ></path>
-                </g>
-              </g>
-            </g></svg
-          >
-        </div>
-        <div class="hidden sm:ml-6 sm:basis-8/12 sm:block">
-          <div class="flex space-x-4">
-            <!-- Current: "bg-purple-800 text-white", Default: "text-purple-900 hover:bg-purple-700 hover:text-white" -->
-            <a
-              href="/"
-              class={`rounded-md px-3 py-2 text-base font-medium hover:bg-purple-700 hover:text-white dark:text-white ${isActive("/") ? 'text-white bg-purple-700' : 'text-black' } `}
-              aria-current="page">Home</a
-            >
-            <a
-              href="/blog"
-              class={`rounded-md px-3 py-2 text-base font-medium hover:bg-purple-700 hover:text-white dark:text-white ${isActive("/blog") ? 'text-white bg-purple-700' : 'text-black' } `}
-              >Blog</a
-            >            
-            <a
-              href="/showcase"
-              class={`rounded-md px-3 py-2 text-base font-medium hover:bg-purple-700 hover:text-white dark:text-white ${isActive("/showcase") ? 'text-white bg-purple-700' : 'text-black' } `}
-              >Showcase</a
-            >            
-          </div>
-        </div>
-        <div class="flex basis-1/2 sm:basis-4/12 sm:w-full justify-end">
-          <button
-            type="button"
-            class="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-200 ring-gray-300 transition-all hover:ring-2 dark:ring-amber-300 dark:bg-amber-200 sm:ml-3"
-            id="theme-selector"
-          >
-            <span class="sr-only"
-              >Enable <span class="dark:hidden">light</span><span
-                class="hidden dark:inline">dark</span
-              > mode</span
-            >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 stroke-amber-600 hidden dark:inline"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
-                id="SVGRepo_tracerCarrier"
-                stroke-linecap="round"
-                stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
-                <path
-                  d="M7.28451 10.3333C7.10026 10.8546 7 11.4156 7 12C7 14.7614 9.23858 17 12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C11.4156 7 10.8546 7.10026 10.3333 7.28451"
-                  stroke="#1C274C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"></path>
-                <path
-                  d="M12 2V4"
-                  stroke="#1C274C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"></path>
-                <path
-                  d="M12 20V22"
-                  stroke="#1C274C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"></path>
-                <path
-                  d="M4 12L2 12"
-                  stroke="#1C274C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"></path>
-                <path
-                  d="M22 12L20 12"
-                  stroke="#1C274C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"></path>
-                <path
-                  d="M19.7778 4.22266L17.5558 6.25424"
-                  stroke="#1C274C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"></path>
-                <path
-                  d="M4.22217 4.22266L6.44418 6.25424"
-                  stroke="#1C274C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"></path>
-                <path
-                  d="M6.44434 17.5557L4.22211 19.7779"
-                  stroke="#1C274C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"></path>
-                <path
-                  d="M19.7778 19.7773L17.5558 17.5551"
-                  stroke="#1C274C"
-                  stroke-width="1.5"
-                  stroke-linecap="round"></path>
-              </g></svg
-            >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 stroke-gray-900 dark:hidden"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-line-cap="round"
-                stroke-line-join="round"
-                stroke-width={2}
-                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-              ></path>
-            </svg>
-          </button>
-          <script>
-            document
-              .getElementById("theme-selector")
-              ?.addEventListener("click", () => {
-                if (localStorage.theme === "dark") {
-                  localStorage.theme = "light";
-                  delete document.documentElement.dataset?.theme;
-                } else {
-                  localStorage.theme = "dark";
-                  document.documentElement.dataset.theme = "dark";
-                }
-              });
-          </script>
-        </div>
-      </div>
     </div>
   </div>
 
-  <!-- Mobile menu, show/hide based on menu state. -->
-  <div
-    class="hidden absolute top-full left-0 w-full z-50 bg-purple-300 shadow-lg shadow-purple-300 dark:bg-purple-950"
-    id="mobile-menu"
-  >
-    <div class="space-y-1 px-2 pt-2 pb-3">
-      <a
-        href="/"
-        class={`block rounded-md px-3 py-2 text-base font-medium dark:text-purple-50 ${isActive("/") ? 'text-white bg-purple-700' : 'text-black' } `}
-        aria-current="page">Home</a
-      >
-      <a
-        href="/blog"
-        class={`block rounded-md px-3 py-2 text-base font-medium dark:text-purple-50 ${isActive("/blog") ? 'text-white bg-purple-700' : 'text-black' } `}
-        >Blog</a
-      >      
-      <a
-        href="/showcase"
-        class={`block rounded-md px-3 py-2 text-base font-medium dark:text-purple-50 ${isActive("/showcase") ? 'text-white bg-purple-700' : 'text-black' } `}
-        >Showcase</a
-      >      
+  <div id="mobile-menu" class="hidden border-t border-ctp-surface0 bg-ctp-crust sm:hidden">
+    <div class="space-y-1 px-4 py-3">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          aria-current={isActive(link.href) ? "page" : undefined}
+          class={`block rounded px-3 py-2 font-mono text-sm ${
+            isActive(link.href) ? "bg-ctp-surface0 text-ctp-mauve" : "text-ctp-subtext hover:bg-ctp-surface0 hover:text-ctp-text"
+          }`}
+        >
+          <span class="text-ctp-green">$ cd</span> {link.label}
+        </a>
+      ))}
     </div>
   </div>
 </nav>
+
+<script>
+  document.getElementById("theme-selector")?.addEventListener("click", () => {
+    const next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    document.documentElement.dataset.theme = next;
+    try {
+      localStorage.setItem("theme", next);
+    } catch {}
+  });
+</script>

@@ -1,19 +1,32 @@
-<footer class="bg-purple-50 dark:bg-purple-950 border-t border-gray-200 dark:border-gray-700 mt-20">
-  <div class="max-w-4xl mx-auto px-6 py-2">    
-    <div class="py-2 text-center">
-      <p class="text-gray-500 dark:text-gray-200 text-sm">
-        © {new Date().getFullYear()} Blog Hafi. Built with 
-        <a 
-          href="https://astro.build" 
-          class="text-purple-800 hover:text-purple-900 dark:text-purple-200 dark:hover:text-purple-100 
-                 underline hover:no-underline focus:outline-none focus:ring-2 focus:ring-purple-500 
-                 focus:ring-offset-2 dark:focus:ring-purple-400 rounded-sm"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Astro
-        </a>
-      </p>
-    </div>
+---
+import { profile } from "../../data/profile";
+
+const links = [
+  { href: `mailto:${profile.email}`, label: "email" },
+  { href: profile.linkedin, label: "linkedin" },
+  { href: profile.github, label: "github" },
+  { href: "/rss.xml", label: "rss" },
+];
+---
+
+<footer class="border-t border-ctp-surface0 bg-ctp-crust">
+  <div class="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-6 font-mono text-xs text-ctp-overlay md:flex-row md:items-center md:justify-between md:px-6">
+    <p>
+      <span class="text-ctp-green">$</span> echo "© {new Date().getFullYear()} {profile.name}" <span class="text-ctp-overlay">·</span> built with
+      <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="text-ctp-mauve hover:underline">Astro</a>
+    </p>
+    <ul class="flex flex-wrap gap-x-4 gap-y-1">
+      {links.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="text-ctp-subtext transition-colors hover:text-ctp-mauve"
+            {...(link.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          >
+            ./{link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
   </div>
 </footer>

@@ -1,5 +1,5 @@
 export function formatDate(date: Date): string {
-  return new Intl.DateTimeFormat('id-ID', {
+  return new Intl.DateTimeFormat('en-GB', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',

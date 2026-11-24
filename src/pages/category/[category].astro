@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogList from '../../components/blog/BlogList.astro';
+import Prompt from '../../components/terminal/Prompt.astro';
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog', ({ data }) => {
@@ -25,20 +26,18 @@ export async function getStaticPaths() {
 const { posts, category } = Astro.props;
 ---
 
-<BaseLayout 
-  pageTitle={`${category} Articles - Blog Hafi`}
-  description={`All articles in ${category} category`}
+<BaseLayout
+  pageTitle={`${category} articles | Hadi Setiawan`}
+  description={`All articles in the ${category} category`}
 >
-  <div class="max-w-4xl mx-auto px-6 py-16">
-    <header class="text-center mb-12">
-      <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-        {category}
-      </h1>
-      <p class="text-xl text-gray-600 dark:text-gray-400">
-        {posts.length} article{posts.length !== 1 ? 's' : ''} in this category
+  <div class="mx-auto max-w-5xl px-4 py-12 md:px-6">
+    <header class="mb-8">
+      <Prompt as="h1" cmd="ls" args={`~/blog/${category.toLowerCase()}`} />
+      <p class="mt-2 font-mono text-sm text-ctp-overlay">
+        {posts.length} article{posts.length !== 1 ? 's' : ''} in this category · <a href="/blog" class="text-ctp-mauve hover:underline">cd ~/blog</a>
       </p>
     </header>
-    
+
     <BlogList posts={posts} showFeatured={false} />
   </div>
 </BaseLayout>
