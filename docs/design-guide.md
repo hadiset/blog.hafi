@@ -74,7 +74,11 @@ Kalau menambah atau mengubah warna, hitung ulang kontrasnya dulu.
 ### Elemen gaya (semua dipakai)
 1. **Prompt sebagai heading section** — komponen `Prompt.astro`: `$ ls ./skills`, `$ cat about.md`, `$ git log --oneline ./blog`. `$` berwarna green, perintah berwarna text, argumen/path berwarna blue.
 2. **Window chrome** — komponen `TerminalWindow.astro`: kartu dengan title bar (titik red/yellow/green + judul seperti `hadi@hadiset: ~`). Dipakai untuk hero, kartu penting; jangan setiap elemen dibungkus window (maks. ±1 per section).
-3. **Animasi mengetik** — hanya perintah `whoami` di hero yang diketik; nama, role dan ringkasan **langsung tampil** sejak paint pertama (menyembunyikannya menunda LCP ±1.5 s dan menjatuhkan skor PSI mobile). Kursor blok berkedip. Wajib mati saat `prefers-reduced-motion: reduce`.
+3. **Animasi mengetik** — di hero: `whoami` diketik, lalu output tercetak baris per baris. Teknik wajib (agar PSI mobile tetap 100):
+   - **Konten asli selalu ter-render penuh sejak frame pertama**; animasi dibuat oleh elemen penutup dekoratif (`aria-hidden`, warna `mantle`) di atasnya. Jangan pernah menyembunyikan konten dengan `opacity: 0`/`display: none` lalu menampilkannya — itu menunda LCP.
+   - **Hanya `transform`/`opacity`** (compositor), dengan `steps()` untuk efek terminal; `will-change: transform` hanya pada elemen penutup.
+   - **Tanpa JavaScript.** Kode ada di `.hero-type-cover` / `.hero-print-cover` di `global.css`.
+   - `prefers-reduced-motion: reduce` → tanpa animasi, konten langsung tampil.
 4. **Scanline / CRT glow** — overlay scanline sangat halus (dark mode saja) + glow tipis pada teks aksen hero. **Dimatikan di halaman artikel** (`BaseLayout` prop `crt={false}`) karena menutupi teks dan gambar.
 
 ### Bentuk & spacing
