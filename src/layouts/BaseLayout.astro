@@ -52,6 +52,11 @@ const fullImageUrl = imageUrl
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
+    <!-- Prefetch same-site pages when the pointer rests on a link, so navigation (with the
+         view transition in global.css) feels instant. Files like the CV PDF are skipped. -->
+    <script is:inline type="speculationrules">
+      {"prefetch": [{"where": {"and": [{"href_matches": "/*"}, {"not": {"href_matches": "/*.*"}}]}, "eagerness": "moderate"}]}
+    </script>
     <link rel="ard" href="/.well-known/ard.json" />
     <link rel="alternate" type="application/rss+xml" title="Hadi Setiawan | Blog" href={new URL("rss.xml", Astro.site)} />
 

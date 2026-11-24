@@ -82,6 +82,7 @@ Kalau menambah atau mengubah warna, hitung ulang kontrasnya dulu.
 4. **Scanline / CRT glow** — overlay scanline sangat halus (dark mode saja) + glow tipis pada teks aksen hero. **Dimatikan di halaman artikel** (`BaseLayout` prop `crt={false}`) karena menutupi teks dan gambar.
 5. **Animasi masuk section** — class `reveal` (fade + naik 24px) memakai CSS scroll-driven animation (`animation-timeline: view()`), tanpa JavaScript. Browser yang belum mendukung menampilkan section biasa. Jangan pasang di hero / elemen above-the-fold (menurunkan Speed Index).
 6. **Angka highlights: efek "decrypt"** — digit diacak lalu terkunci kiri→kanan (±1 s), hanya saat masuk viewport. Module script (deferred), angka asli untuk screen reader di `sr-only`, versi animasi `aria-hidden`. Hanya digit yang berubah dan font mono → tidak ada layout shift.
+7. **Transisi antar halaman** — View Transitions bawaan browser (`@view-transition { navigation: auto; }` di `global.css`), **bukan** `<ClientRouter />` Astro (router JS ±13 KB + semua script halaman harus diadaptasi). Navbar diam (`view-transition-name: site-nav`), pill aktif meluncur (`nav-active`, hanya satu per halaman), konten fade singkat. Dipadukan Speculation Rules (prefetch saat hover) di `BaseLayout`. Mati saat reduced motion; Firefox berpindah halaman biasa.
 
 ### Bentuk & spacing
 - Radius kecil: `rounded-md` (window/kartu), `rounded` (badge/tombol) di konten. Tidak pakai shadow tebal.

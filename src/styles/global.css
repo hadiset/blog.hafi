@@ -110,6 +110,48 @@
   }
 }
 
+/* Page transitions: native cross-document View Transitions (no JavaScript, no client router).
+   Each navigation is still a normal page load; the browser animates between the two pages.
+   Unsupported browsers (Firefox today) simply navigate. Off for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+/* The nav bar stays put; only the active pill slides to the new link. */
+.site-nav {
+  view-transition-name: site-nav;
+}
+.nav-active {
+  view-transition-name: nav-active;
+}
+::view-transition-group(site-nav) {
+  animation: none;
+}
+::view-transition-old(site-nav),
+::view-transition-new(site-nav) {
+  animation-duration: 0.18s;
+}
+::view-transition-group(nav-active) {
+  animation-duration: 0.3s;
+  animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Page content: quick fade out, then fade in while rising a few pixels. */
+::view-transition-old(root) {
+  animation: 0.14s ease-out both vt-fade-out;
+}
+::view-transition-new(root) {
+  animation: 0.24s ease-out 0.06s both vt-fade-in;
+}
+@keyframes vt-fade-out {
+  to { opacity: 0; }
+}
+@keyframes vt-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+}
+
 @layer components {
   /* CRT scanlines over the whole page, dark mode only, kept faint. */
   .crt::after {

@@ -19,7 +19,7 @@ const pill =
   "pointer-events-auto flex h-11 items-center rounded-full border border-ctp-surface0 bg-ctp-base/88 px-1.5 backdrop-blur-md";
 ---
 
-<nav aria-label="Main" class="pointer-events-none fixed inset-x-0 top-3 z-50">
+<nav aria-label="Main" class="site-nav pointer-events-none fixed inset-x-0 top-3 z-50">
   <!-- Same max-width and gutters as page sections, so pill edges line up with the content. -->
   <div class="mx-auto flex max-w-5xl items-center justify-between gap-1.5 px-4 md:px-6">
     <!-- Brand: hidden on small screens so links and the theme toggle fit in one row. -->
@@ -39,7 +39,7 @@ const pill =
               aria-current={active ? "page" : undefined}
               class={`flex h-8 items-center rounded-full transition-colors duration-200 ${
                 active
-                  ? "bg-ctp-mauve px-4 font-semibold text-ctp-crust"
+                  ? "nav-active bg-ctp-mauve px-4 font-semibold text-ctp-crust"
                   : `px-3 ${link.accent} hover:bg-ctp-surface0`
               }`}
             >
