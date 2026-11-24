@@ -89,14 +89,12 @@ const fullImageUrl = imageUrl
   </head>
   <body class:list={["flex min-h-screen flex-col", { crt }]}>
     <Navigation />
-    <main class="flex-1">
+    <!-- pt-14: room for the fixed floating nav (12px gap + 44px pill). -->
+    <main class="flex-1 pt-14">
       <slot />
     </main>
     <Footer />
 
-    <script>
-      import "../scripts/menu.js";
-    </script>
   </body>
 </html>
 

@@ -1,4 +1,7 @@
 ---
+// Floating pill bar modelled on Hadi's Waybar (Hyprland rice): separate rounded groups,
+// base at 88% + blur, 1px surface0 border, accent color per item, solid mauve when active.
+// 88% keeps every text color at WCAG AA even over white/black images (see docs/design-guide.md).
 const currentPath = Astro.url.pathname;
 
 function isActive(path: string) {
@@ -7,40 +10,51 @@ function isActive(path: string) {
 }
 
 const links = [
-  { href: "/", label: "~/" },
-  { href: "/blog", label: "~/blog" },
-  { href: "/showcase", label: "~/showcase" },
+  { href: "/", label: "~/", accent: "text-ctp-blue" },
+  { href: "/blog", label: "~/blog", accent: "text-ctp-pink" },
+  { href: "/showcase", label: "~/showcase", accent: "text-ctp-peach" },
 ];
+
+const pill =
+  "pointer-events-auto flex h-11 items-center rounded-full border border-ctp-surface0 bg-ctp-base/88 px-1.5 backdrop-blur-md";
 ---
 
-<nav class="sticky top-0 z-50 border-b border-ctp-surface0 bg-ctp-crust/90 backdrop-blur">
-  <div class="mx-auto flex h-14 max-w-5xl items-center justify-between gap-4 px-4 md:px-6">
-    <!-- No aria-label: the accessible name must contain the visible text (WCAG 2.5.3, label-in-name). -->
-    <a href="/" class="font-mono text-sm font-semibold whitespace-nowrap">
-      <span class="text-ctp-green">hadi</span><span class="text-ctp-overlay">@</span><span class="text-ctp-mauve">hadiset</span><span class="text-ctp-overlay">:</span><span class="text-ctp-blue">~</span><span class="text-ctp-overlay">$</span><span class="sr-only"> Hadi Setiawan, home</span>
-    </a>
-
-    <div class="hidden items-center gap-1 sm:flex">
-      {links.map((link) => (
-        <a
-          href={link.href}
-          aria-current={isActive(link.href) ? "page" : undefined}
-          class={`rounded px-3 py-1.5 font-mono text-sm transition-colors ${
-            isActive(link.href)
-              ? "bg-ctp-surface0 text-ctp-mauve"
-              : "text-ctp-subtext hover:bg-ctp-surface0 hover:text-ctp-text"
-          }`}
-        >
-          {link.label}
-        </a>
-      ))}
+<nav aria-label="Main" class="pointer-events-none fixed inset-x-0 top-3 z-50">
+  <!-- Same max-width and gutters as page sections, so pill edges line up with the content. -->
+  <div class="mx-auto flex max-w-5xl items-center justify-between gap-1.5 px-4 md:px-6">
+    <!-- Brand: hidden on small screens so links and the theme toggle fit in one row. -->
+    <div class={`${pill} hidden px-4 sm:flex`}>
+      <a href="/" class="font-mono text-sm font-semibold whitespace-nowrap">
+        <span class="text-ctp-green">hadi</span><span class="text-ctp-subtext">@</span><span class="text-ctp-mauve">hadiset</span><span class="text-ctp-subtext">:</span><span class="text-ctp-blue">~</span><span class="text-ctp-subtext">$</span><span class="sr-only"> Hadi Setiawan, home</span>
+      </a>
     </div>
 
-    <div class="flex items-center gap-2">
+    <ul class={`${pill} gap-1.5 font-mono text-sm`}>
+      {links.map((link) => {
+        const active = isActive(link.href);
+        return (
+          <li>
+            <a
+              href={link.href}
+              aria-current={active ? "page" : undefined}
+              class={`flex h-8 items-center rounded-full transition-colors duration-200 ${
+                active
+                  ? "bg-ctp-mauve px-4 font-semibold text-ctp-crust"
+                  : `px-3 ${link.accent} hover:bg-ctp-surface0`
+              }`}
+            >
+              {link.label}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+
+    <div class={pill}>
       <button
         type="button"
         id="theme-selector"
-        class="flex size-9 items-center justify-center rounded border border-ctp-surface0 text-ctp-yellow transition-colors hover:border-ctp-surface1 hover:bg-ctp-surface0"
+        class="flex size-8 items-center justify-center rounded-full text-ctp-yellow transition-colors duration-200 hover:bg-ctp-surface0"
       >
         <span class="sr-only">Toggle light and dark mode</span>
         <!-- Sun: shown in dark mode -->
@@ -53,39 +67,6 @@ const links = [
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
         </svg>
       </button>
-
-      <div id="mobile-menu-button" class="sm:hidden">
-        <button
-          type="button"
-          class="flex size-9 items-center justify-center rounded border border-ctp-surface0 text-ctp-text hover:bg-ctp-surface0"
-          aria-controls="mobile-menu"
-          aria-expanded="false"
-        >
-          <span class="sr-only">Open main menu</span>
-          <svg id="open-menu-button" class="block size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-          </svg>
-          <svg id="close-menu-button" class="hidden size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div id="mobile-menu" class="hidden border-t border-ctp-surface0 bg-ctp-crust sm:hidden">
-    <div class="space-y-1 px-4 py-3">
-      {links.map((link) => (
-        <a
-          href={link.href}
-          aria-current={isActive(link.href) ? "page" : undefined}
-          class={`block rounded px-3 py-2 font-mono text-sm ${
-            isActive(link.href) ? "bg-ctp-surface0 text-ctp-mauve" : "text-ctp-subtext hover:bg-ctp-surface0 hover:text-ctp-text"
-          }`}
-        >
-          <span class="text-ctp-green">$ cd</span> {link.label}
-        </a>
-      ))}
     </div>
   </div>
 </nav>

@@ -82,7 +82,14 @@ Kalau menambah atau mengubah warna, hitung ulang kontrasnya dulu.
 4. **Scanline / CRT glow** — overlay scanline sangat halus (dark mode saja) + glow tipis pada teks aksen hero. **Dimatikan di halaman artikel** (`BaseLayout` prop `crt={false}`) karena menutupi teks dan gambar.
 
 ### Bentuk & spacing
-- Radius kecil: `rounded-md` (window/kartu), `rounded` (badge/tombol). Tidak pakai pill bulat penuh atau shadow tebal.
+- Radius kecil: `rounded-md` (window/kartu), `rounded` (badge/tombol) di konten. Tidak pakai shadow tebal.
+- **Pengecualian: navbar = pill bulat penuh ala Waybar** (rice Hyprland Hadi), seperti desktop sungguhan: "bar sistem" membulat di atas, jendela terminal bersudut kecil di bawah. Jangan pakai pill di elemen konten.
+
+### Navbar (floating pill)
+- `fixed`, mengambang 12px dari atas, tepi sejajar dengan konten (`max-w-5xl` + gutter yang sama). `<main>` diberi `pt-14` agar konten tidak tertutup.
+- Tiga grup pill terpisah (gap 6px, seperti modul Waybar): brand · link · toggle tema. Di mobile brand disembunyikan; tidak ada menu hamburger.
+- Pill: tinggi 44px (target sentuh), `rounded-full`, border 1px `surface0`, background **`base` 88%** + `backdrop-blur-md`. 88% adalah minimum agar semua warna teks tetap AA walau di belakangnya gambar putih/hitam — jangan diturunkan. Jangan pakai `overlay` untuk teks di navbar (gagal AA di atas glass).
+- Warna aksen per link: `~/` blue, `~/blog` pink, `~/showcase` peach. Aktif: background `mauve` solid, teks `crust`, sedikit lebih lebar. Hover hanya mengubah background ke `surface0`, transisi 0.2s.
 - Border 1px `surface0`; hover → `surface1` / `mauve`.
 - Lebar konten maks. `max-w-5xl`, artikel `max-w-3xl`.
 - Mobile: gutter 16px (`px-4`), tanpa scroll horizontal.
