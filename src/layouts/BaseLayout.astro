@@ -52,6 +52,7 @@ const fullImageUrl = imageUrl
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="ard" href="/.well-known/ard.json" />
     <link rel="alternate" type="application/rss+xml" title="Hadi Setiawan | Blog" href={new URL("rss.xml", Astro.site)} />
 
     <!-- SEO Meta Tags -->
@@ -94,6 +95,14 @@ const fullImageUrl = imageUrl
       <slot />
     </main>
     <Footer />
+
+    <!-- WebMCP: /webmcp.js is fetched only in browsers that expose a model context
+         (document.modelContext per the spec, navigator.modelContext in earlier Chrome
+         previews). Inline so other visitors pay no request at all. -->
+    <script is:inline type="module">
+      const mc = document.modelContext ?? navigator.modelContext;
+      if (mc?.registerTool) import("/webmcp.js").then((m) => m.registerTools(mc));
+    </script>
 
   </body>
 </html>
