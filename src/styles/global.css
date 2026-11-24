@@ -38,6 +38,8 @@
   --ctp-red: #f38ba8;
   --ctp-yellow: #f9e2af;
   --glow: 0 0 18px color-mix(in srgb, var(--ctp-mauve) 45%, transparent);
+  --hero-dot: var(--ctp-surface1);
+  --hero-glow: color-mix(in srgb, var(--ctp-mauve) 14%, transparent);
 }
 
 :root[data-theme=light] {
@@ -61,6 +63,8 @@
   --ctp-red: #b30d31;
   --ctp-yellow: #7c4f10;
   --glow: none;
+  --hero-dot: var(--ctp-surface1);
+  --hero-glow: color-mix(in srgb, var(--ctp-mauve) 8%, transparent);
 }
 
 @theme inline {
@@ -185,6 +189,16 @@
 
   @keyframes blink {
     50% { opacity: 0; }
+  }
+
+  /* Hero backdrop: dot grid + one soft mauve glow, like a desktop wallpaper behind the terminal
+     window. Pure CSS, static. It fades out by the bottom of the hero, so no section text ever
+     sits on it (keeps text contrast at AA); the glow peaks behind the opaque window. */
+  .hero-bg {
+    background:
+      radial-gradient(ellipse 80% 70% at 50% 45%, var(--hero-glow), transparent 75%),
+      radial-gradient(circle, var(--hero-dot) 1px, transparent 1.5px) 0 0 / 24px 24px;
+    mask-image: linear-gradient(to bottom, #000 40%, transparent 95%);
   }
 
   /* Hero animation: compositor-only (transform), no JavaScript. The content is always
